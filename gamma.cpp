@@ -40,7 +40,6 @@ double gammp(const double a, double x) {
 }
 
 double gser(const double a, const double x) {
-	std::cout << "doing gser" << std::endl;
 	double EPS = std::numeric_limits<double>::epsilon();
 
 	double sum, del, ap;
@@ -58,7 +57,6 @@ double gser(const double a, const double x) {
 }
 
 double gammln(const double xx) {
-	std::cout << "doing gammln" << std::endl;
 	int j;
 	double x, tmp, y, ser;
 	static const double cof[14]={57.1562356658629235,-59.5979603554754912,
@@ -80,7 +78,6 @@ double gammln(const double xx) {
 }
 
 double gcf(const double a, const double x) {
-	std::cout << "doing gcf" << std::endl;
 	double EPS = std::numeric_limits<double>::epsilon();
 	double FPMIN = std::numeric_limits<double>::min() / EPS;
 

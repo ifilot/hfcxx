@@ -36,3 +36,7 @@ const double Atom::y() const {
 const double Atom::z() const {
 	return r.z;
 }
+
+const Vector3 Atom::gr() const {
+	return r;
+}

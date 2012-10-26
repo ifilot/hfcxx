@@ -20,7 +20,7 @@ double gto_kinetic(GTO &gto1, GTO &gto2) {
 }
 
 double cgf_kinetic(CGF &cgf1, CGF &cgf2) {
-	const double pi = 3.14159265359;
+	static const double pi = 3.14159265359;
 	unsigned int i = cgf1.gtos.size();
 	unsigned int j = cgf2.gtos.size();
 

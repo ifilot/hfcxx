@@ -4,7 +4,8 @@ LDFLAGS=
 LIBS=
 DEBUG= -g
 SOURCES=main.cpp vector.cpp atom.cpp gto.cpp cgf.cpp \
-	factorial.cpp func.cpp overlap.cpp kinetic.cpp gamma.cpp
+	factorial.cpp func.cpp overlap.cpp kinetic.cpp gamma.cpp \
+	nuclear.cpp
 OBJECTS=$(SOURCES:.cpp=.o)
 EXECUTABLE=hf
 

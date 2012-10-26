@@ -22,6 +22,9 @@ class Atom{
 	const double y() const;
 	const double z() const;
 
+	public:
+	const Vector3 gr() const;
+
 };
 
 #endif // _ATOM_H
