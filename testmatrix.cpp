@@ -52,5 +52,9 @@ int main() {
 	Symmeig eig(mat,true);
 	std::cout << eig.z;
 
+	std::cout << "eigenvalues" << std::endl;
+	std::cout << "-----------" << std::endl;
+	std::cout << eig.d[0] << "\t" << eig.d[1] << "\t" << eig.d[2] << std::endl;
+
 	return 0;
 }
