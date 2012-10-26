@@ -5,29 +5,22 @@
 
 int main() {
 
-	int size = 5;
+	int size = 3;
 
 	MatDoub mat(size,size),ainv(size,size,0.0);
 
-	/* row 0 */
-	mat[0][0] = 5;
-	mat[1][0] = 2;
-	mat[4][0] = -2;
-	/* row 1 */
-	mat[1][1] = 1;
-	mat[2][1] = 4;
-	mat[3][1] = 3;
-	mat[4][1] = 2;
-	/* row 2 */
-	mat[2][2] = 2;
-	mat[3][2] = 6;
-	mat[4][2] = 3;
-	/* row 3 */
-	mat[2][3] = 3;
-	mat[3][3] = 4;
-	mat[4][3] = 1;
-	/* row 4 */
-	mat[4][4] = 2;
+	/* column 0 */
+	mat[0][0] = 1;
+	mat[1][0] = 7;
+	mat[2][0] = 3;
+	/* column 1 */
+	mat[0][1] = 7;
+	mat[1][1] = 4;
+	mat[2][1] = -5;
+	/* column 2 */
+	mat[0][2] = 3;
+	mat[1][2] = -5;
+	mat[2][2] = 6;
 
 	std::cout << "regular matrix" << std::endl;
 	std::cout << "--------------" << std::endl;
