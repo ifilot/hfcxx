@@ -8,6 +8,8 @@
 #include "gamma.h"
 #include "nuclear.h"
 #include "repulsion.h"
+#include "matrix.h"
+#include "ludcmp.h"
 
 int main() {
 

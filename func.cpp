@@ -1,5 +1,13 @@
 #include "func.h"
 
+double sign(const double &a, const double &b) {
+	return b >= 0 ? (a >= 0 ? a : -a) : (a >= 0 ? -a : a);
+}
+
+double sqr(const double x) {
+	return x * x;
+}
+
 double min(const double &a, const double &b) {
 	if(a > b) {
 		return b;
@@ -16,7 +24,7 @@ double max(const double &a, const double &b) {
 	}
 }
 
-double abs(double &x) {
+double abs(const double &x) {
 	if(x < 0) {
 		return -x;
 	} else {

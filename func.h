@@ -5,10 +5,14 @@
 #include "vector.h"
 #include "factorial.h"
 
+/* sign and square */
+double sign(const double &a, const double &b);
+double sqr(const double x);
+
 /* min, max, abs functions */
 double min(const double &a, const double &b);
 double max(const double &a, const double &b);
-double abs(double &x);
+double abs(const double &x);
 
 /* functions for binomial expansion */
 double binomial_prefactor(const unsigned int &s, const unsigned int &m1, const unsigned int &m2, const double &x1, const double &x2);
