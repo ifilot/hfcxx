@@ -1,5 +1,29 @@
 #include "func.h"
 
+double min(const double &a, const double &b) {
+	if(a > b) {
+		return b;
+	} else {
+		return a;
+	}
+}
+
+double max(const double &a, const double &b) {
+	if(a < b) {
+		return b;
+	} else {
+		return a;
+	}
+}
+
+double abs(double &x) {
+	if(x < 0) {
+		return -x;
+	} else {
+		return x;
+	}
+}
+
 double binomial_prefactor(const unsigned int &s, const unsigned int &m1, const unsigned int &m2, const double &x1, const double &x2) {
 	double sum = 0;
 
@@ -9,7 +33,7 @@ double binomial_prefactor(const unsigned int &s, const unsigned int &m1, const u
 				pow(x1,m1-s+i) * pow(x2,m2-i);
 		}
 	}
-
+   
 	return sum;
 }
 

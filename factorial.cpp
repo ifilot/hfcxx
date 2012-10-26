@@ -4,6 +4,7 @@ double fact(const int i) {
 	
 	if(i < 0) {
 		std::cout << "i must be larger than 0!" << std::endl;
+		return 0;
 	}
 
 	if(i == -1 || i == 0) {
@@ -23,6 +24,7 @@ double fact2(const int i) {
 
 	if(i < -1) {
 		std::cout << "i must be larger than -1!" << std::endl;
+		return 0;
 	}
 
 	if(i == -1 || i == 0) {

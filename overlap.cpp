@@ -20,16 +20,27 @@ double cgf_overlap(CGF &cgf1, CGF &cgf2) {
 }
 
 double gto_overlap(GTO &gto1, GTO &gto2) {
+	return overlap(gto1.alpha, gto1.l, gto1.m, gto1.n, gto1.r,
+		gto2.alpha, gto2.l, gto2.m, gto2.n, gto2.r);
+}
+
+double overlap(double &alpha1, int l1, int m1, int n1, Vector3 &a,
+	double &alpha2, int l2, int m2, int n2, Vector3 &b) {
+
+	if(l1 < 0 || l2 < 0 || m1 < 0 || m2 < 0 || n1 < 0 || n2 < 0) {
+		return 0.0;
+	}
+
 	const double pi = 3.14159265359;
 
-	double rab2 = dist2(gto1.r,gto2.r);
-	double gamma = gto1.alpha + gto2.alpha;
-	Vector3 p = gaussian_product_center(gto1.alpha, gto1.r, gto2.alpha, gto2.r);
+	double rab2 = dist2(a,b);
+	double gamma = alpha1 + alpha2;
+	Vector3 p = gaussian_product_center(alpha1, a, alpha2, b);
 
-	double pre = pow(pi / gamma,1.5) * exp(-gto1.alpha * gto2.alpha * rab2 / gamma);
-	double wx = overlap_1D(gto1.l, gto2.l, p.x-gto1.x, p.x-gto2.x, gamma);
-	double wy = overlap_1D(gto1.m, gto2.m, p.y-gto1.y, p.y-gto2.y, gamma);
-	double wz = overlap_1D(gto1.n, gto2.n, p.z-gto1.z, p.z-gto2.z, gamma);
+	double pre = pow(pi / gamma,1.5) * exp(-alpha1 * alpha2 * rab2 / gamma);
+	double wx = overlap_1D(l1, l2, p.x-a.x, p.x-b.x, gamma);
+	double wy = overlap_1D(m1, m2, p.y-a.y, p.y-b.y, gamma);
+	double wz = overlap_1D(n1, n2, p.z-a.z, p.z-b.z, gamma);
 
 	return pre*wx*wy*wz;
 }
@@ -37,7 +48,7 @@ double gto_overlap(GTO &gto1, GTO &gto2) {
 double overlap_1D(unsigned int l1, unsigned int l2, double x1, double x2, double gamma) {
 	double sum = 0;
 
-	for(unsigned int i=0; i <= 0.5*(l1+l2); i++) {
+	for(int i=0; i <= 0.5*(l1+l2); i++) {
 		sum += binomial_prefactor(2*i, l1, l2, x1, x2) * fact2(2*i-1)/pow(2*gamma,i);
 	}
 
