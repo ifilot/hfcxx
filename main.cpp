@@ -18,8 +18,8 @@ int main() {
 	Atom h2(1,1.4,0,0);
 
 	/* define wavefunctions */
-	CGF psi1("1s",1.24,Vector3(0,0,0));
-	CGF psi2("1s",1.24,Vector3(1.4,0,0));
+	CGF psi1("1s",Vector3(0,0,0));
+	CGF psi2("1s",Vector3(1.4,0,0));
 
 	/* overlap integrals */
 	std::cout << "\t" << "----S----" << std::endl;

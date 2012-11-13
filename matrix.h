@@ -47,6 +47,10 @@ public:
 /* TYPEDEFS */
 
 typedef Matrix<double> MatDoub;
+typedef Matrix<double> Hmatrix;
+typedef Matrix<double> Smatrix;
+typedef Matrix<double> Xmatrix;
+typedef Matrix<double> Fmatrix;
 
 #include "matrix.cpp"
 

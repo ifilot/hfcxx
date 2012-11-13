@@ -8,20 +8,18 @@
 #include "gto.h"
 
 /* 
-Gaussian Type Orbital
-
-x^l * y^m * z^n * exp(-alpha * r^2)
+Contracted Gaussian Function
 */
 
 class CGF{
 	public:
-	double zeta;
 	std::vector<GTO> gtos;
 	Vector3 r;
 	std::string type;
 
 	public:
-	CGF(const std::string type, const double zetaa, const Vector3 rr);
+	CGF(const std::string type, const Vector3 rr);
+	CGF(const std::string &typee, const unsigned int &z, const Vector3 &rr);
 };
 
 #endif //_CGF_H
