@@ -5,7 +5,7 @@ LIBS=
 DEBUG= -g
 SOURCES=vector.cpp atom.cpp gto.cpp cgf.cpp \
 	factorial.cpp func.cpp overlap.cpp kinetic.cpp gamma.cpp \
-	nuclear.cpp repulsion.cpp ludcmp.cpp hf.cpp
+	nuclear.cpp repulsion.cpp ludcmp.cpp hf.cpp molecule.cpp
 OBJECTS=$(SOURCES:.cpp=.o)
 EXECUTABLE=hf
 TEST=tests/h2 tests/matrix

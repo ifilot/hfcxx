@@ -1,3 +1,10 @@
+/*
+ * atom.cpp
+ *
+ * Author: Ivo Filot
+ *
+ */
+
 #include "atom.h"
 
 Atom::Atom(const unsigned int Zz, const double xx, const double yy, const double zz) {
@@ -131,4 +138,26 @@ void Atom::addWavefunction(const std::string &type){
 		wavefunctions.push_back(CGF("2p", Z, r));
 	}
 	
+}
+
+CGF* Atom::operator[](const std::string obs) {
+	if(obs.compare("1s")==0) {
+		return &wavefunctions[0];
+	}
+	if(obs.compare("2s")==0) {
+		return &wavefunctions[1];
+	}
+
+	return 0;
+}
+
+const CGF* Atom::operator[](const std::string obs) const {
+	if(obs.compare("1s")==0) {
+		return &wavefunctions[0];
+	}
+	if(obs.compare("2s")==0) {
+		return &wavefunctions[1];
+	}
+
+	return 0;
 }

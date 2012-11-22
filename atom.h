@@ -1,3 +1,9 @@
+/*
+ * atom.h
+ *
+ * Author: Ivo Filot
+ */
+
 #ifndef _ATOM_H
 #define _ATOM_H
 
@@ -28,6 +34,8 @@ class Atom{
 	unsigned int e2z(const std::string &elementin) const;
 	std::string z2e(const unsigned int &z) const;
 	void addWavefunction(const std::string &type);
+	CGF* operator[](const std::string orb);
+	const CGF* operator[](const std::string orb) const;
 
 	public:
 	const Vector3 gr() const;

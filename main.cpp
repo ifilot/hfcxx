@@ -1,6 +1,7 @@
 #include<iostream>
 #include <iomanip>
 #include "atom.h"
+#include "molecule.h"
 #include "cgf.h"
 #include "factorial.h"
 #include "overlap.h"
@@ -12,6 +13,11 @@
 #include "ludcmp.h"
 
 int main() {
+
+	/* define molecule */
+	Molecule H2;
+	H2.addAtom("H",0,0,0);
+	H2.addAtom("H",1.4,0,0);
 
 	/* define atoms */
 	Atom h1(1,0,0,0);

@@ -1,3 +1,9 @@
+/*
+ * cgf.cpp
+ *
+ * Author: Ivo Filot
+ */
+
 #include "cgf.h"
 
 CGF::CGF(const std::string typee, const Vector3 rr) {
