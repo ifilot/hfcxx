@@ -17,7 +17,7 @@ int main() {
 	/* define molecule */
 	Molecule H2;
 	H2.addAtom("H",0,0,0);
-	H2.addAtom("H",1.4,0,0);
+	H2.addAtom("He",1.4,0,0);
 
 	std::cout << H2;
 
