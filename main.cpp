@@ -1,8 +1,6 @@
 #include<iostream>
 #include <iomanip>
-#include "atom.h"
-#include "molecule.h"
-#include "cgf.h"
+#include "hf.h"
 #include "factorial.h"
 #include "overlap.h"
 #include "kinetic.h"
@@ -18,6 +16,15 @@ int main() {
 	Molecule H2;
 	H2.addAtom("H",0,0,0);
 	H2.addAtom("He",1.4,0,0);
+
+	HF hf;
+	hf.molecule(H2);
+	hf.listorbs();
+	hf.calc();
+	hf.printS();
+	hf.printT();
+	hf.printV();
+	hf.printTE();
 
 	std::cout << H2;
 

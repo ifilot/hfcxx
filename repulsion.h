@@ -28,5 +28,6 @@ double fB(const int i, const int l1, const int l2, const int p, const int a, con
 double B0(int i, int r, int q);
 double fact_ratio2(const int a, const int b);
 
+const unsigned int teindex(unsigned int i, unsigned int j, unsigned int k, unsigned int l);
 
 #endif //_REPULSION_H

@@ -20,6 +20,7 @@ class CGF{
 	public:
 	CGF(const std::string type, const Vector3 rr);
 	CGF(const std::string &typee, const unsigned int &z, const Vector3 &rr);
+	const std::string orb() const;
 
 	friend std::ostream& operator <<(std::ostream &os,const CGF &rhs);
 };

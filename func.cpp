@@ -61,3 +61,9 @@ Vector3 gaussian_product_center(const double &alpha1, const Vector3 &a, const do
 
 	return Vector3(x,y,z);
 }
+
+void swap(unsigned int &i, unsigned int &j) {
+	unsigned int m = i;
+	i = j;
+	j = m;
+}

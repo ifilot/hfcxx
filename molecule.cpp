@@ -7,20 +7,26 @@
 
 #include "molecule.h"
 
-Molecule::Molecule(){}; /* default constructor */
+/* default constructor */
+Molecule::Molecule() {
+	nrat = 0;
+}
 
 void Molecule::addAtom(const Atom &at) {
 	atoms.push_back(at);
+	nrat++;
 }
 
 void Molecule::addAtom(const std::string symbolin, const double xx, const double yy, const double zz) {
 	Atom at(symbolin, xx, yy, zz);
 	atoms.push_back(at);
+	nrat++;
 }
 
 void Molecule::addAtom(const unsigned int Zz, const double xx, const double yy, const double zz) {
 	Atom at(Zz, xx, yy, zz);
 	atoms.push_back(at);
+	nrat++;
 }
 
 std::ostream & operator << (std::ostream &os, const Molecule &rhs) {
@@ -29,4 +35,12 @@ std::ostream & operator << (std::ostream &os, const Molecule &rhs) {
 	}
 
 	return os;
+}
+
+const unsigned int Molecule::nratoms() const{
+	return nrat;
+}
+
+const Atom& Molecule::operator[](const unsigned int i) const {
+  return atoms[i];
 }

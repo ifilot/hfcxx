@@ -1,3 +1,4 @@
+#include "func.h"
 #include "repulsion.h"
 
 double cgf_repulsion(CGF &cgf1, CGF &cgf2, CGF &cgf3, CGF &cgf4) {
@@ -115,4 +116,22 @@ double B0(int i, int r, int g) {
 
 double fact_ratio2(const int a, const int b) {
 	return fact(a) / fact(b) / fact(a - 2*b);
+}
+
+const unsigned int teindex(unsigned int i, unsigned int j, unsigned int k, unsigned int l) {
+	if(i < j) {
+		swap(i,j);
+	}
+	if(k < l) {
+		swap(k,l);
+	}
+
+	unsigned int ij = i * (i + 1) / 2 + j;
+	unsigned int kl = k * (k + 1) / 2 + l;
+
+	if(ij < kl) {
+		swap(ij,kl);
+	}
+
+	return ij * (ij + 1) / 2 + kl;
 }

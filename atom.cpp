@@ -31,7 +31,7 @@ std::ostream & operator << (std::ostream &os, const Atom &rhs) {
 	os << "----------------------------------------------------------------" << std::endl;
 
 	for(unsigned int i=0; i<rhs.wavefunctions.size();i++) {
-		os << rhs.wavefunctions[i];
+		os << rhs[i];
 	}
 
 	os << "----------------------------------------------------------------" << std::endl;
@@ -142,24 +142,27 @@ std::string Atom::z2e(const unsigned int &z) const {
 void Atom::addWavefunctions(){
 	if(Z==1 || Z==2) {
 		wavefunctions.push_back(CGF("1s", Z, r));
+		nrwav = 1;
 	}
 	if(Z==3 || Z==4) {
 		wavefunctions.push_back(CGF("1s", Z, r));
 		wavefunctions.push_back(CGF("2s", Z, r));
+		nrwav = 2;
 	}
 	if(Z>=5 && Z<=10) {
 		wavefunctions.push_back(CGF("1s", Z, r));
 		wavefunctions.push_back(CGF("2s", Z, r));
-		wavefunctions.push_back(CGF("2p", Z, r));
+		wavefunctions.push_back(CGF("2px", Z, r));
+		wavefunctions.push_back(CGF("2py", Z, r));
+		wavefunctions.push_back(CGF("2pz", Z, r));
+		nrwav = 5;
 	}
-	
 }
 
-CGF* Atom::operator[](const unsigned int i) {
-	return &wavefunctions[i];
+const CGF& Atom::operator[](const unsigned int i) const {
+	return wavefunctions[i];
 }
 
-const CGF* Atom::operator[](const unsigned int i) const {
-	return &wavefunctions[i];
+const unsigned int Atom::nrorbs() const {
+	return nrwav;
 }
-

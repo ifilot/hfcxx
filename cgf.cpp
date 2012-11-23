@@ -48,3 +48,7 @@ std::ostream& operator <<(std::ostream &os,const CGF &rhs) {
 
 	return os;
 }
+
+const std::string CGF::orb() const {
+	return type;
+}

@@ -48,6 +48,8 @@ public:
 
 typedef Matrix<double> MatDoub;
 typedef Matrix<double> Hmatrix;
+typedef Matrix<double> Tmatrix;
+typedef Matrix<double> Vmatrix;
 typedef Matrix<double> Smatrix;
 typedef Matrix<double> Xmatrix;
 typedef Matrix<double> Fmatrix;

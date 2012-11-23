@@ -22,4 +22,7 @@ double binomial(const unsigned int &a, const unsigned int &b);
 double dist2(const Vector3 &a, const Vector3 &b);
 Vector3 gaussian_product_center(const double &alpha1, const Vector3 &a, const double &alpha2, const Vector3 &b);
 
+/* swap functions */
+void swap(unsigned int &i, unsigned int &j);
+
 #endif //_FUNC_H
