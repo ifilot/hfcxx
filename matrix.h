@@ -53,6 +53,10 @@ typedef Matrix<double> Vmatrix;
 typedef Matrix<double> Smatrix;
 typedef Matrix<double> Xmatrix;
 typedef Matrix<double> Fmatrix;
+typedef Matrix<double> Pmatrix;
+typedef Matrix<double> Gmatrix;
+typedef Matrix<double> Ccmatrix;
+typedef Matrix<double> Cmatrix;
 
 #include "matrix.cpp"
 

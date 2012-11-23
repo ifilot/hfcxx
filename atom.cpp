@@ -10,6 +10,7 @@
 Atom::Atom(const unsigned int Zz, const double xx, const double yy, const double zz) {
 	r = Vector3(xx, yy, zz);
 	Z = Zz;
+	nrelec = Z;
 
 	addWavefunctions();
 }
@@ -18,6 +19,7 @@ Atom::Atom(const std::string elementin, const double xx, const double yy, const 
 	element = elementin;
 	r = Vector3(xx, yy, zz);
 	Z = e2z(element);
+	nrelec = Z;
 
 	addWavefunctions();
 }
@@ -165,4 +167,8 @@ const CGF& Atom::operator[](const unsigned int i) const {
 
 const unsigned int Atom::nrorbs() const {
 	return nrwav;
+}
+
+const unsigned int Atom::nrelecs() const {
+	return nrelec;
 }

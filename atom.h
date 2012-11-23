@@ -20,6 +20,7 @@ class Atom{
 	std::string element;
 	std::vector<CGF> wavefunctions;
 	unsigned int nrwav; /* number of wavefunctions */
+	unsigned int nrelec; /* number of electrons */
 
 	public:
 	Atom(const std::string symbolin, const double xx, const double yy, const double zz);
@@ -40,6 +41,7 @@ class Atom{
 	const Vector3 gr() const;
 	const unsigned int nrorbs() const;
 	const CGF& operator[](const unsigned int i) const;
+	const unsigned int nrelecs() const;
 };
 
 #endif // _ATOM_H
