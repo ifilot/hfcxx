@@ -8,6 +8,7 @@
 #include "matrix.h"
 
 void eigsrt(VecDoub, MatDoub);
+void eigrsrt(VecDoub, MatDoub);
 
 struct Symmeig {
 	int n;

@@ -21,6 +21,27 @@ void eigsrt(VecDoub &d, MatDoub *v=NULL)
 	}
 }
 
+void eigrsrt(VecDoub &d, MatDoub *v=NULL)
+{
+	int k;
+	int n=d.size();
+	for (int i=0;i<n-1;i++) {
+		double p=d[k=i];
+		for (int j=i;j<n;j++)
+			if (d[j] <= p) p=d[k=j];
+		if (k != i) {
+			d[k]=d[i];
+			d[i]=p;
+			if (v != NULL)
+				for (int j=0;j<n;j++) {
+					p=(*v)[j][i];
+					(*v)[j][i]=(*v)[j][k];
+					(*v)[j][k]=p;
+				}
+		}
+	}
+}
+
 void Symmeig::tred2()
 {
 	int l,k,j,i;
@@ -165,7 +186,7 @@ Symmeig::Symmeig(VecDoub &dd, VecDoub &ee, bool yesvec=true) :
  
 void Symmeig::sort() {
     if (yesvecs)
-      eigsrt(d,&z);
+      eigrsrt(d,&z);
     else
       eigsrt(d);
   }

@@ -74,7 +74,6 @@ void HF::calc() {
 	step();
 	step();
 	step();
-	step();
 }
 
 void HF::listorbs() const {
@@ -128,6 +127,7 @@ unsigned int index2 = 0;
 
 	for(unsigned int i=0; i<nrorbs; i++) {
     for(unsigned int j=0; j<nrorbs; j++) {
+			G[i][j] = 0; /* reset G matrix */
       for(unsigned int k=0; k<nrorbs; k++) {
         for(unsigned int l=0; l<nrorbs; l++) {
 					index1 = teindex(i,j,k,l);
@@ -150,6 +150,11 @@ unsigned int index2 = 0;
 
 	Symmeig eig(Fp,true);
 	Cc = eig.z;
+
+	std::cout << "e1 = " << eig.d[0] << " e2 = " << eig.d[1] << std::endl;
+
+	std::cout << "--- C' matrix ---" << std::endl;
+	std::cout << Cc;
 
 	C = matprod(X,Cc);
 

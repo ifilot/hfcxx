@@ -4,7 +4,7 @@ Xmatrix canorg(const Smatrix &S) {
 	unsigned int size = S.nrows();
 	MatDoub mat(S);
 
-	Symmeig eig(mat,false);
+	Symmeig eig(mat,true);
 
 	MatDoub U(eig.z);	/* extract U matrix */
 
