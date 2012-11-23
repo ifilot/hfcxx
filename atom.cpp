@@ -10,18 +10,33 @@
 Atom::Atom(const unsigned int Zz, const double xx, const double yy, const double zz) {
 	r = Vector3(xx, yy, zz);
 	Z = Zz;
+
+	addWavefunctions();
 }
 
 Atom::Atom(const std::string elementin, const double xx, const double yy, const double zz) {
 	element = elementin;
 	r = Vector3(xx, yy, zz);
 	Z = e2z(element);
+
+	addWavefunctions();
 }
 
 std::ostream & operator << (std::ostream &os, const Atom &rhs) {
 	os << rhs.ps();
 
-	return os << "\t" << rhs.x() << "\t" << rhs.y() << "\t" << rhs.z();
+	os << std::setprecision(10) << std::setiosflags(std::ios::fixed);
+
+	os << "\t" << rhs.x() << "\t" << rhs.y() << "\t" << rhs.z() << std::endl;
+	os << "----------------------------------------------------------------" << std::endl;
+
+	for(unsigned int i=0; i<rhs.wavefunctions.size();i++) {
+		os << rhs.wavefunctions[i];
+	}
+
+	os << "----------------------------------------------------------------" << std::endl;
+
+	return os;
 }
 
 const std::string Atom::ps() const {
@@ -124,7 +139,7 @@ std::string Atom::z2e(const unsigned int &z) const {
 	return "undefined";
 }
 
-void Atom::addWavefunction(const std::string &type){
+void Atom::addWavefunctions(){
 	if(Z==1 || Z==2) {
 		wavefunctions.push_back(CGF("1s", Z, r));
 	}
@@ -140,24 +155,11 @@ void Atom::addWavefunction(const std::string &type){
 	
 }
 
-CGF* Atom::operator[](const std::string obs) {
-	if(obs.compare("1s")==0) {
-		return &wavefunctions[0];
-	}
-	if(obs.compare("2s")==0) {
-		return &wavefunctions[1];
-	}
-
-	return 0;
+CGF* Atom::operator[](const unsigned int i) {
+	return &wavefunctions[i];
 }
 
-const CGF* Atom::operator[](const std::string obs) const {
-	if(obs.compare("1s")==0) {
-		return &wavefunctions[0];
-	}
-	if(obs.compare("2s")==0) {
-		return &wavefunctions[1];
-	}
-
-	return 0;
+const CGF* Atom::operator[](const unsigned int i) const {
+	return &wavefunctions[i];
 }
+

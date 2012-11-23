@@ -22,3 +22,12 @@ double GTO::norm() const {
 
 	return sqrt(nom / denom);
 }
+
+std::ostream& operator <<(std::ostream &os,const GTO &rhs) {
+	os << std::setw(10) << std::setiosflags(std::ios::right);
+	os << std::setprecision(10) << std::setiosflags(std::ios::fixed);
+	os << "c = " << rhs.c << "\t" << "alpha = " << rhs.alpha << "\t" << "(l,m,n) = " << "(" 
+		 << rhs.l << "," << rhs.m << "," << rhs.n << ")";
+
+	return os;
+}

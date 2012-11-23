@@ -34,3 +34,17 @@ CGF::CGF(const std::string &typee, const unsigned int &z, const Vector3 &rr) {
 		gtos.push_back(GTO(0.154329,r,3.42525,0,0,0));
 	}
 }
+
+std::ostream& operator <<(std::ostream &os,const CGF &rhs) {
+
+	os << "\t\t******* ";
+
+	os << rhs.type << " orbital";
+	os << " *******" << std::endl;
+
+	for(unsigned int i=0; i<rhs.gtos.size(); i++) {
+		os << rhs.gtos[i] << std::endl;
+	}
+
+	return os;
+}

@@ -33,9 +33,9 @@ class Atom{
 	const double z() const;
 	unsigned int e2z(const std::string &elementin) const;
 	std::string z2e(const unsigned int &z) const;
-	void addWavefunction(const std::string &type);
-	CGF* operator[](const std::string orb);
-	const CGF* operator[](const std::string orb) const;
+	void addWavefunctions();
+	CGF* operator[](const unsigned int i);
+	const CGF* operator[](const unsigned int i) const;
 
 	public:
 	const Vector3 gr() const;

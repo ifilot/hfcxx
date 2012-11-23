@@ -19,6 +19,8 @@ int main() {
 	H2.addAtom("H",0,0,0);
 	H2.addAtom("H",1.4,0,0);
 
+	std::cout << H2;
+
 	/* define atoms */
 	Atom h1(1,0,0,0);
 	Atom h2(1,1.4,0,0);

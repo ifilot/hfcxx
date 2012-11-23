@@ -21,6 +21,7 @@ class Molecule{
 	void addAtom(const Atom &at);
 	void addAtom(const std::string symbolin, const double xx, const double yy, const double zz);
 	void addAtom(const unsigned int Zz, const double xx, const double yy, const double zz);
+	friend std::ostream & operator << (std::ostream &os, const Molecule &rhs);
 };
 
 #endif //_MOLECULE_H

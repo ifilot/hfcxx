@@ -22,3 +22,11 @@ void Molecule::addAtom(const unsigned int Zz, const double xx, const double yy, 
 	Atom at(Zz, xx, yy, zz);
 	atoms.push_back(at);
 }
+
+std::ostream & operator << (std::ostream &os, const Molecule &rhs) {
+	for(unsigned int i=0; i<rhs.atoms.size();i++) {
+		os << "(" << i+1 << ")\t" << rhs.atoms[i] << std::endl;
+	}
+
+	return os;
+}

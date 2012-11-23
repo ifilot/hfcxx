@@ -23,6 +23,8 @@ class GTO{
 	public:
 	GTO(const double c, const Vector3 rr, const double alphaa, const unsigned int ll, const unsigned int mm, const unsigned int nn);
 	double norm() const;
+
+	friend std::ostream& operator <<(std::ostream &os,const GTO &rhs);
 };
 
 #endif //_GTO_H
