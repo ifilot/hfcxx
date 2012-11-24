@@ -42,6 +42,7 @@ class Atom{
 	const unsigned int nrorbs() const;
 	const CGF& operator[](const unsigned int i) const;
 	const unsigned int nrelecs() const;
+	const unsigned int nucl_chg() const;
 };
 
 #endif // _ATOM_H

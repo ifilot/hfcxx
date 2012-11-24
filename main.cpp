@@ -13,13 +13,15 @@
 int main() {
 
 	/* define molecule */
-	Molecule H2;
-	H2.addAtom("H",0,0,0);
-	H2.addAtom("He",1.4,0,0);
+	Molecule H2O;
+	H2O.addAtom("O",0,0,0);
+	H2O.addAtom("H",1,0,0);
+	H2O.addAtom("H",0,1,0);
 
 	HF hf;
-	hf.molecule(H2);
-	hf.calc();
+	hf.molecule(H2O);
+	hf.listorbs();
+	hf.run();
 
 	return 0;
 }

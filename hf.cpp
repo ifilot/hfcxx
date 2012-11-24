@@ -5,15 +5,16 @@ HF::HF(){} /* default constructor */
 void HF::molecule(const Molecule &moll) {
 	mol = moll;
 	nrelec = 0;
+	energy = 0;
 
 	unsigned int cnt = 0; /* counter for orbitals */
 	for(unsigned int i=0; i<mol.nratoms(); i++) { /* loop over atoms */
 		nrelec += mol[i].nrelecs(); /* get total number of electrons */
 		for(unsigned int j=0; j<mol[i].nrorbs(); j++) { /* loop over orbitals per atom */
-			std::string str = "";
-			str.append("(");
-			str +=  i;
-			str.append(mol[i].ps()).append(",").append(mol[i][j].orb()).append(")");
+			std::ostringstream oss;
+			oss << "[" << i+1 << "] " << mol[i].ps() << "\t ("
+			<< mol[i][j].orb() << ")";
+			std::string str = oss.str();
 			orblist.push_back(str);
 			orbitals.push_back(mol[i][j]);
 			cnt++;
@@ -40,7 +41,7 @@ void HF::molecule(const Molecule &moll) {
 	TE.resize(teindex(nrorbs,nrorbs,nrorbs,nrorbs)+1, -1.0);
 }
 
-void HF::calc() {
+void HF::setup() {
 
 	/* populate all matrices */
 	for(unsigned int i=0; i<nrorbs; i++) {
@@ -66,14 +67,15 @@ void HF::calc() {
 			}
 		}
 	}
+
+	/* uncomment the lines below for debugging purposes */
+	std::cout << S;
+
 	X = canorg(S);
 	Xp = transpose(X);
 
-	std::cout << S;
-	std::cout << X;
-	step();
-	step();
-	step();
+	/* calculate nuclear repulsion energy */
+	nucl_repul = calcnuclrepul();
 }
 
 void HF::listorbs() const {
@@ -138,29 +140,19 @@ unsigned int index2 = 0;
     }
   }
 
+	/* construct Fock Matrix and orthogonalize it */
 	F = matsum(H,G);
-
-	std::cout << "--- F matrix ---" << std::endl;
-	std::cout << F;
-
 	Fp = trimatprod(Xp,F,X);
 
-	std::cout << "--- F' matrix ---" << std::endl;
-	std::cout << Fp;
-
+	/* extract eigenvalues and eigenvectors */
 	Symmeig eig(Fp,true);
 	Cc = eig.z;
 
-	std::cout << "e1 = " << eig.d[0] << " e2 = " << eig.d[1] << std::endl;
+	/* calculate energy from orbitals */
+	energy = calcen(eig);
 
-	std::cout << "--- C' matrix ---" << std::endl;
-	std::cout << Cc;
-
+	/* construct C and charge density matrices for new iterative round */
 	C = matprod(X,Cc);
-
-	std::cout << "--- C matrix ---" << std::endl;
-	std::cout << C;
-
 	P.assign(nrorbs, nrorbs, 0.0); /* reset P */
 	for(unsigned int i=0; i<nrorbs; i++) {
 		for(unsigned int j=0; j<nrorbs; j++) {
@@ -168,5 +160,48 @@ unsigned int index2 = 0;
 				P[i][j] += 2.0 * C[i][k] * C[j][k];
 			}
 		}
+	}
+}
+
+void HF::run() {
+	setup();
+	iterate();
+}
+
+double HF::calcen(Symmeig &eig) {
+	double energy = 0;
+
+	MatDoub mat = matsum(H,F);
+	for(unsigned int i=0; i<nrorbs; i++) {
+		for(unsigned int j=0; j<nrorbs; j++) {
+			energy += P[j][i]*mat[i][j];
+		}
+	}
+
+	return energy * 0.5 + nucl_repul;
+}
+
+double HF::calcnuclrepul() {
+	double repul = 0;
+	for(unsigned int i=0; i<nrat; i++) {
+		for(unsigned int j=i+1; j<nrat; j++) {
+			repul += mol[i].nucl_chg() * mol[j].nucl_chg() / sqrt(dist2(mol[i].gr(), mol[j].gr() ) );
+		}
+	}
+	return repul;
+}
+
+void HF::iterate() {
+	double ediff = 1;
+	double oldenergy = 1000; /* some random big number */
+	unsigned int iter = 0;
+
+	while(ediff > 1e-5) { /* loop until convergence criterion is met */
+		iter++;
+		step();
+		std::cout << std::setprecision(10);
+		std::cout << "Energy after iteration " << iter << ": " << energy << " Hartree" << std::endl;
+		ediff = abs(energy - oldenergy);
+		oldenergy = energy;
 	}
 }

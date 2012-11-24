@@ -51,6 +51,9 @@ const std::string Atom::ps() const {
 	symbols.push_back("B");
 	symbols.push_back("C");
 	symbols.push_back("N");
+	symbols.push_back("O");
+	symbols.push_back("F");
+	symbols.push_back("Ne");
 
 	return symbols[Z-1];
 }
@@ -171,4 +174,8 @@ const unsigned int Atom::nrorbs() const {
 
 const unsigned int Atom::nrelecs() const {
 	return nrelec;
+}
+
+const unsigned int Atom::nucl_chg() const {
+	return Z;
 }

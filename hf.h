@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include<vector>
 #include<string>
+#include<sstream>
 #include "molecule.h"
 #include "matrix.h"
 #include "canorg.h"
@@ -34,23 +35,33 @@ class HF{
 	Ccmatrix Cc; /* Cprime matrix */
 	std::vector<Vmatrix> V; /* set of nuclear attraction matrices */
 	std::vector<double> TE; /* set of double electron integrals */
+	std::vector<double> energies; /* set of energies of each iterative step */
+	double energy; /* current energy in the iterative loop */
+	double nucl_repul; /* nuclear repulsion energy */
 
 	public:
 	HF(); /* default constructor */
 	void molecule(const Molecule &moll);
 	void listorbs() const;
-	void calc();
+	void run();
+
+	/* iterative step functions */
+	private:
+	void step();
+	void setup();
+	void iterate();
+
+	/* energy functions */
+	double calcen(Symmeig &eig);
+	double calcnuclrepul();
 
 	/* special output functions for debugging purposes */
+	public:
 	void printS() const;
 	void printT() const;
 	void printH() const;
 	void printV() const;
 	void printTE() const;
-
-	/* iterative step functions */
-	private:
-	void step();
 };
 
 #endif //_HF_H
