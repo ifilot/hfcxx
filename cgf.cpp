@@ -38,7 +38,7 @@ CGF::CGF(const std::string &typee, const unsigned int &z, const Vector3 &rr) {
 	}
 	/* (8) OXYGEN */
 	if(type.compare("1s")==0 && z==8) {
-		gtos.push_back(GTO(0.1543289700,r,130.70931999,0,0,0));
+		gtos.push_back(GTO(0.15432897000000001,r,130.70931999999999,0,0,0));
 		gtos.push_back(GTO(0.53532813999999995,r,23.808861,0,0,0));
 		gtos.push_back(GTO(0.44463454000000002,r,6.4436083000000002,0,0,0));
 	}
@@ -52,12 +52,12 @@ CGF::CGF(const std::string &typee, const unsigned int &z, const Vector3 &rr) {
 		gtos.push_back(GTO(0.60768372000000004,r,1.1695960999999999,1,0,0));
 		gtos.push_back(GTO(0.39195739000000002,r,0.38038899999999998,1,0,0));
 	}
-	if(type.compare("2px")==0 && z==8) {
+	if(type.compare("2py")==0 && z==8) {
 		gtos.push_back(GTO(0.15591627,r,5.0331513000000001,0,1,0));
 		gtos.push_back(GTO(0.60768372000000004,r,1.1695960999999999,0,1,0));
 		gtos.push_back(GTO(0.39195739000000002,r,0.38038899999999998,0,1,0));
 	}
-	if(type.compare("2px")==0 && z==8) {
+	if(type.compare("2pz")==0 && z==8) {
 		gtos.push_back(GTO(0.15591627,r,5.0331513000000001,0,0,1));
 		gtos.push_back(GTO(0.60768372000000004,r,1.1695960999999999,0,0,1));
 		gtos.push_back(GTO(0.39195739000000002,r,0.38038899999999998,0,0,1));
