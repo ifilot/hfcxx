@@ -1,4 +1,3 @@
-#include "func.h"
 #include "repulsion.h"
 
 double cgf_repulsion(CGF &cgf1, CGF &cgf2, CGF &cgf3, CGF &cgf4) {
@@ -52,7 +51,7 @@ double coulomb_repulsion( const Vector3 &a, const double norma, const int la, co
 	double gamma1 = alphaa + alphab;
 	double gamma2 = alphac + alphad;
 	double delta = 0.25 * (1.0 / gamma1 + 1.0 / gamma2);
-	
+
 	std::vector<double> bx = B_array(la, lb, lc, ld, p.x, a.x, b.x, q.x, c.x, d.x, gamma1, gamma2, delta);
 	std::vector<double> by = B_array(ma, mb, mc, md, p.y, a.y, b.y, q.y, c.y, d.y, gamma1, gamma2, delta);
 	std::vector<double> bz = B_array(na, nb, nc, nd, p.z, a.z, b.z, q.z, c.z, d.z, gamma1, gamma2, delta);
@@ -74,7 +73,7 @@ double coulomb_repulsion( const Vector3 &a, const double norma, const int la, co
 std::vector<double> B_array(const int l1,const int l2,const int l3,const int l4, 
 		const double &p, const double &a, const double &b, const double &q, const double &c, const double &d,
 		const double g1, const double g2, const double delta) {
-	
+
 	int imax = l1 + l2 + l3 + l4 + 1;
 	std::vector<double> arrB(imax,0);
 

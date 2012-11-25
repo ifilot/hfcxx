@@ -1,11 +1,14 @@
 #include "hf.h"
 
-HF::HF(){} /* default constructor */
+HF::HF(){
+	debug = false;
+} /* default constructor */
 
 void HF::molecule(const Molecule &moll) {
 	mol = moll;
 	nrelec = 0;
 	energy = 0;
+	cntstep = 0;
 
 	unsigned int cnt = 0; /* counter for orbitals */
 	for(unsigned int i=0; i<mol.nratoms(); i++) { /* loop over atoms */
@@ -39,6 +42,10 @@ void HF::molecule(const Molecule &moll) {
 		V[i].resize(nrorbs,nrorbs);
 	}
 	TE.resize(teindex(nrorbs,nrorbs,nrorbs,nrorbs)+1, -1.0);
+
+	if(debug) {
+		listorbs();
+	}
 }
 
 void HF::setup() {
@@ -69,16 +76,26 @@ void HF::setup() {
 	}
 
 	/* uncomment the lines below for debugging purposes */
-	std::cout << S;
+	//std::cout << S;
 
 	X = canorg(S);
 	Xp = transpose(X);
 
 	/* calculate nuclear repulsion energy */
 	nucl_repul = calcnuclrepul();
+
+	if(debug) {
+		printT();
+		printH();
+		printV();
+		printS();
+		printX();
+		printTE();
+	}
 }
 
 void HF::listorbs() const {
+	std::cout << "--- List of orbitals ---" << std::endl;
 	for(unsigned int i = 0; i<orblist.size(); i++) {
 		std::cout << orblist[i] << std::endl;
 	}
@@ -87,8 +104,26 @@ void HF::listorbs() const {
 void HF::printS() const {
 	std::cout << "\t" << "--- Smatrix ---" << std::endl;
 	std::cout << S;
+}
 
-	Xmatrix X = canorg(S);
+void HF::printX() const {
+	std::cout << "\t" << "--- Xmatrix ---" << std::endl;
+	std::cout << X;
+}
+
+void HF::printFp() const {
+	std::cout << "\t" << "--- F' matrix ---" << std::endl;
+	std::cout << Fp;
+}
+
+void HF::printF() const {
+	std::cout << "\t" << "--- F matrix ---" << std::endl;
+	std::cout << F;
+}
+
+void HF::printG() const {
+	std::cout << "\t" << "--- G matrix ---" << std::endl;
+	std::cout << G;
 }
 
 void HF::printT() const {
@@ -124,6 +159,12 @@ void HF::printTE() const {
 }
 
 void HF::step() {
+cntstep++;
+
+if(debug) {
+	std::cout << "Start electronic step " << cntstep << std::endl;
+}
+
 unsigned int index1 = 0;
 unsigned int index2 = 0;
 
@@ -143,6 +184,13 @@ unsigned int index2 = 0;
 	/* construct Fock Matrix and orthogonalize it */
 	F = matsum(H,G);
 	Fp = trimatprod(Xp,F,X);
+
+	if(debug) {
+		printH();
+		printG();
+		printF();
+		printFp();
+	}
 
 	/* extract eigenvalues and eigenvectors */
 	Symmeig eig(Fp,true);
@@ -195,6 +243,11 @@ void HF::iterate() {
 	double ediff = 1;
 	double oldenergy = 1000; /* some random big number */
 	unsigned int iter = 0;
+
+	if(debug) {
+		std::cout << "Start iteration routine..." << std::endl;
+		std::cout << "--------------------------" << std::endl;
+	}
 
 	while(ediff > 1e-5) { /* loop until convergence criterion is met */
 		iter++;

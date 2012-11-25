@@ -20,6 +20,7 @@ class HF{
 	unsigned int nrorbs;
 	unsigned int nrat;
 	unsigned int nrelec;
+	unsigned int cntstep;
 	std::vector<std::string> orblist;
 	std::vector<CGF> orbitals;
 	Hmatrix H; /* hamiltonian matrix */
@@ -40,6 +41,7 @@ class HF{
 	double nucl_repul; /* nuclear repulsion energy */
 
 	public:
+	bool debug; /* set debug to either true or false */
 	HF(); /* default constructor */
 	void molecule(const Molecule &moll);
 	void listorbs() const;
@@ -58,7 +60,11 @@ class HF{
 	/* special output functions for debugging purposes */
 	public:
 	void printS() const;
+	void printX() const;
 	void printT() const;
+	void printG() const;
+	void printF() const;
+	void printFp() const;
 	void printH() const;
 	void printV() const;
 	void printTE() const;
