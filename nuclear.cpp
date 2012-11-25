@@ -12,7 +12,7 @@ double cgf_nuclear(CGF &cgf1, CGF &cgf2, const Atom &a) {
 		}
 	}
 
-	return sum;
+	return sum * a.nucl_chg();
 }
 
 double gto_nuclear(GTO &gto1, GTO &gto2, const Vector3 &c) {

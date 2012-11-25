@@ -19,7 +19,7 @@ int main() {
 	H2O.addAtom("H",0,1,0);
 
 	HF hf;
-//	hf.debug = true;
+	hf.debug = true;
 	hf.molecule(H2O);
 	hf.run();
 
