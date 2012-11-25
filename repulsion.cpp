@@ -77,11 +77,11 @@ std::vector<double> B_array(const int l1,const int l2,const int l3,const int l4,
 	int imax = l1 + l2 + l3 + l4 + 1;
 	std::vector<double> arrB(imax,0);
 
-	for(int i1=0; i1<=l1+l2; i1++) {
-		for(int i2=0; i2<=l3+l4; i2++) {
-			for(int r1=0; r1 <= i1/2; r1++) {
-				for(int r2=0; r2 <= i2/2; r2++) {
-					for(int u=0; u<=(i1+i2)/2-r1-r2; u++) {
+	for(int i1=0; i1<l1+l2+1; i1++) {
+		for(int i2=0; i2<l3+l4+1; i2++) {
+			for(int r1=0; r1 < i1/2+1; r1++) {
+				for(int r2=0; r2 < i2/2+1; r2++) {
+					for(int u=0; u<(i1+i2)/2-r1-r2+1; u++) {
 						int i = i1+i2-2*(r1+r2)-u;
 						arrB[i] += B_term(i1,i2,r1,r2,u,l1,l2,l3,l4,
 															p,a,b,q,c,d,g1,g2,delta);
@@ -103,11 +103,11 @@ double B_term(const int i1, const int i2, const int r1, const int r2, const int 
 		pow(delta,i1+i2-2*(r1+r2)-u);
 }
 
-double fB(const int i, const int l1, const int l2, const int p, const int a, const int b, const int r, const int g) {
+double fB(const int i, const int l1, const int l2, const double p, const double a, const double b, const int r, const double g) {
 	return binomial_prefactor(i, l1, l2, p-a, p-b) * B0(i, r, g);
 }
 
-double B0(int i, int r, int g) {
+double B0(int i, int r, double g) {
 	return fact_ratio2(i,r) * pow(4*g,r-i);
 }
 
