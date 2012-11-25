@@ -13,26 +13,12 @@ TESTS=tests/t_matrix tests/t_cgf
 
 all: $(EXECUTABLE)
 
-test: $(TESTS)
-
 $(EXECUTABLE): $(OBJECTS)
 	$(CC) $(LIBS) $(LDFLAGS) $(OBJECTS) main.cpp -o $@
 
 .cpp.o:
 	$(CC) $(LIBS) $(CFLAGS) $(DEBUG) $< -o $@
 
-tests/t_matrix: all
-	$(CC) $(LIBS) $(LDFLAGS) $(OBJECTS) \
-tests/testmatrix.cpp -o tests/t_matrix
-
-tests/t_matrix: all
-	$(CC) $(LIBS) $(LDFLAGS) $(OBJECTS) \
-tests/testfactorial.cpp -o tests/t_fact
-
-tests/t_cgf: all
-	$(CC) $(LIBS) $(LDFLAGS) $(OBJECTS) \
-tests/testcgf.cpp -o tests/t_cgf
-
 clean:
-	rm *.o; rm $(EXECUTABLE); rm $(TESTS)
+	rm *.o; rm $(EXECUTABLE)
 
