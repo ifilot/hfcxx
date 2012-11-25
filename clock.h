@@ -16,7 +16,7 @@ class Clock{
 	long mtime, seconds, useconds;
 	public:
 	Clock(); /* default constructor */
-	void tic();	/* starts the clock */
+	void tic();	/* starts / resets the clock */
 	void toc();	/* pauses the clock */
 	double passed(); /* returns the time in seconds */
 };
