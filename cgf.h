@@ -1,3 +1,12 @@
+/*
+ * cgf.h
+ *
+ * defines contracted gaussian function class
+ *
+ * Author: Ivo Filot
+ *
+ */
+
 #ifndef _CGF_H
 #define _CGF_H
 

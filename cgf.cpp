@@ -1,6 +1,8 @@
 /*
  * cgf.cpp
  *
+ * defines contracted gaussian function class
+ *
  * Author: Ivo Filot
  */
 

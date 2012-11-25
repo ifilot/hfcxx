@@ -12,7 +12,6 @@
 
 #include "matrix.h"
 #include "eigen.h"
-#include "ludcmp.h"
 #include "matfunc.h"
 
 Xmatrix canorg(const Smatrix &S);

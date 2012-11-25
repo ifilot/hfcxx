@@ -1,3 +1,12 @@
+/*
+ * func.cpp
+ *
+ * set of small functions used throughout the various routines
+ *
+ * Author: Ivo Filot
+ *
+ */
+
 #include "func.h"
 
 double sign(const double &a, const double &b) {

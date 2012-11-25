@@ -1,3 +1,14 @@
+/*
+ * eigen.cpp
+ *
+ * class for obtaining eigenvalues and -vectors
+ * this class assumes that all matrices are symmetric
+ * (i.e. Hermitian and real-valued)
+ *
+ * Author: Ivo Filot
+ *
+ */
+
 #include "eigen.h"
 
 void eigsrt(VecDoub &d, MatDoub *v=NULL)

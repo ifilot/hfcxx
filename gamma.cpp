@@ -1,11 +1,21 @@
-#include "gamma.h"
-
-/* FGamma
+/*
+ * gamma.cpp
  *
- * evaluate incomplete gamma function 
+ * evaluate incomplete gamma function
  *
- * See Numerical Recipes 3rd edition page 261
+ * Author: Ivo Filot
+ *
+ * References:
+ * [1] Numerical Recipes
+ * William H. Press, Saul A. Teukolsky, William T.,
+ * Vetterling and Brian P. Flannery
+ * 3rd edition page 261
+ * ISBN-13: 978-0521880688
+ *
+ * The functions below have all been obtained using ref [1]
  */
+
+#include "gamma.h"
 
 double Fgamma(const double m, double x) {
 	double tiny = 0.00000001;

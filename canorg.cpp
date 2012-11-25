@@ -1,3 +1,10 @@
+/*
+ * canorg.cpp
+ *
+ * routine for canonical orthogonalization of overlap matrix (S)
+ *
+ */
+
 #include "canorg.h"
 
 Xmatrix canorg(const Smatrix &S) {

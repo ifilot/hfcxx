@@ -1,6 +1,8 @@
 /*
  * atom.cpp
  *
+ * defines atom class
+ *
  * Author: Ivo Filot
  *
  */

@@ -1,3 +1,14 @@
+/*
+ * eigen.h
+ *
+ * class for obtaining eigenvalues and -vectors
+ * this class assumes that all matrices are symmetric
+ * (i.e. Hermitian and real-valued)
+ *
+ * Author: Ivo Filot
+ *
+ */
+
 #ifndef _EIGEN_H
 #define _EIGEN_H
 

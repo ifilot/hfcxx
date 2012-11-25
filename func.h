@@ -1,3 +1,12 @@
+/*
+ * func.h
+ *
+ * set of small functions used throughout the various routines
+ *
+ * Author: Ivo Filot
+ *
+ */
+
 #ifndef _FUNC_H
 #define _FUNC_H
 

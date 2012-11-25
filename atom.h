@@ -1,6 +1,8 @@
 /*
  * atom.h
  *
+ * defines atom class
+ *
  * Author: Ivo Filot
  */
 

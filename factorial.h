@@ -1,3 +1,12 @@
+/*
+ * factorial.h
+ *
+ * calculate 'single' and double factorial
+ *
+ * Author: Ivo Filot
+ *
+ */
+
 #ifndef _FACT_H
 #define _FACT_H
 

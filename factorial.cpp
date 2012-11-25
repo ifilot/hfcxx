@@ -1,3 +1,12 @@
+/*
+ * factorial.cpp
+ *
+ * calculate 'single' and double factorial
+ *
+ * Author: Ivo Filot
+ *
+ */
+
 #include "factorial.h"
 
 int fact(int n){
