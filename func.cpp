@@ -32,21 +32,17 @@ double abs(const double &x) {
 	}
 }
 
-double binomial_prefactor(const unsigned int &s, const unsigned int &m1, const unsigned int &m2, const double &x1, const double &x2) {
-	double sum = 0;
-
-	for(unsigned i = 0; i <= s; i++) {
-		if(s-m1 <= i && i <= m2) {
-			sum += binomial(m1, s-i) * binomial(m2,i) *
-				pow(x1,m1-s+i) * pow(x2,m2-i);
-		}
-	}
-   
-	return sum;
+double binomial_prefactor(int s, int ia, int ib, double xpa, double xpb){
+  int t;
+  double sum=0.;
+  for (t=0; t<s+1; t++)
+    if ((s-ia <= t) && (t <= ib))
+      sum += binomial(ia,s-t)*binomial(ib,t)*pow(xpa,ia-s+t)*pow(xpb,ib-t);
+  return sum;
 }
 
-double binomial(const unsigned int &a, const unsigned int &b) {
-	return fact(a)/fact(b)/fact(a-b);
+int binomial(int a, int b) {
+	return fact(a)/(fact(b) * fact(a-b));
 }
 
 double dist2(const Vector3 &a, const Vector3 &b) {

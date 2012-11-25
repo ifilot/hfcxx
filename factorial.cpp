@@ -1,41 +1,11 @@
 #include "factorial.h"
 
-double fact(const int i) {
-	
-	if(i < 0) {
-		std::cout << "i must be larger than 0!" << std::endl;
-		return 0;
-	}
-
-	if(i == -1 || i == 0) {
-		return 1.0;
-	}
-
-	double ans=1;
-	for(unsigned int j=i; j>1; j--) {
-		ans *= j;
-	}
-
-	return ans;
-
+int fact(int n){
+  if (n <= 1) return 1;
+  return n*fact(n-1);
 }
 
-double fact2(const int i) {
-
-	if(i < -1) {
-		std::cout << "i must be larger than -1!" << std::endl;
-		return 0;
-	}
-
-	if(i == -1 || i == 0) {
-		return 1.0;
-	}
-
-	double ans=1;
-	for(unsigned int j=i; j>1; j-=2) {
-		ans *= j;
-	}
-
-	return ans;
-
+int fact2(int n){ /* double factorial function = 1*3*5*...*n */
+  if (n <= 1) return 1;
+  return n*fact2(n-2);
 }

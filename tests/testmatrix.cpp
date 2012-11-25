@@ -1,7 +1,7 @@
 #include<iostream>
-#include "vector.h"
-#include "ludcmp.h"
-#include "eigen.h"
+#include "../vector.h"
+#include "../ludcmp.h"
+#include "../eigen.h"
 
 int main() {
 

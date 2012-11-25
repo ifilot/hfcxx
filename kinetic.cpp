@@ -20,7 +20,6 @@ double gto_kinetic(GTO &gto1, GTO &gto2) {
 }
 
 double cgf_kinetic(CGF &cgf1, CGF &cgf2) {
-	static const double pi = 3.14159265359;
 	unsigned int i = cgf1.gtos.size();
 	unsigned int j = cgf2.gtos.size();
 
@@ -29,8 +28,8 @@ double cgf_kinetic(CGF &cgf1, CGF &cgf2) {
 
 	for(unsigned int k = 0; k < i; k++) {
 		for(unsigned int l = 0; l < j; l++) {
-			norm1 = pow(2.0 * cgf1.gtos[k].alpha / pi, 0.75);
-			norm2 = pow(2.0 * cgf2.gtos[l].alpha / pi, 0.75);
+			norm1 = cgf1.gtos[k].norm();
+			norm2 = cgf2.gtos[l].norm();
 			sum += cgf1.gtos[k].c * cgf2.gtos[l].c * norm1 * norm2 * gto_kinetic(cgf1.gtos[k], cgf2.gtos[l]);
 		}
 	}

@@ -16,10 +16,9 @@ double cgf_nuclear(CGF &cgf1, CGF &cgf2, const Atom &a) {
 }
 
 double gto_nuclear(GTO &gto1, GTO &gto2, const Vector3 &c) {
-	static const double pi = 3.14159265359;
 
-	double norm1 = pow(2.0 * gto1.alpha / pi, 0.75);
-	double norm2 = pow(2.0 * gto2.alpha / pi, 0.75);
+	double norm1 = gto1.norm();
+	double norm2 = gto2.norm();
 
 	return nuclear(gto1.r, norm1, gto1.l, gto1.m, gto1.n, gto1.alpha, gto2.r, norm2, gto2.l, gto2.m, gto2.n, gto2.alpha, c);
 }

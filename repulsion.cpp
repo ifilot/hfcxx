@@ -24,12 +24,10 @@ double cgf_repulsion(CGF &cgf1, CGF &cgf2, CGF &cgf3, CGF &cgf4) {
 }
 
 double gto_repulsion(GTO &gto1, GTO &gto2, GTO &gto3, GTO &gto4) {
-	static const double pi = 3.14159265359;
-
-	double norma = pow(2.0 * gto1.alpha / pi, 0.75);
-	double normb = pow(2.0 * gto2.alpha / pi, 0.75);
-	double normc = pow(2.0 * gto3.alpha / pi, 0.75);
-	double normd = pow(2.0 * gto4.alpha / pi, 0.75);
+	double norma = gto1.norm();
+	double normb = gto2.norm();
+	double normc = gto3.norm();
+	double normd = gto4.norm();
 
 	return coulomb_repulsion(gto1.r, norma, gto1.l, gto1.m, gto1.n, gto1.alpha,
 													 gto2.r, normb, gto2.l, gto2.m, gto2.n, gto2.alpha,

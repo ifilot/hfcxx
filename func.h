@@ -15,8 +15,8 @@ double max(const double &a, const double &b);
 double abs(const double &x);
 
 /* functions for binomial expansion */
-double binomial_prefactor(const unsigned int &s, const unsigned int &m1, const unsigned int &m2, const double &x1, const double &x2);
-double binomial(const unsigned int &a, const unsigned int &b);
+double binomial_prefactor(int s, int m1, int m2, double x1, double x2);
+int binomial(int a, int b);
 
 /* functions for vectors */
 double dist2(const Vector3 &a, const Vector3 &b);

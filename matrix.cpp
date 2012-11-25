@@ -200,8 +200,8 @@ void Matrix<T>::columnswap(const int r1, const int r2) {
 template <class U>
 std::ostream& operator<<(std::ostream &os,const Matrix<U> &rhs) {
 	for(int i=0; i < rhs.nn; i++) {
-			os << std::setw(10) << std::setiosflags(std::ios::right);
-			os << std::setprecision(10) << std::setiosflags(std::ios::fixed);
+			os << std::setw(5) << std::setiosflags(std::ios::right);
+			os << std::setprecision(5) << std::setiosflags(std::ios::fixed);
 		for(int j=0; j < rhs.mm; j++) {
 			os << rhs[i][j] << "\t";
 		}

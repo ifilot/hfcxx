@@ -3,7 +3,7 @@
 
 #include<iostream>
 
-double fact(const int i);
-double fact2(const int i);
+int fact(int i);
+int fact2(int i);
 
 #endif // _FACT_H
