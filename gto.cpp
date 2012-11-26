@@ -1,7 +1,6 @@
 #include "gto.h"
 
 GTO::GTO(const double cc, const Vector3 &rr, const double alphaa, const unsigned int ll, const unsigned int mm, const unsigned int nn) {
-	c = cc;
 	r = rr;
 	alpha = alphaa;
 	l = ll;
@@ -11,9 +10,12 @@ GTO::GTO(const double cc, const Vector3 &rr, const double alphaa, const unsigned
 	x = r.x;
 	y = r.y;
 	z = r.z;
+
+	c = cc;
+	norm = calcnorm();
 }
 
-double GTO::norm() const {
+double GTO::calcnorm() const {
 	const double pi = 3.14159265359;
 	double nom = pow(2.0, 2.0*(l+m+n)+3.0/2.0)*pow(alpha,(l+m+n)+3.0/2.0);
 	//std::cout << nom << std::endl;

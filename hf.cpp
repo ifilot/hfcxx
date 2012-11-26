@@ -126,11 +126,12 @@ void HF::setup() {
 	/* TE list */			
 	unsigned int ij = 0;
 	unsigned int kl = 0;
-	for(unsigned int i=0; i<nrorbs; i++) {
-		for(unsigned int j=0; j<=i; j++) {
+	unsigned i,j,k,l;
+	for(i=0; i<nrorbs; i++) {
+		for(j=0; j<=i; j++) {
 			ij = i*(i+1)/2 + j;
-			for(unsigned int k=0; k<nrorbs; k++) {
-				for(unsigned int l=0; l<=k; l++) {
+			for(k=0; k<nrorbs; k++) {
+				for(l=0; l<=k; l++) {
 					kl = k * (k+1)/2 + l;
 					if(ij <= kl) {
 						TE[teindex(i,j,k,l)] = cgf_repulsion(orbitals[i],orbitals[j],orbitals[k],orbitals[l]);

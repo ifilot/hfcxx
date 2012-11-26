@@ -147,21 +147,30 @@ std::string Atom::z2e(const unsigned int &z) const {
 }
 
 void Atom::addWavefunctions(){
+		Basis basis;
 	if(Z==1 || Z==2) {
-		wavefunctions.push_back(CGF("1s", Z, r));
+		basis.set("1s", Z,r);
+		wavefunctions.push_back(CGF("1s", Z, r, basis.getGTOs() ));
 		nrwav = 1;
 	}
 	if(Z==3 || Z==4) {
-		wavefunctions.push_back(CGF("1s", Z, r));
-		wavefunctions.push_back(CGF("2s", Z, r));
+		basis.set("1s", Z,r);
+		wavefunctions.push_back(CGF("1s", Z, r, basis.getGTOs() ));
+		basis.set("2s", Z,r);
+		wavefunctions.push_back(CGF("2s", Z, r, basis.getGTOs() ));
 		nrwav = 2;
 	}
 	if(Z>=5 && Z<=10) {
-		wavefunctions.push_back(CGF("1s", Z, r));
-		wavefunctions.push_back(CGF("2s", Z, r));
-		wavefunctions.push_back(CGF("2px", Z, r));
-		wavefunctions.push_back(CGF("2py", Z, r));
-		wavefunctions.push_back(CGF("2pz", Z, r));
+		basis.set("1s", Z,r);
+		wavefunctions.push_back(CGF("1s", Z, r, basis.getGTOs() ));
+		basis.set("2s", Z,r);
+		wavefunctions.push_back(CGF("2s", Z, r, basis.getGTOs() ));
+		basis.set("2px", Z,r);
+		wavefunctions.push_back(CGF("2px", Z, r, basis.getGTOs() ));
+		basis.set("2py", Z,r);
+		wavefunctions.push_back(CGF("2py", Z, r, basis.getGTOs() ));
+		basis.set("2pz", Z,r);
+		wavefunctions.push_back(CGF("2pz", Z, r, basis.getGTOs() ));
 		nrwav = 5;
 	}
 }

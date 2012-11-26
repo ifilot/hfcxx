@@ -14,6 +14,7 @@
 #include<vector>
 #include "vector.h"
 #include "cgf.h"
+#include "basis.h"
 
 class Atom{
 	private:

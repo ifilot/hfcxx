@@ -11,11 +11,13 @@
 #include "atom.h"
 #include<string>
 #include<vector>
+#include "basis.h"
 
 class Molecule{
 	private:
 	std::vector<Atom> atoms;
 	unsigned int nrat;
+	Basis basis;
 
 	public:
 	Molecule(); /* default constructor */

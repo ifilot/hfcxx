@@ -23,15 +23,11 @@ double cgf_repulsion(const CGF cgf1,const CGF cgf2,const CGF cgf3,const CGF cgf4
 }
 
 double gto_repulsion(const GTO gto1, const GTO gto2, const GTO gto3, const GTO gto4) {
-	double norma = gto1.norm();
-	double normb = gto2.norm();
-	double normc = gto3.norm();
-	double normd = gto4.norm();
 
-	return coulomb_repulsion(gto1.r, norma, gto1.l, gto1.m, gto1.n, gto1.alpha,
-													 gto2.r, normb, gto2.l, gto2.m, gto2.n, gto2.alpha,
-													 gto3.r, normc, gto3.l, gto3.m, gto3.n, gto3.alpha,
-												   gto4.r, normd, gto4.l, gto4.m, gto4.n, gto4.alpha);
+	return coulomb_repulsion(gto1.r, gto1.norm, gto1.l, gto1.m, gto1.n, gto1.alpha,
+													 gto2.r, gto2.norm, gto2.l, gto2.m, gto2.n, gto2.alpha,
+													 gto3.r, gto3.norm, gto3.l, gto3.m, gto3.n, gto3.alpha,
+												   gto4.r, gto4.norm, gto4.l, gto4.m, gto4.n, gto4.alpha);
 }
 
 double coulomb_repulsion( const Vector3 &a, const double &norma, const int &la, const int &ma, const int &na, const double &alphaa,

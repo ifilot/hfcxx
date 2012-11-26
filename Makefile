@@ -7,7 +7,7 @@ SOURCES=vector.cpp atom.cpp gto.cpp cgf.cpp \
 	factorial.cpp func.cpp overlap.cpp kinetic.cpp gamma.cpp \
 	nuclear.cpp repulsion.cpp hf.cpp molecule.cpp \
   canorg.cpp matfunc.cpp eigen.cpp clock.cpp \
-	version.cpp
+	version.cpp basis.cpp
 OBJECTS=$(SOURCES:.cpp=.o)
 EXECUTABLE=hf
 TESTS=tests/t_matrix tests/t_cgf

@@ -9,8 +9,8 @@ double cgf_overlap(CGF &cgf1, CGF &cgf2) {
 
 	for(unsigned int k = 0; k < i; k++) {
 		for(unsigned int l = 0; l < j; l++) {
-			norm1 = cgf1.gtos[k].norm();
-			norm2 = cgf2.gtos[l].norm();
+			norm1 = cgf1.gtos[k].norm;
+			norm2 = cgf2.gtos[l].norm;
 			sum += cgf1.gtos[k].c * cgf2.gtos[l].c * norm1 * norm2 *
 			gto_overlap(cgf1.gtos[k], cgf2.gtos[l]);
 		}
