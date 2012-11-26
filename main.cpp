@@ -1,9 +1,13 @@
 #include<iostream>
 #include <iomanip>
 #include "hf.h"
+#include "version.h"
 #include "clock.h"
 
 int main() {
+
+	/* output compile information on execution */
+	version();
 
 	/* keep track of the time */
 	Clock clock;

@@ -44,11 +44,24 @@ void HF::molecule(const Molecule &moll) {
 	TE.resize(teindex(nrorbs,nrorbs,nrorbs,nrorbs)+1, -1.0);
 
 	if(debug) {
+		std::cout << std::endl;
+		std::cout << "-------------------------------" << std::endl;
+		std::cout << "          LIST INPUT           " << std::endl;
+		std::cout << "-------------------------------" << std::endl;
+		std::cout << std::endl;
 		listorbs();
 	}
 }
 
 void HF::setup() {
+
+	if(debug) {
+		std::cout << std::endl;
+		std::cout << "-------------------------------" << std::endl;
+		std::cout << "             OUTPUT            " << std::endl;
+		std::cout << "-------------------------------" << std::endl;
+		std::cout << std::endl;
+	}
 
 	if(debug) {
 		clock.tic();
@@ -283,9 +296,9 @@ void HF::iterate() {
 
 	if(debug) {
 		std::cout << std::endl;
-		std::cout << "--------------------------" << std::endl;
-		std::cout << "Start iteration routine..." << std::endl;
-		std::cout << "--------------------------" << std::endl;
+		std::cout << "-------------------------------" << std::endl;
+		std::cout << "Start electronic convergence..." << std::endl;
+		std::cout << "-------------------------------" << std::endl;
 	}
 
 	while(ediff > 1e-5) { /* loop until convergence criterion is met */
@@ -307,5 +320,11 @@ void HF::iterate() {
 		/* output result to commandline */
 		std::cout << "Energy after iteration " << iter << ": " << energy << " Hartree" 
 		<< " [ " << passed << " ms ] " << std::endl;
+	}
+
+	if(debug) {
+		std::cout << "-------------------------------" << std::endl;
+		std::cout << "End electronic convergence...  " << std::endl;
+		std::cout << "-------------------------------" << std::endl;
 	}
 }
