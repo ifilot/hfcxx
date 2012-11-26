@@ -13,9 +13,9 @@ int main() {
 	H2O.addAtom("O",0,0,0);
 	H2O.addAtom("H",1,0,0);
 	H2O.addAtom("H",0,1,0);
-	H2O.addAtom("O",0,0,2);
-	H2O.addAtom("H",1,0,2);
-	H2O.addAtom("H",0,1,2);
+	//H2O.addAtom("O",0,0,2);
+	//H2O.addAtom("H",1,0,2);
+	//H2O.addAtom("H",0,1,2);
 	//H2O.addAtom("O",0,0,4);
 	//H2O.addAtom("H",1,0,4);
 	//H2O.addAtom("H",0,1,4);

@@ -34,10 +34,10 @@ double gto_repulsion(GTO &gto1, GTO &gto2, GTO &gto3, GTO &gto4) {
 												   gto4.r, normd, gto4.l, gto4.m, gto4.n, gto4.alpha);
 }
 
-double coulomb_repulsion( const Vector3 &a, const double norma, const int la, const int ma, const int na, const double alphaa,
-													const Vector3 &b, const double normb, const int lb, const int mb, const int nb, const double alphab,
-													const Vector3 &c, const double normc, const int lc, const int mc, const int nc, const double alphac,
-													const Vector3 &d, const double normd, const int ld, const int md, const int nd, const double alphad) {
+double coulomb_repulsion( const Vector3 &a, const double &norma, const int &la, const int &ma, const int &na, const double &alphaa,
+													const Vector3 &b, const double &normb, const int &lb, const int &mb, const int &nb, const double &alphab,
+													const Vector3 &c, const double &normc, const int &lc, const int &mc, const int &nc, const double &alphac,
+													const Vector3 &d, const double &normd, const int &ld, const int &md, const int &nd, const double &alphad) {
 
 	static const double pi = 3.14159265359;
 	double rab2 = dist2(a,b);

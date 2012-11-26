@@ -207,11 +207,6 @@ void HF::printTE() const {
 
 void HF::step() {
 cntstep++;
-clock.tic();
-
-if(debug) {
-	std::cout << "Start electronic step " << cntstep << std::endl;
-}
 
 unsigned int index1 = 0;
 unsigned int index2 = 0;
@@ -287,6 +282,8 @@ void HF::iterate() {
 	double passed = 0;
 
 	if(debug) {
+		std::cout << std::endl;
+		std::cout << "--------------------------" << std::endl;
 		std::cout << "Start iteration routine..." << std::endl;
 		std::cout << "--------------------------" << std::endl;
 	}
