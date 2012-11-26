@@ -7,6 +7,7 @@
 #include<string>
 #include<sstream>
 #include "molecule.h"
+#include "clock.h"
 #include "matrix.h"
 #include "canorg.h"
 #include "kinetic.h"
@@ -21,6 +22,7 @@ class HF{
 	unsigned int nrat;
 	unsigned int nrelec;
 	unsigned int cntstep;
+	Clock clock;
 	std::vector<std::string> orblist;
 	std::vector<CGF> orbitals;
 	Hmatrix H; /* hamiltonian matrix */
@@ -37,6 +39,7 @@ class HF{
 	std::vector<Vmatrix> V; /* set of nuclear attraction matrices */
 	std::vector<double> TE; /* set of double electron integrals */
 	std::vector<double> energies; /* set of energies of each iterative step */
+	std::vector<double> itertimes; /* set of iteration times */
 	double energy; /* current energy in the iterative loop */
 	double nucl_repul; /* nuclear repulsion energy */
 

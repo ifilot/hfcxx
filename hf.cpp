@@ -14,13 +14,13 @@ void HF::molecule(const Molecule &moll) {
 	for(unsigned int i=0; i<mol.nratoms(); i++) { /* loop over atoms */
 		nrelec += mol[i].nrelecs(); /* get total number of electrons */
 		for(unsigned int j=0; j<mol[i].nrorbs(); j++) { /* loop over orbitals per atom */
+			cnt++;
 			std::ostringstream oss;
-			oss << "[" << i+1 << "] " << mol[i].ps() << "\t ("
-			<< mol[i][j].orb() << ")";
+			oss << "[" << cnt << "] " << mol[i].ps() 
+			<< 	i+1 << "\t ("	<< mol[i][j].orb() << ")";
 			std::string str = oss.str();
 			orblist.push_back(str);
 			orbitals.push_back(mol[i][j]);
-			cnt++;
 		}
 	}
 	/* set number of orbitals and atoms */
@@ -50,29 +50,85 @@ void HF::molecule(const Molecule &moll) {
 
 void HF::setup() {
 
+	if(debug) {
+		clock.tic();
+		std::cout << "Constructing S matrix...";
+	}
+
 	/* populate all matrices */
 	for(unsigned int i=0; i<nrorbs; i++) {
 		for(unsigned int j=0; j<nrorbs; j++) {
 			S[i][j] = cgf_overlap(orbitals[i],orbitals[j]);
+		}
+	}
+
+	if(debug) {
+		clock.toc();
+		std::cout << " done [ " << clock.passed() << " ms ]" << std::endl;
+	}
+
+	if(debug) {
+		clock.tic();
+		std::cout << "Constructing T matrix...";
+	}
+
+	for(unsigned int i=0; i<nrorbs; i++) {
+		for(unsigned int j=0; j<nrorbs; j++) {
 			T[i][j] = cgf_kinetic(orbitals[i],orbitals[j]);
 			H[i][j] = T[i][j];
+		}
+	}
 
-			/* V matrices */
+	if(debug) {
+		clock.toc();
+		std::cout << " done [ " << clock.passed() << " ms ]" << std::endl;
+	}
+
+	if(debug) {
+		clock.tic();
+		std::cout << "Constructing V matrices...";
+	}
+
+	/* V matrices */
+	for(unsigned int i=0; i<nrorbs; i++) {
+		for(unsigned int j=0; j<nrorbs; j++) {
 			for(unsigned int k=0; k<nrat; k++) {
 				V[k][i][j] = cgf_nuclear(orbitals[i],orbitals[j],mol[k]);
 				H[i][j] += V[k][i][j];
 			}
+		}
+	}			
+	
+	if(debug) {
+		clock.toc();
+		std::cout << " done [ " << clock.passed() << " ms ]" << std::endl;
+	}
 
-			/* TE list */
+	if(debug) {
+		clock.tic();
+		std::cout << "Constructing TE matrix...";
+	}
+
+	/* TE list */			
+	unsigned int ij = 0;
+	unsigned int kl = 0;
+	for(unsigned int i=0; i<nrorbs; i++) {
+		for(unsigned int j=0; j<=i; j++) {
+			ij = i*(i+1)/2 + j;
 			for(unsigned int k=0; k<nrorbs; k++) {
-				for(unsigned int l=0; l<nrorbs; l++) {
-					unsigned int index = teindex(i,j,k,l);
-					if(TE[index] == -1.0) {
-						TE[index] = cgf_repulsion(orbitals[i],orbitals[j],orbitals[k],orbitals[l]);
+				for(unsigned int l=0; l<=k; l++) {
+					kl = k * (k+1)/2 + l;
+					if(ij <= kl) {
+						TE[teindex(i,j,k,l)] = cgf_repulsion(orbitals[i],orbitals[j],orbitals[k],orbitals[l]);
 					}
 				}
 			}
 		}
+	}
+
+	if(debug) {
+		clock.toc();
+		std::cout << " done [ " << clock.passed() << " ms ]" << std::endl;
 	}
 
 	/* uncomment the lines below for debugging purposes */
@@ -83,15 +139,6 @@ void HF::setup() {
 
 	/* calculate nuclear repulsion energy */
 	nucl_repul = calcnuclrepul();
-
-	if(debug) {
-		printT();
-		printH();
-		printV();
-		printS();
-		printX();
-		printTE();
-	}
 }
 
 void HF::listorbs() const {
@@ -160,6 +207,7 @@ void HF::printTE() const {
 
 void HF::step() {
 cntstep++;
+clock.tic();
 
 if(debug) {
 	std::cout << "Start electronic step " << cntstep << std::endl;
@@ -184,13 +232,6 @@ unsigned int index2 = 0;
 	/* construct Fock Matrix and orthogonalize it */
 	F = matsum(H,G);
 	Fp = trimatprod(Xp,F,X);
-
-	if(debug) {
-		printH();
-		printG();
-		printF();
-		printFp();
-	}
 
 	/* extract eigenvalues and eigenvectors */
 	Symmeig eig(Fp,true);
@@ -243,6 +284,7 @@ void HF::iterate() {
 	double ediff = 1;
 	double oldenergy = 1000; /* some random big number */
 	unsigned int iter = 0;
+	double passed = 0;
 
 	if(debug) {
 		std::cout << "Start iteration routine..." << std::endl;
@@ -250,11 +292,23 @@ void HF::iterate() {
 	}
 
 	while(ediff > 1e-5) { /* loop until convergence criterion is met */
+		/* start clock */
+		clock.tic();
+
 		iter++;
 		step();
 		std::cout << std::setprecision(10);
-		std::cout << "Energy after iteration " << iter << ": " << energy << " Hartree" << std::endl;
 		ediff = abs(energy - oldenergy);
 		oldenergy = energy;
+		energies.push_back(energy);
+
+		/* save iteration time */
+		clock.toc();
+		passed = clock.passed();
+		itertimes.push_back(passed);
+
+		/* output result to commandline */
+		std::cout << "Energy after iteration " << iter << ": " << energy << " Hartree" 
+		<< " [ " << passed << " ms ] " << std::endl;
 	}
 }

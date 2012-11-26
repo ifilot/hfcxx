@@ -20,11 +20,11 @@ std::vector<double> B_array(const int l1,const int l2,const int l3,const int l4,
 		const double &p, const double &a, const double &b, const double &q, const double &c, const double &d,
 		const double g1, const double g2, const double delta);
 
-double B_term(const int i1, const int i2, const int r1, const int r2, const int u, const int l1, const int l2, const int l3, const int l4,
-		const double px, const double ax, const double bx, const double qx, const double cx, const double dx, const double gamma1,
-		const double gamma2, const double delta);
+double B_term(const int &i1, const int &i2, const int &r1, const int &r2, const int &u, const int &l1, const int &l2, const int &l3, const int &l4,
+const double &px, const double &ax, const double &bx, const double &qx, const double &cx, const double &dx, const double &gamma1,
+const double &gamma2, const double &delta);
 
-double fB(const int i, const int l1, const int l2, const double p, const double a, const double b, const int r, const double q);
+double fB(const int &i, const int &l1, const int &l2, const double &p, const double &a, const double &b, const int &r, const double &q);
 double B0(int i, int r, double q);
 double fact_ratio2(const int a, const int b);
 

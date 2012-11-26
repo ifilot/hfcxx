@@ -93,9 +93,9 @@ std::vector<double> B_array(const int l1,const int l2,const int l3,const int l4,
 	return arrB;
 }
 
-double B_term(const int i1, const int i2, const int r1, const int r2, const int u, const int l1, const int l2, const int l3, const int l4,
-		const double px, const double ax, const double bx, const double qx, const double cx, const double dx, const double gamma1,
-		const double gamma2, const double delta) {
+double B_term(const int &i1, const int &i2, const int &r1, const int &r2, const int &u, const int &l1, const int &l2, const int &l3, const int &l4,
+		const double &px, const double &ax, const double &bx, const double &qx, const double &cx, const double &dx, const double &gamma1,
+		const double &gamma2, const double &delta) {
 	return fB(i1,l1,l2,px,ax,bx,r1,gamma1)*
 		pow(-1,i2) * fB(i2,l3,l4,qx,cx,dx,r2,gamma2)*
 		pow(-1,u)*fact_ratio2(i1+i2-2*(r1+r2),u)*
@@ -103,7 +103,7 @@ double B_term(const int i1, const int i2, const int r1, const int r2, const int 
 		pow(delta,i1+i2-2*(r1+r2)-u);
 }
 
-double fB(const int i, const int l1, const int l2, const double p, const double a, const double b, const int r, const double g) {
+double fB(const int &i, const int &l1, const int &l2, const double &p, const double &a, const double &b, const int &r, const double &g) {
 	return binomial_prefactor(i, l1, l2, p-a, p-b) * B0(i, r, g);
 }
 
