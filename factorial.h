@@ -7,12 +7,15 @@
  *
  */
 
-#ifndef _FACT_H
-#define _FACT_H
+#ifndef _FACTORIAL_H
+#define _FACTORIAL_H
 
-#include<iostream>
+inline int fact(int n){
+  return n <= 1 ? 1 : n*fact(n-1);
+}
 
-int fact(int i);
-int fact2(int i);
+inline int fact2(int n){ /* double factorial function = 1*3*5*...*n */
+  return n <= 1 ? 1 : n*fact2(n-2);
+}
 
-#endif // _FACT_H
+#endif //_FACTORIAL_H

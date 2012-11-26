@@ -1,6 +1,6 @@
 #include "repulsion.h"
 
-double cgf_repulsion(const CGF cgf1,const CGF cgf2,const CGF cgf3,const CGF cgf4) {
+double cgf_repulsion(const CGF &cgf1,const CGF &cgf2,const CGF &cgf3,const CGF &cgf4) {
 	double sum = 0;
 
 	int size1 = cgf1.gtos.size();
@@ -22,7 +22,7 @@ double cgf_repulsion(const CGF cgf1,const CGF cgf2,const CGF cgf3,const CGF cgf4
 	return sum;
 }
 
-double gto_repulsion(const GTO gto1, const GTO gto2, const GTO gto3, const GTO gto4) {
+double gto_repulsion(const GTO &gto1, const GTO &gto2, const GTO &gto3, const GTO &gto4) {
 
 	return coulomb_repulsion(gto1.r, gto1.norm, gto1.l, gto1.m, gto1.n, gto1.alpha,
 													 gto2.r, gto2.norm, gto2.l, gto2.m, gto2.n, gto2.alpha,
@@ -30,10 +30,10 @@ double gto_repulsion(const GTO gto1, const GTO gto2, const GTO gto3, const GTO g
 												   gto4.r, gto4.norm, gto4.l, gto4.m, gto4.n, gto4.alpha);
 }
 
-double coulomb_repulsion( const Vector3 &a, const double &norma, const int &la, const int &ma, const int &na, const double &alphaa,
-													const Vector3 &b, const double &normb, const int &lb, const int &mb, const int &nb, const double &alphab,
-													const Vector3 &c, const double &normc, const int &lc, const int &mc, const int &nc, const double &alphac,
-													const Vector3 &d, const double &normd, const int &ld, const int &md, const int &nd, const double &alphad) {
+double coulomb_repulsion( const Vector3 &a, const double &norma, const int la, const int ma, const int na, const double &alphaa,
+													const Vector3 &b, const double &normb, const int lb, const int mb, const int nb, const double &alphab,
+													const Vector3 &c, const double &normc, const int lc, const int mc, const int nc, const double &alphac,
+													const Vector3 &d, const double &normd, const int ld, const int md, const int nd, const double &alphad) {
 
 	static const double pi = 3.14159265359;
 	double rab2 = dist2(a,b);
@@ -89,7 +89,7 @@ std::vector<double> B_array(const int l1,const int l2,const int l3,const int l4,
 	return arrB;
 }
 
-double B_term(const int &i1, const int &i2, const int &r1, const int &r2, const int &u, const int &l1, const int &l2, const int &l3, const int &l4,
+double B_term(const int i1, const int i2, const int r1, const int r2, const int u, const int l1, const int l2, const int l3, const int l4,
 		const double &px, const double &ax, const double &bx, const double &qx, const double &cx, const double &dx, const double &gamma1,
 		const double &gamma2, const double &delta) {
 	return fB(i1,l1,l2,px,ax,bx,r1,gamma1)*
@@ -99,7 +99,7 @@ double B_term(const int &i1, const int &i2, const int &r1, const int &r2, const 
 		pow(delta,i1+i2-2*(r1+r2)-u);
 }
 
-double fB(const int &i, const int &l1, const int &l2, const double &p, const double &a, const double &b, const int &r, const double &g) {
+double fB(const int i, const int l1, const int l2, const double &p, const double &a, const double &b, const int r, const double &g) {
 	return binomial_prefactor(i, l1, l2, p-a, p-b) * B0(i, r, g);
 }
 

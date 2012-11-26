@@ -22,7 +22,7 @@ class GTO{
 	double norm;
 
 	public:
-	GTO(const double c, const Vector3 &rr, const double alphaa, const unsigned int ll, const unsigned int mm, const unsigned int nn);
+	GTO(const double c, const Vector3 rr, const double alphaa, const unsigned int ll, const unsigned int mm, const unsigned int nn);
 	friend std::ostream& operator <<(std::ostream &os,const GTO &rhs);
 
 	private:

@@ -111,8 +111,8 @@ void HF::setup() {
 				H[i][j] += V[k][i][j];
 			}
 		}
-	}			
-	
+	}
+
 	if(debug) {
 		clock.toc();
 		std::cout << " done [ " << clock.passed() << " ms ]" << std::endl;
@@ -123,18 +123,20 @@ void HF::setup() {
 		std::cout << "Constructing TE matrix...";
 	}
 
-	/* TE list */			
-	unsigned int ij = 0;
-	unsigned int kl = 0;
-	unsigned i,j,k,l;
-	for(i=0; i<nrorbs; i++) {
-		for(j=0; j<=i; j++) {
-			ij = i*(i+1)/2 + j;
-			for(k=0; k<nrorbs; k++) {
-				for(l=0; l<=k; l++) {
-					kl = k * (k+1)/2 + l;
+	/* TE list */
+	unsigned int cnt=0;
+	for(unsigned int i=0; i<nrorbs; i++) {
+		for(unsigned int j=0; j<=i; j++) {
+			unsigned int ij = i*(i+1)/2 + j;
+			for(unsigned int k=0; k<nrorbs; k++) {
+				for(unsigned int l=0; l<=k; l++) {
+					cnt++;
+					unsigned int kl = k * (k+1)/2 + l;
 					if(ij <= kl) {
-						TE[teindex(i,j,k,l)] = cgf_repulsion(orbitals[i],orbitals[j],orbitals[k],orbitals[l]);
+						unsigned int index = teindex(i,j,k,l);
+						if(TE[index] == -1) {
+							TE[index] = cgf_repulsion(orbitals[i],orbitals[j],orbitals[k],orbitals[l]);
+						}
 					}
 				}
 			}
@@ -143,7 +145,8 @@ void HF::setup() {
 
 	if(debug) {
 		clock.toc();
-		std::cout << " done [ " << clock.passed() << " ms ]" << std::endl;
+		std::cout << " done [ " << clock.passed() << " ms ]" << 
+		std::cout << cnt << " (i,j|k,l) iterations" << std::endl;
 	}
 
 	/* uncomment the lines below for debugging purposes */
