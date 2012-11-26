@@ -1,6 +1,6 @@
 #include "repulsion.h"
 
-double cgf_repulsion(CGF &cgf1, CGF &cgf2, CGF &cgf3, CGF &cgf4) {
+double cgf_repulsion(const CGF cgf1,const CGF cgf2,const CGF cgf3,const CGF cgf4) {
 	double sum = 0;
 
 	int size1 = cgf1.gtos.size();
@@ -22,7 +22,7 @@ double cgf_repulsion(CGF &cgf1, CGF &cgf2, CGF &cgf3, CGF &cgf4) {
 	return sum;
 }
 
-double gto_repulsion(GTO &gto1, GTO &gto2, GTO &gto3, GTO &gto4) {
+double gto_repulsion(const GTO gto1, const GTO gto2, const GTO gto3, const GTO gto4) {
 	double norma = gto1.norm();
 	double normb = gto2.norm();
 	double normc = gto3.norm();

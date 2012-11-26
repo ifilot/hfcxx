@@ -17,7 +17,8 @@ void HF::molecule(const Molecule &moll) {
 			cnt++;
 			std::ostringstream oss;
 			oss << "[" << cnt << "] " << mol[i].ps() 
-			<< 	i+1 << "\t ("	<< mol[i][j].orb() << ")";
+			<< 	i+1 << "\t ("	<< mol[i][j].orb() << ")"
+			<< " size " << sizeof(mol[i][j]) << " bytes";
 			std::string str = oss.str();
 			orblist.push_back(str);
 			orbitals.push_back(mol[i][j]);

@@ -8,8 +8,8 @@
 #include "gto.h"
 #include "cgf.h"
 
-double cgf_repulsion(CGF &cgf1, CGF &cgf2, CGF &cgf3, CGF &cgf4);
-double gto_repulsion(GTO &gto1, GTO &gto2, GTO &gto3, GTO &gto4);
+double cgf_repulsion(const CGF cgf1, const CGF cgf2, const CGF cgf3, const CGF cgf4);
+double gto_repulsion(const GTO gto1, const GTO gto2, const GTO gto3, const GTO gto4);
 
 double coulomb_repulsion( const Vector3 &a, const double &norma, const int &la, const int &ma, const int &na, const double &alphaa,
 													const Vector3 &b, const double &normb, const int &lb, const int &mb, const int &nb, const double &alphab,

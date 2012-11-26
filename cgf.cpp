@@ -8,7 +8,7 @@
 
 #include "cgf.h"
 
-CGF::CGF(const std::string &typee, const unsigned int &z, const Vector3 &rr) {
+CGF::CGF(const std::string typee, const unsigned int z, const Vector3 rr) {
 	r = rr;
 	type = typee;
 
