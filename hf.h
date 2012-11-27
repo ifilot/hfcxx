@@ -40,6 +40,7 @@ class HF{
 	std::vector<double> TE; /* set of double electron integrals */
 	std::vector<double> energies; /* set of energies of each iterative step */
 	std::vector<double> itertimes; /* set of iteration times */
+	std::vector<double> molorben; /* energy of molecular orbitals */
 	double energy; /* current energy in the iterative loop */
 	double nucl_repul; /* nuclear repulsion energy */
 
@@ -71,6 +72,7 @@ class HF{
 	void printH() const;
 	void printV() const;
 	void printTE() const;
+	void molorbs() const;
 };
 
 #endif //_HF_H

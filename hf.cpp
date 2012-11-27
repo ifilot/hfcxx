@@ -17,8 +17,7 @@ void HF::molecule(const Molecule &moll) {
 			cnt++;
 			std::ostringstream oss;
 			oss << "[" << cnt << "] " << mol[i].ps() 
-			<< 	i+1 << "\t ("	<< mol[i][j].orb() << ")"
-			<< " size " << sizeof(mol[i][j]) << " bytes";
+			<< 	i+1 << "\t ("	<< mol[i][j].orb() << ")";
 			std::string str = oss.str();
 			orblist.push_back(str);
 			orbitals.push_back(mol[i][j]);
@@ -252,6 +251,7 @@ unsigned int index2 = 0;
 
 	/* calculate energy from orbitals */
 	energy = calcen(eig);
+	molorben = eig.d;
 
 	/* construct C and charge density matrices for new iterative round */
 	C = matprod(X,Cc);
@@ -331,5 +331,33 @@ void HF::iterate() {
 		std::cout << "-------------------------------" << std::endl;
 		std::cout << "End electronic convergence...  " << std::endl;
 		std::cout << "-------------------------------" << std::endl;
+	}
+
+	/* output resulting orbitals */
+	molorbs();
+}
+
+void HF::molorbs() const {
+	std::cout << "-------------------------------" << std::endl;
+	std::cout << "      Molecular orbitals       " << std::endl;
+	std::cout << "-------------------------------" << std::endl;
+	std::cout << std::endl;
+	for(unsigned int i=0; i<nrorbs; i++) {
+		std::cout << "*** " << i+1 << "\t" << molorben[i] << " HT" << " --- (";
+		if(i < nrelec / 2) {
+			std::cout << " Occupied ) ***" << std::endl;
+		} else {
+			std::cout << " Virtual ) ***" << std::endl;
+		}
+
+		/* output occupancies */
+		double sum = 0;
+		for(unsigned int j=0; j<nrorbs; j++) {
+			sum += Cc[i][j] * Cc[i][j];
+			std::cout << orblist[j] << "\t" << Cc[i][j] * Cc[i][j] << std::endl;
+		}
+		std::cout << "Coeff. sum: " << "\t" << sum << std::endl;
+
+		std::cout << std::endl;
 	}
 }

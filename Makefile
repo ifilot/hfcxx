@@ -9,7 +9,7 @@ SOURCES=vector.cpp atom.cpp gto.cpp cgf.cpp \
   canorg.cpp matfunc.cpp eigen.cpp clock.cpp \
 	version.cpp basis.cpp
 OBJECTS=$(SOURCES:.cpp=.o)
-EXECUTABLE=hf
+EXECUTABLE=hfcxx
 TESTS=tests/t_matrix tests/t_cgf
 
 all: $(EXECUTABLE)
