@@ -306,7 +306,7 @@ void HF::iterate() {
 		std::cout << "-------------------------------" << std::endl;
 	}
 
-	while(ediff > 1e-5) { /* loop until convergence criterion is met */
+	while(ediff > 1e-12) { /* loop until convergence criterion is met */
 		/* start clock */
 		clock.tic();
 
@@ -354,9 +354,12 @@ void HF::molorbs() const {
 		double sum = 0;
 		for(unsigned int j=0; j<nrorbs; j++) {
 			sum += Cc[i][j] * Cc[i][j];
-			std::cout << orblist[j] << "\t" << Cc[i][j] * Cc[i][j] << std::endl;
+			std::cout.setf(std::ios::fixed);
+			std::cout << orblist[j] << "\t\t" << std::setprecision(4)
+			<< Cc[i][j] * Cc[i][j] << std::endl;
 		}
-		std::cout << "Coeff. sum: " << "\t" << sum << std::endl;
+		std::cout << "--------------------" << "\t" << "------" << std::endl;
+		std::cout << "Sum of coefficients: " << "\t" << sum << std::endl;
 
 		std::cout << std::endl;
 	}

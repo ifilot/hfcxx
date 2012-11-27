@@ -12,7 +12,7 @@
 
 void version() {
 	std::string prog_name = "hfcxx";
-	std::string version_number = "0.2a";
+	std::string version_number = "0.22a";
 	std::string author = "Ivo Filot <ivo@ivofilot.nl>";
 	std::string date = __DATE__;
 	std::string time = __TIME__;
