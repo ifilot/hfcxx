@@ -12,6 +12,8 @@ CGF::CGF(const std::string typee, const unsigned int z, const Vector3 &rr, std::
 	r = rr;
 	type = typee;
 	gtos = gtoss;
+
+	
 }
 
 std::ostream& operator <<(std::ostream &os,const CGF &rhs) {

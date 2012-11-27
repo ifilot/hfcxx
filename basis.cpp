@@ -3,7 +3,7 @@
 Basis::Basis() {};
 
 void Basis::set(std::string type, unsigned int z, Vector3 r) {
-	gtos.empty();
+	gtos.clear();
 	addGTOs_sto3g(type, z, r);
 };
 
