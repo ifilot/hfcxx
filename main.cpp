@@ -13,6 +13,10 @@ int main() {
 	Clock clock;
 
 	/* define molecule */
+	Molecule H2;
+	H2.addAtom("H",0,0,0);
+	H2.addAtom("H",1.4,0,0);
+
 	Molecule H2O;
 	H2O.addAtom("O",0,0,0);
 	H2O.addAtom("H",0.757,0.586,0);

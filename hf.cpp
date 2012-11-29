@@ -233,8 +233,8 @@ unsigned int index2 = 0;
 			G[i][j] = 0; /* reset G matrix */
       for(unsigned int k=0; k<nrorbs; k++) {
         for(unsigned int l=0; l<nrorbs; l++) {
-					index1 = teindex(i,j,k,l);
-          index2 = teindex(i,l,k,j);
+					index1 = teindex(i,j,l,k);
+          index2 = teindex(i,k,l,j);
           G[i][j] += P[k][l] * (TE[index1] - 0.5 * TE[index2]);
         }
       }
@@ -323,7 +323,7 @@ void HF::iterate() {
 		itertimes.push_back(passed);
 
 		/* output result to commandline */
-		std::cout << "Energy after iteration " << iter << ": " << energy << " Hartree" 
+		std::cout << "Energy after iteration " << iter << ":\t " << energy << " Hartree\t" 
 		<< " [ " << passed << " ms ] " << std::endl;
 	}
 
@@ -353,13 +353,13 @@ void HF::molorbs() const {
 		/* output occupancies */
 		double sum = 0;
 		for(unsigned int j=0; j<nrorbs; j++) {
-			sum += Cc[i][j] * Cc[i][j];
+			sum += Cc[i][j]*Cc[i][j];
 			std::cout.setf(std::ios::fixed);
 			std::cout << orblist[j] << "\t\t" << std::setprecision(4)
-			<< Cc[i][j] * Cc[i][j] << std::endl;
+			<< C[i][j] << std::endl;
 		}
 		std::cout << "--------------------" << "\t" << "------" << std::endl;
-		std::cout << "Sum of coefficients: " << "\t" << sum << std::endl;
+		std::cout << "Sum of c'_i^2: " << "\t\t" << sum << std::endl;
 
 		std::cout << std::endl;
 	}
