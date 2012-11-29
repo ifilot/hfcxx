@@ -1,5 +1,5 @@
-#ifndef _VECTOR_H
-#define _VECTOR_H
+#ifndef _HFCXX_VECTOR_H
+#define _HFCXX_VECTOR_H
 
 #include<iostream>
 #include<iomanip>
@@ -19,4 +19,4 @@ class Vector3{
 typedef std::vector<double> VecDoub;
 typedef std::vector<int> VecInt;
 
-#endif // _VECTOR_H
+#endif // _HFCXX_VECTOR_HH
