@@ -8,10 +8,11 @@
 #ifndef _MOLECULE_H
 #define _MOLECULE_H
 
-#include "atom.h"
 #include<string>
 #include<vector>
+#include "atom.h"
 #include "basis.h"
+#include "strfunc.h"
 
 class Molecule{
 	private:
@@ -21,6 +22,7 @@ class Molecule{
 
 	public:
 	Molecule(); /* default constructor */
+	void read(std::string file); /* read molecule from file */
 	void addAtom(const Atom &at);
 	void addAtom(const std::string symbolin, const double xx, const double yy, const double zz);
 	void addAtom(const unsigned int Zz, const double xx, const double yy, const double zz);

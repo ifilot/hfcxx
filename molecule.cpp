@@ -44,3 +44,7 @@ const unsigned int Molecule::nratoms() const{
 const Atom& Molecule::operator[](const unsigned int i) const {
   return atoms[i];
 }
+
+void Molecule::read(std::string file) {
+	/* read file to construct molecule here */
+}

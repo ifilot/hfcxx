@@ -1,0 +1,7 @@
+basis = sto-3g
+charge = 0
+atoms = 3
+units = angstrom
+O     0.0000    0.0000    0.0000
+H     0.7570    0.5860		0.0000
+H     -0.757	  0.5860		0.0000	
