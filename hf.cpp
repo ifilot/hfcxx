@@ -158,70 +158,6 @@ void HF::setup() {
 	nucl_repul = calcnuclrepul();
 }
 
-void HF::listorbs() const {
-	std::cout << "--- List of orbitals ---" << std::endl;
-	for(unsigned int i = 0; i<orblist.size(); i++) {
-		std::cout << orblist[i] << std::endl;
-	}
-}
-
-void HF::printS() const {
-	std::cout << "\t" << "--- Smatrix ---" << std::endl;
-	std::cout << S;
-}
-
-void HF::printX() const {
-	std::cout << "\t" << "--- Xmatrix ---" << std::endl;
-	std::cout << X;
-}
-
-void HF::printFp() const {
-	std::cout << "\t" << "--- F' matrix ---" << std::endl;
-	std::cout << Fp;
-}
-
-void HF::printF() const {
-	std::cout << "\t" << "--- F matrix ---" << std::endl;
-	std::cout << F;
-}
-
-void HF::printG() const {
-	std::cout << "\t" << "--- G matrix ---" << std::endl;
-	std::cout << G;
-}
-
-void HF::printT() const {
-	std::cout << "\t" << "--- Tmatrix ---" << std::endl;
-	std::cout << T;
-}
-
-void HF::printH() const {
-	std::cout << "\t" << "--- Hcore matrix ---" << std::endl;
-	std::cout << H;
-}
-
-void HF::printV() const {
-	for(unsigned int i=0; i<V.size(); i++) {
-		std::cout << "\t" << "--- V(" << i+1 << ")matrix ---" << std::endl;
-		std::cout << V[i];
-	}
-}
-
-void HF::printTE() const {
-	std::cout << "\t" << "--- two-electron matrix ---" << std::endl;
-	for(unsigned int i=0; i<nrorbs; i++) {
-		for(unsigned int j=0; j<nrorbs; j++) {
-			for(unsigned int k=0; k<nrorbs; k++) {
-				for(unsigned int l=0; l<nrorbs; l++) {
-					std::cout << "(" << i+1 << "," << j+1
-					<< "," << k+1 << "," << l+1 << ")"
-					<< " = " << TE[teindex(i,j,k,l)] << std::endl;
-				}
-			}
-		}
-	}
-}
-
 void HF::step() {
 cntstep++;
 
@@ -334,7 +270,9 @@ void HF::iterate() {
 	}
 
 	/* output resulting orbitals */
-	molorbs();
+	if(debug) {
+		molorbs();
+	}
 }
 
 void HF::molorbs() const {
@@ -356,11 +294,75 @@ void HF::molorbs() const {
 			sum += Cc[i][j]*Cc[i][j];
 			std::cout.setf(std::ios::fixed);
 			std::cout << orblist[j] << "\t\t" << std::setprecision(4)
-			<< C[i][j] << std::endl;
+			<< Cc[i][j] << std::endl;
 		}
 		std::cout << "--------------------" << "\t" << "------" << std::endl;
 		std::cout << "Sum of c'_i^2: " << "\t\t" << sum << std::endl;
 
 		std::cout << std::endl;
+	}
+}
+
+void HF::listorbs() const {
+	std::cout << "--- List of orbitals ---" << std::endl;
+	for(unsigned int i = 0; i<orblist.size(); i++) {
+		std::cout << orblist[i] << std::endl;
+	}
+}
+
+void HF::printS() const {
+	std::cout << "\t" << "--- Smatrix ---" << std::endl;
+	std::cout << S;
+}
+
+void HF::printX() const {
+	std::cout << "\t" << "--- Xmatrix ---" << std::endl;
+	std::cout << X;
+}
+
+void HF::printFp() const {
+	std::cout << "\t" << "--- F' matrix ---" << std::endl;
+	std::cout << Fp;
+}
+
+void HF::printF() const {
+	std::cout << "\t" << "--- F matrix ---" << std::endl;
+	std::cout << F;
+}
+
+void HF::printG() const {
+	std::cout << "\t" << "--- G matrix ---" << std::endl;
+	std::cout << G;
+}
+
+void HF::printT() const {
+	std::cout << "\t" << "--- Tmatrix ---" << std::endl;
+	std::cout << T;
+}
+
+void HF::printH() const {
+	std::cout << "\t" << "--- Hcore matrix ---" << std::endl;
+	std::cout << H;
+}
+
+void HF::printV() const {
+	for(unsigned int i=0; i<V.size(); i++) {
+		std::cout << "\t" << "--- V(" << i+1 << ")matrix ---" << std::endl;
+		std::cout << V[i];
+	}
+}
+
+void HF::printTE() const {
+	std::cout << "\t" << "--- two-electron matrix ---" << std::endl;
+	for(unsigned int i=0; i<nrorbs; i++) {
+		for(unsigned int j=0; j<nrorbs; j++) {
+			for(unsigned int k=0; k<nrorbs; k++) {
+				for(unsigned int l=0; l<nrorbs; l++) {
+					std::cout << "(" << i+1 << "," << j+1
+					<< "," << k+1 << "," << l+1 << ")"
+					<< " = " << TE[teindex(i,j,k,l)] << std::endl;
+				}
+			}
+		}
 	}
 }

@@ -59,6 +59,7 @@ string substr(const string &str, int start)
 {
     return substr(str,start,str.length());
 }
+
 string substr(const string &str, int start, int length)
 {
     if (start  < 0 ) start+=str.length();
@@ -69,11 +70,11 @@ string substr(const string &str, int start, int length)
 
 std::string& strtrim(std::string &subject) {
 	for(int i=0; i<=10; i++) {
-		subject = str_replace("  "," ",subject);
+		subject = str_replace("\t"," ",subject);
 	}
-
+	
 	for(int i=0; i<=10; i++) {
-		subject = str_replace("\t","",subject);
+		subject = str_replace("  "," ",subject);
 	}
 
 	if(strpos(subject," ")==0) {

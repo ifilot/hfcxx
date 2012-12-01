@@ -13,12 +13,15 @@
 #include "atom.h"
 #include "basis.h"
 #include "strfunc.h"
+#include "readfile.h"
 
 class Molecule{
 	private:
 	std::vector<Atom> atoms;
 	unsigned int nrat;
 	Basis basis;
+	std::string basisset;
+	unsigned int charge;
 
 	public:
 	Molecule(); /* default constructor */

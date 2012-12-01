@@ -4,7 +4,23 @@
 #include "version.h"
 #include "clock.h"
 
-int main() {
+int main(int argc, char *argv[]) {
+	std::string filename;
+	bool debug = false;
+
+	if(argc == 1) {
+		std::cout << "Usage: " << argv[0] << " <input file>" << std::endl;
+		std::cout << "Please provide a valid input file" << std::endl;
+		return 0;
+	}
+	
+	if(!strcmp(argv[argc-2],"-d")) {
+		debug = true;
+	}
+	
+	if(argc > 1) {
+		filename = argv[argc-1];
+	}
 
 	/* output compile information on execution */
 	version();
@@ -12,28 +28,12 @@ int main() {
 	/* keep track of the time */
 	Clock clock;
 
-	/* define molecule */
-	Molecule H2;
-	H2.addAtom("H",0,0,0);
-	H2.addAtom("H",1.4,0,0);
-
-	Molecule H2O;
-	H2O.addAtom("O",0,0,0);
-	H2O.addAtom("H",0.757,0.586,0);
-	H2O.addAtom("H",-0.757,0.586,0);
-	//H2O.addAtom("O",0,0,2);
-	//H2O.addAtom("H",1,0,2);
-	//H2O.addAtom("H",0,1,2);
-	//H2O.addAtom("O",0,0,4);
-	//H2O.addAtom("H",1,0,4);
-	//H2O.addAtom("H",0,1,4);
-	//H2O.addAtom("O",0,0,6);
-	//H2O.addAtom("H",1,0,6);
-	//H2O.addAtom("H",0,1,6);
+	Molecule mol;
+	mol.read(filename);
 
 	HF hf;
-	hf.debug = true;
-	hf.molecule(H2O);
+	hf.debug = debug;
+	hf.molecule(mol);
 	hf.run();
 
 	clock.toc();
