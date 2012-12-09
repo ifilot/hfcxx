@@ -119,11 +119,11 @@ void HF::setup() {
 
 	if(debug) {
 		clock.tic();
-		std::cout << "Constructing TE matrix...";
+		std::cout << "Constructing TE matrix... (" << teindex(nrorbs-1,nrorbs-1,nrorbs-1,nrorbs-1)+1 << ") " << std::endl;
 	}
 
 	/* TE list */
-	unsigned int tecnt=0;
+	double tecnt=0;
 	for(unsigned int i=0; i<nrorbs; i++) {
 		for(unsigned int j=0; j<=i; j++) {
 			unsigned int ij = i*(i+1)/2 + j;
@@ -132,10 +132,8 @@ void HF::setup() {
 					unsigned int kl = k * (k+1)/2 + l;
 					if(ij <= kl) {
 						unsigned int index = teindex(i,j,k,l);
-						if(TE[index] == -1) {
-							tecnt++;
-							TE[index] = cgf_repulsion(orbitals[i],orbitals[j],orbitals[k],orbitals[l]);
-						}
+						tecnt++;
+						TE[index] = cgf_repulsion(orbitals[i],orbitals[j],orbitals[k],orbitals[l]);
 					}
 				}
 			}
@@ -184,6 +182,15 @@ unsigned int index2 = 0;
 	/* extract eigenvalues and eigenvectors */
 	Symmeig eig(Fp,true);
 	Cc = eig.z;
+
+	/*
+	std::cout << "EIGENVALUES" << std::endl;
+	for(unsigned int i=0; i<eig.d.size(); i++) {
+		std::cout << eig.d[i] << std::endl;
+	}
+	std::cout << "EIGENVECTORS" << std::endl;
+	std::cout << Cc;
+	*/
 
 	/* calculate energy from orbitals */
 	energy = calcen(eig);

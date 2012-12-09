@@ -2,7 +2,7 @@ CC= g++
 CFLAGS= -O3 -c -Wall
 LDFLAGS=
 LIBS=
-DEBUG=-g
+DEBUG=
 SOURCES=vector.cpp atom.cpp gto.cpp cgf.cpp \
 	func.cpp overlap.cpp kinetic.cpp gamma.cpp \
 	nuclear.cpp repulsion.cpp hf.cpp molecule.cpp \
