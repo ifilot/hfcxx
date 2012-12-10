@@ -183,15 +183,6 @@ unsigned int index2 = 0;
 	Symmeig eig(Fp,true);
 	Cc = eig.z;
 
-	/*
-	std::cout << "EIGENVALUES" << std::endl;
-	for(unsigned int i=0; i<eig.d.size(); i++) {
-		std::cout << eig.d[i] << std::endl;
-	}
-	std::cout << "EIGENVECTORS" << std::endl;
-	std::cout << Cc;
-	*/
-
 	/* calculate energy from orbitals */
 	energy = calcen(eig);
 	molorben = eig.d;
@@ -301,7 +292,7 @@ void HF::molorbs() const {
 			sum += Cc[i][j]*Cc[i][j];
 			std::cout.setf(std::ios::fixed);
 			std::cout << orblist[j] << "\t\t" << std::setprecision(4)
-			<< Cc[i][j] << std::endl;
+			<< C[j][i] << std::endl; /* note that the eigenvectors are column vectors */
 		}
 		std::cout << "--------------------" << "\t" << "------" << std::endl;
 		std::cout << "Sum of c'_i^2: " << "\t\t" << sum << std::endl;
