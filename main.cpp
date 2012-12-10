@@ -1,5 +1,6 @@
 #include<iostream>
 #include <iomanip>
+#include <string.h>
 #include "hf.h"
 #include "version.h"
 #include "clock.h"

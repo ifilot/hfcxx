@@ -5,6 +5,7 @@
 #include<fstream>
 #include<string>
 #include<vector>
+#include<cstdlib>
 #include "strfunc.h"
 
 class InputFile {
