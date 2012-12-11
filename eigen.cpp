@@ -135,7 +135,10 @@ void Symmeig::tqli()
 				if (abs(e[m]) <= EPS*dd) break;
 			}
 			if (m != l) {
-				if (iter++ == 30) throw("Too many iterations in tqli");
+				if (iter++ == 50) {
+					std::cout << "Too many iterations in tqli in " << __FILE__ << " line " << __LINE__ << std::endl;
+					exit(1);
+				}
 				g=(d[l+1]-d[l])/(2.0*e[l]);
 				r=pythag(g,1.0);
 				g=d[m]-d[l]+e[l]/(g+sign(r,g));

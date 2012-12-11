@@ -29,6 +29,7 @@ class HF{
 	Smatrix S; /* overlap matrix */
 	Tmatrix T; /* kinetic matrix */
 	Pmatrix P; /* density matrix */
+	Pmatrix Pnew; /* density matrix */
 	Gmatrix G; /* P + TE matrix */
 	Fmatrix F; /* Fock matrix */
 	Fmatrix Fp; /* Fock matrix */
@@ -43,6 +44,7 @@ class HF{
 	std::vector<double> molorben; /* energy of molecular orbitals */
 	double energy; /* current energy in the iterative loop */
 	double nucl_repul; /* nuclear repulsion energy */
+	double alpha; /* damping parameter for the iterative SCF cycles */
 
 	public:
 	bool debug; /* set debug to either true or false */

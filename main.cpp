@@ -15,7 +15,7 @@ int main(int argc, char *argv[]) {
 		return 0;
 	}
 	
-	if(!strcmp(argv[argc-2],"-d")) {
+	if(!strcmp(argv[argc-2],"-m")) {
 		debug = true;
 	}
 	

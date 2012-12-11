@@ -99,7 +99,8 @@ T* Matrix<T>::operator[](const int i)
 {
 #ifdef _CHECKBOUNDS_
 if (i<0 || i>=nn) {
-	throw("Matrix subscript out of bounds");
+	std::cout << "Out of bounds in matrix " << __FILE__ << " line " << __LINE__ << std::endl;
+	exit(1);
 }
 #endif
 	return v[i];
@@ -110,7 +111,8 @@ const T* Matrix<T>::operator[](const int i) const
 {
 #ifdef _CHECKBOUNDS_
 if (i<0 || i>=nn) {
-	throw("Matrix subscript out of bounds");
+	std::cout << "Out of bounds in matrix " << __FILE__ << " line " << __LINE__ << std::endl;
+	exit(1);
 }
 #endif
 	return v[i];
@@ -180,7 +182,8 @@ void Matrix<T>::assign(const int newn, const int newm, const T& a)
 template <class T>
 void Matrix<T>::rowswap(const int r1, const int r2) {
 	if(r1 < 0 || r2 < 0 || r1 >= nn || r2 >= nn) {
-		throw("Row size exceeded in rowswap function");
+		std::cout << "Row size exceeded " << __FILE__ << " line " << __LINE__ << std::endl;
+		exit(1);
 	}
 	for(int i=0; i<mm;i++) {
 		std::swap(v[r1][i],v[r2][i]);
@@ -190,7 +193,8 @@ void Matrix<T>::rowswap(const int r1, const int r2) {
 template <class T>
 void Matrix<T>::columnswap(const int r1, const int r2) {
 	if(r1 < 0 || r2 < 0 || r1 >= mm || r2 >= mm) {
-		throw("Column size exceeded in columnswap function");
+		std::cout << "Column size exceeded " << __FILE__ << " line " << __LINE__ << std::endl;
+		exit(1);
 	}
 	for(int i=0; i<nn;i++) {
 		std::swap(v[i][r1],v[i][r2]);

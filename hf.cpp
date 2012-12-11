@@ -2,6 +2,7 @@
 
 HF::HF(){
 	debug = false;
+	alpha = 0.5;
 } /* default constructor */
 
 void HF::molecule(const Molecule &moll) {
@@ -189,12 +190,22 @@ unsigned int index2 = 0;
 
 	/* construct C and charge density matrices for new iterative round */
 	C = matprod(X,Cc);
-	P.assign(nrorbs, nrorbs, 0.0); /* reset P */
+	Pnew.assign(nrorbs, nrorbs, 0.0); /* reset P */
 	for(unsigned int i=0; i<nrorbs; i++) {
 		for(unsigned int j=0; j<nrorbs; j++) {
 			for(unsigned int k=0; k<nrelec/2; k++) {
-				P[i][j] += 2.0 * C[i][k] * C[j][k];
+				Pnew[i][j] += 2.0 * C[i][k] * C[j][k];
 			}
+		}
+	}
+
+
+	/* 	the new density matrix P is made by using a damping technique.
+			see for instance: Schlegel et. all, Comput. Adv. Org. Chem., 
+			Molecular Structure and Reactivity, (1991), 167-185 */
+	for(unsigned int i=0; i<nrorbs; i++) {
+		for(unsigned int j=0; j<nrorbs; j++) {
+			P[i][j] = (1.0-alpha) * Pnew[i][j] + alpha * P[i][j];
 		}
 	}
 }
@@ -259,6 +270,11 @@ void HF::iterate() {
 		/* output result to commandline */
 		std::cout << "Energy after iteration " << iter << ":\t " << energy << " Hartree\t" 
 		<< " [ " << passed << " ms ] " << std::endl;
+
+		if(iter > 100) {
+			std::cout << "Too may iteration steps.. terminating and outputting results." << std::endl;
+			break;
+		}
 	}
 
 	if(debug) {
@@ -287,15 +303,12 @@ void HF::molorbs() const {
 		}
 
 		/* output occupancies */
-		double sum = 0;
 		for(unsigned int j=0; j<nrorbs; j++) {
-			sum += Cc[i][j]*Cc[i][j];
 			std::cout.setf(std::ios::fixed);
 			std::cout << orblist[j] << "\t\t" << std::setprecision(4)
 			<< C[j][i] << std::endl; /* note that the eigenvectors are column vectors */
 		}
 		std::cout << "--------------------" << "\t" << "------" << std::endl;
-		std::cout << "Sum of c'_i^2: " << "\t\t" << sum << std::endl;
 
 		std::cout << std::endl;
 	}
