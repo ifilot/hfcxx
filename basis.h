@@ -8,14 +8,20 @@
 class Basis{
 	private:
 	std::vector<GTO> gtos;
+	std::string basisset;
 
 	public:
 	Basis();
+	Basis(std::string basisset);
 	void set(std::string type, unsigned int z, Vector3 r);
+	void setType(std::string basissett);
 	std::vector<GTO> getGTOs() const;
 
 	private:
 	void addGTOs_sto3g(std::string type, unsigned int z, Vector3 r);
+	void addGTOs_sto6g(std::string type, unsigned int z, Vector3 r);
+	
+	/* GTOs for sto-xg basis sets */
 	void addGTO_s(double alpha, double c, Vector3 r);
 	void addGTO_px(double alpha, double c, Vector3 r);
 	void addGTO_py(double alpha, double c, Vector3 r);

@@ -57,7 +57,7 @@ void Output::printGeometry(Molecule &mol) {
 	std::cout << str.str();
 }
 
-void Output::printFinal(unsigned int iter, double en, unsigned int nrat, unsigned int nrorbs) {
+void Output::printFinal(unsigned int iter, double en, unsigned int nrat, unsigned int nrorbs, unsigned int bss) {
 	std::stringstream str;
 	unsigned int w = 33;
 
@@ -70,6 +70,7 @@ void Output::printFinal(unsigned int iter, double en, unsigned int nrat, unsigne
 
 	str << "Number of atoms: " << nrat << std::endl;
 	str << "Number of orbitals: " << nrorbs << std::endl;
+	str << "Number of GTOs: " << bss << std::endl;
 	str << "Number of iterations: " << iter << std::endl;
 	str << "Total energy [Hartree]: " << std::setprecision(10) << en << std::endl;
 	str << std::endl;
@@ -99,16 +100,15 @@ void Output::printOrbitals(const std::vector<double> &molorben, const std::vecto
 	str << std::endl;
 
   for(unsigned int i=0; i<nrorbs; i++) {
-
-str << '|' << std::setw(10) << std::right << "----------" << std::right
-    << '|' << std::setw(10) << std::right << "----------"
-    << '|' << std::setw(10) << std::right << "----------"
-    << '|' << std::setw(10) << std::right << "----------"
+str << '|' << std::setw(10) << std::right << "**********" << std::right
+    << '|' << std::setw(10) << std::right << "**********"
+    << '|' << std::setw(10) << std::right << "**********"
+    << '|' << std::setw(10) << std::right << "**********"
     << '|' << std::endl;
 
-    str << "|" << std::setw(10) << std::right << i+1 
-				<< "|" << std::setw(10) << std::right << molorben[i] 
-				<< "|" << std::setw(10) << std::right << " HT" 
+    str << "|" << std::setw(10) << std::left << i+1
+				<< "|" << std::setw(18) << std::right << std::fixed
+				<< std::setprecision(10) << molorben[i] << " HT" 
 				<< "|" << std::setw(10) << std::right;
     if(i < nrelec / 2) {
       str << std::setw(10) << " Occupied";
@@ -117,20 +117,20 @@ str << '|' << std::setw(10) << std::right << "----------" << std::right
     }
 		str << "|" << std::endl;
 
-str << '|' << std::setw(10) << std::right << "----------" << std::right
-    << '|' << std::setw(10) << std::right << "----------"
-    << '|' << std::setw(10) << std::right << "----------"
-    << '|' << std::setw(10) << std::right << "----------"
+str << '|' << std::setw(10) << std::right << "**********" << std::right
+    << '|' << std::setw(10) << std::right << "**********"
+    << '|' << std::setw(10) << std::right << "**********"
+    << '|' << std::setw(10) << std::right << "**********"
     << '|' << std::endl;
 
     /* output occupancies */
     for(unsigned int j=0; j<nrorbs; j++) {
-      str.setf(std::ios::fixed);
-      str << orblist[j] << "\t\t" << std::setprecision(4)
-      << C[j][i] << std::endl; /* note that the eigenvectors are column vectors */
-    }
+str << '|' << std::setw(21) << std::left << orblist[j] << std::right
+    << '|' << std::setw(21) << std::right << std::setprecision(4) << std::fixed << C[j][i]
+    << '|' << std::endl;
+		}
 
-str << '|' << std::setw(10) << std::right << "----------" << std::right
+		str << '|' << std::setw(10) << std::right << "----------" << std::right
     << '|' << std::setw(10) << std::right << "----------"
     << '|' << std::setw(10) << std::right << "----------"
     << '|' << std::setw(10) << std::right << "----------"

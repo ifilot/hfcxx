@@ -3,6 +3,7 @@
 HF::HF(){
 	debug = false;
 	alpha = 0.5;
+	bss = 0;
 } /* default constructor */
 
 void HF::molecule(const Molecule &moll) {
@@ -16,6 +17,7 @@ void HF::molecule(const Molecule &moll) {
 		nrelec += mol[i].nrelecs(); /* get total number of electrons */
 		for(unsigned int j=0; j<mol[i].nrorbs(); j++) { /* loop over orbitals per atom */
 			cnt++;
+			bss += mol[i][j].gtos.size();
 			std::ostringstream oss;
 			oss << "[" << cnt << "] " << mol[i].ps() 
 			<< 	i+1 << "\t ("	<< mol[i][j].orb() << ")";
@@ -29,15 +31,15 @@ void HF::molecule(const Molecule &moll) {
 	nrat = mol.nratoms();
 
 	/* resize matrices */
-	S.resize(nrorbs,nrorbs);
-	H.resize(nrorbs,nrorbs);
-	T.resize(nrorbs,nrorbs);
+	S.assign(nrorbs,nrorbs, 0.0);
+	H.assign(nrorbs,nrorbs, 0.0);
+	T.assign(nrorbs,nrorbs, 0.0);
 	V.resize(nrat);
-	P.resize(nrorbs,nrorbs);
-	Cc.resize(nrorbs,nrorbs);
-	C.resize(nrorbs,nrorbs);
-	X.resize(nrorbs,nrorbs);
-	Xp.resize(nrorbs,nrorbs);
+	P.assign(nrorbs,nrorbs, 0.0);
+	Cc.assign(nrorbs,nrorbs, 0.0);
+	C.assign(nrorbs,nrorbs, 0.0);
+	X.assign(nrorbs,nrorbs, 0.0);
+	Xp.assign(nrorbs,nrorbs, 0.0);
 	G.assign(nrorbs,nrorbs,0.0);
 	for(unsigned int i=0; i<V.size(); i++) {
 		V[i].resize(nrorbs,nrorbs);
@@ -145,10 +147,17 @@ void HF::setup() {
 		clock.toc();
 		std::cout << " done [ " << clock.passed() << " ms ] ";
 		std::cout << tecnt << " (i,j|k,l) iterations" << std::endl;
+		
+		printS();
+		printTE();
 	}
 
 	X = canorg(S);
 	Xp = transpose(X);
+
+	if(debug) {
+		printX();
+	}
 
 	/* calculate nuclear repulsion energy */
 	nucl_repul = calcnuclrepul();
@@ -162,7 +171,7 @@ unsigned int index2 = 0;
 
 	for(unsigned int i=0; i<nrorbs; i++) {
     for(unsigned int j=0; j<nrorbs; j++) {
-			G[i][j] = 0; /* reset G matrix */
+			G[i][j] = 0.; /* reset G matrix */
       for(unsigned int k=0; k<nrorbs; k++) {
         for(unsigned int l=0; l<nrorbs; l++) {
 					index1 = teindex(i,j,l,k);
@@ -210,7 +219,7 @@ void HF::run() {
 	setup();
 	unsigned int iter = iterate();
 	out.printOrbitals(molorben, orblist, C, nrelec);
-	out.printFinal(iter,energy,nrat,orblist.size());
+	out.printFinal(iter,energy,nrat,orblist.size(), bss);
 }
 
 double HF::calcen() {

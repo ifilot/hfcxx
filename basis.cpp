@@ -1,10 +1,27 @@
 #include "basis.h"
 
-Basis::Basis() {};
+Basis::Basis() {
+	basisset = "undefined";
+}
+
+Basis::Basis(std::string basissett) {
+	basisset = basissett;
+}
+
+void Basis::setType(std::string basissett) {
+	basisset = basissett;
+}
 
 void Basis::set(std::string type, unsigned int z, Vector3 r) {
 	gtos.clear();
-	addGTOs_sto3g(type, z, r);
+	if(basisset.compare("sto-3g") == 0) {
+		addGTOs_sto3g(type, z, r);
+	} else if(basisset.compare("sto-6g") == 0) {
+		addGTOs_sto6g(type, z, r);
+	} else {
+		std::cout << "Unrecognized basis set" << std::endl;
+		exit(1);
+	}
 };
 
 std::vector<GTO> Basis::getGTOs() const{
@@ -52,3 +69,4 @@ std::vector<GTO> Basis::getGTOs() const{
 	}
 
 #include "basis-sto3g.cpp"
+#include "basis-sto6g.cpp"

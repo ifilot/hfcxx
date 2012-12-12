@@ -16,7 +16,7 @@ class Output{
 	Output();
 	void printVersion();
 	void printGeometry(Molecule &mol);
-	void printFinal(unsigned int iter, double en, unsigned int nrat, unsigned int nrorbs);
+	void printFinal(unsigned int iter, double en, unsigned int nrat, unsigned int nrorbs, unsigned int bss);
 	void printEnd(double time);
 	void printOrbitals(const std::vector<double> &molorben, const std::vector<std::string> &orblist, const MatDoub &C, unsigned int nrelec);
 };

@@ -26,8 +26,8 @@ class Atom{
 	unsigned int nrelec; /* number of electrons */
 
 	public:
-	Atom(const std::string symbolin, const double xx, const double yy, const double zz);
-	Atom(const unsigned int Zz, const double xx, const double yy, const double zz);
+	Atom(const std::string symbolin, const double xx, const double yy, const double zz, Basis &basis);
+	Atom(const unsigned int Zz, const double xx, const double yy, const double zz, Basis &basis);
 
 	friend std::ostream & operator << (std::ostream &os, const Atom &rhs);
 
@@ -37,7 +37,7 @@ class Atom{
 	const double z() const;
 	unsigned int e2z(const std::string &elementin) const;
 	std::string z2e(const unsigned int &z) const;
-	void addWavefunctions();
+	void addWavefunctions(Basis &basis);
 
 	public:
 	const std::string ps() const; /* print symbol */

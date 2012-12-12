@@ -18,13 +18,13 @@ void Molecule::addAtom(const Atom &at) {
 }
 
 void Molecule::addAtom(const std::string symbolin, const double xx, const double yy, const double zz) {
-	Atom at(symbolin, xx, yy, zz);
+	Atom at(symbolin, xx, yy, zz, basis);
 	atoms.push_back(at);
 	nrat++;
 }
 
 void Molecule::addAtom(const unsigned int Zz, const double xx, const double yy, const double zz) {
-	Atom at(Zz, xx, yy, zz);
+	Atom at(Zz, xx, yy, zz, basis);
 	atoms.push_back(at);
 	nrat++;
 }
@@ -59,6 +59,7 @@ void Molecule::read(std::string file) {
 	pos = strpos(line,"=");
 	dat = substr(line,pos+1);
 	basisset = strtrim(dat);
+	basis.setType(basisset);
 	//std::cout << basisset << std::endl;
 	
 	/* grab charge from line 2 */

@@ -24,6 +24,7 @@ class HF{
 	unsigned int nrat;
 	unsigned int nrelec;
 	unsigned int cntstep;
+	unsigned int bss;
 	Clock clock;
 	std::vector<std::string> orblist;
 	std::vector<CGF> orbitals;
@@ -47,7 +48,7 @@ class HF{
 	double energy; /* current energy in the iterative loop */
 	double nucl_repul; /* nuclear repulsion energy */
 	double alpha; /* damping parameter for the iterative SCF cycles */
-	Output out;
+	Output out;	
 
 	public:
 	bool debug; /* set debug to either true or false */

@@ -9,21 +9,21 @@
 
 #include "atom.h"
 
-Atom::Atom(const unsigned int Zz, const double xx, const double yy, const double zz) {
+Atom::Atom(const unsigned int Zz, const double xx, const double yy, const double zz, Basis &basisset) {
 	r = Vector3(xx, yy, zz);
 	Z = Zz;
 	nrelec = Z;
 
-	addWavefunctions();
+	addWavefunctions(basisset);
 }
 
-Atom::Atom(const std::string elementin, const double xx, const double yy, const double zz) {
+Atom::Atom(const std::string elementin, const double xx, const double yy, const double zz, Basis &basisset) {
 	element = elementin;
 	r = Vector3(xx, yy, zz);
 	Z = e2z(element);
 	nrelec = Z;
 
-	addWavefunctions();
+	addWavefunctions(basisset);
 }
 
 std::ostream & operator << (std::ostream &os, const Atom &rhs) {
@@ -146,8 +146,8 @@ std::string Atom::z2e(const unsigned int &z) const {
 	return "undefined";
 }
 
-void Atom::addWavefunctions(){
-		Basis basis;
+void Atom::addWavefunctions(Basis &basis){
+
 	if(Z==1 || Z==2) {
 		basis.set("1s", Z,r);
 		wavefunctions.push_back(CGF("1s", Z, r, basis.getGTOs() ));
