@@ -70,7 +70,7 @@ void Output::printFinal(unsigned int iter, double en, unsigned int nrat) {
 
 	str << "Number of atoms: " << nrat << std::endl;
 	str << "Number of iterations: " << iter << std::endl;
-	str << "Total energy [Hartree]: " << en << std::endl;
+	str << "Total energy [Hartree]: " << std::setprecision(10) << en << std::endl;
 	str << std::endl;
 
 	std::cout << str.str();
