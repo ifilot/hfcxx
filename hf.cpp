@@ -147,9 +147,6 @@ void HF::setup() {
 		std::cout << tecnt << " (i,j|k,l) iterations" << std::endl;
 	}
 
-	/* uncomment the lines below for debugging purposes */
-	//std::cout << S;
-
 	X = canorg(S);
 	Xp = transpose(X);
 
@@ -212,7 +209,8 @@ unsigned int index2 = 0;
 void HF::run() {
 	setup();
 	unsigned int iter = iterate();
-	out.printFinal(iter,energy,nrat);
+	out.printOrbitals(molorben, orblist, C, nrelec);
+	out.printFinal(iter,energy,nrat,orblist.size());
 }
 
 double HF::calcen() {

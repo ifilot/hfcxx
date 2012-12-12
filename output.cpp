@@ -57,7 +57,7 @@ void Output::printGeometry(Molecule &mol) {
 	std::cout << str.str();
 }
 
-void Output::printFinal(unsigned int iter, double en, unsigned int nrat) {
+void Output::printFinal(unsigned int iter, double en, unsigned int nrat, unsigned int nrorbs) {
 	std::stringstream str;
 	unsigned int w = 33;
 
@@ -69,6 +69,7 @@ void Output::printFinal(unsigned int iter, double en, unsigned int nrat) {
 	str << std::endl;
 
 	str << "Number of atoms: " << nrat << std::endl;
+	str << "Number of orbitals: " << nrorbs << std::endl;
 	str << "Number of iterations: " << iter << std::endl;
 	str << "Total energy [Hartree]: " << std::setprecision(10) << en << std::endl;
 	str << std::endl;
@@ -83,4 +84,59 @@ void Output::printEnd(double time) {
 	str << "Program terminated succesfully after " << time << "ms." << std::endl;
 	str << std::endl;
 	std::cout << str.str();
+}
+
+void Output::printOrbitals(const std::vector<double> &molorben, const std::vector<std::string> &orblist, const MatDoub &C, unsigned int nrelec) {
+	std::stringstream str;
+	unsigned int w = 33;
+
+	unsigned int nrorbs = orblist.size();
+	str << std::setw(w) << std::right << "***********************" << std::endl;
+	str << std::setw(w) << std::right << "*                     *" << std::endl;
+	str << std::setw(w) << std::right << "*       ORBITALS      *" << std::endl;
+	str << std::setw(w) << std::right << "*                     *" << std::endl;
+	str << std::setw(w) << std::right << "***********************" << std::endl;
+	str << std::endl;
+
+  for(unsigned int i=0; i<nrorbs; i++) {
+
+str << '|' << std::setw(10) << std::right << "----------" << std::right
+    << '|' << std::setw(10) << std::right << "----------"
+    << '|' << std::setw(10) << std::right << "----------"
+    << '|' << std::setw(10) << std::right << "----------"
+    << '|' << std::endl;
+
+    str << "|" << std::setw(10) << std::right << i+1 
+				<< "|" << std::setw(10) << std::right << molorben[i] 
+				<< "|" << std::setw(10) << std::right << " HT" 
+				<< "|" << std::setw(10) << std::right;
+    if(i < nrelec / 2) {
+      str << std::setw(10) << " Occupied";
+    } else {
+      str << std::setw(10) << " Virtual";
+    }
+		str << "|" << std::endl;
+
+str << '|' << std::setw(10) << std::right << "----------" << std::right
+    << '|' << std::setw(10) << std::right << "----------"
+    << '|' << std::setw(10) << std::right << "----------"
+    << '|' << std::setw(10) << std::right << "----------"
+    << '|' << std::endl;
+
+    /* output occupancies */
+    for(unsigned int j=0; j<nrorbs; j++) {
+      str.setf(std::ios::fixed);
+      str << orblist[j] << "\t\t" << std::setprecision(4)
+      << C[j][i] << std::endl; /* note that the eigenvectors are column vectors */
+    }
+
+str << '|' << std::setw(10) << std::right << "----------" << std::right
+    << '|' << std::setw(10) << std::right << "----------"
+    << '|' << std::setw(10) << std::right << "----------"
+    << '|' << std::setw(10) << std::right << "----------"
+    << '|' << std::endl << std::endl;
+
+  }
+
+    std::cout << str.str();
 }
