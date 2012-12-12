@@ -15,6 +15,7 @@
 #include "nuclear.h"
 #include "repulsion.h"
 #include "eigsym.h"
+#include "output.h"
 
 class HF{
 	private:
@@ -46,6 +47,7 @@ class HF{
 	double energy; /* current energy in the iterative loop */
 	double nucl_repul; /* nuclear repulsion energy */
 	double alpha; /* damping parameter for the iterative SCF cycles */
+	Output out;
 
 	public:
 	bool debug; /* set debug to either true or false */
@@ -58,7 +60,7 @@ class HF{
 	private:
 	void step();
 	void setup();
-	void iterate();
+	unsigned int iterate();
 
 	/* energy functions */
 	double calcen();

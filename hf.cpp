@@ -211,7 +211,8 @@ unsigned int index2 = 0;
 
 void HF::run() {
 	setup();
-	iterate();
+	unsigned int iter = iterate();
+	out.printFinal(iter,energy,nrat);
 }
 
 double HF::calcen() {
@@ -237,7 +238,7 @@ double HF::calcnuclrepul() {
 	return repul;
 }
 
-void HF::iterate() {
+unsigned int HF::iterate() {
 	double ediff = 1;
 	double oldenergy = 1000; /* some random big number */
 	unsigned int iter = 0;
@@ -288,6 +289,8 @@ void HF::iterate() {
 	if(debug) {
 		molorbs();
 	}
+
+	return iter;
 }
 
 void HF::molorbs() const {

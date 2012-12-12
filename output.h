@@ -14,6 +14,8 @@ class Output{
 	Output();
 	void printVersion();
 	void printGeometry(Molecule &mol);
+	void printFinal(unsigned int iter, double en, unsigned int nrat);
+	void printEnd(double time);
 };
 
 #endif //_OUTPUT_H

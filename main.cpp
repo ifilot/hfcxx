@@ -42,7 +42,7 @@ int main(int argc, char *argv[]) {
 	hf.run();
 
 	clock.toc();
-	std::cout << "Execution time: " << clock.passed() << " ms" << std::endl;
+	out.printEnd(clock.passed());
 
 	return 0;
 }
