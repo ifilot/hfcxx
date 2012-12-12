@@ -2,10 +2,13 @@
 #include <iomanip>
 #include <string.h>
 #include "hf.h"
-#include "version.h"
 #include "clock.h"
+#include "output.h"
 
 int main(int argc, char *argv[]) {
+	Output out;
+	out.printVersion();
+
 	std::string filename;
 	bool debug = false;
 
@@ -31,6 +34,7 @@ int main(int argc, char *argv[]) {
 
 	Molecule mol;
 	mol.read(filename);
+	out.printGeometry(mol);
 
 	HF hf;
 	hf.debug = debug;

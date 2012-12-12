@@ -11,8 +11,9 @@
 #define _VERSION_H
 
 #include<iostream>
+#include<sstream>
 #include<string>
 
-void version();
+std::string version();
 
 #endif //_VERSION_H

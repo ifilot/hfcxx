@@ -1,7 +1,7 @@
 basis = sto-3g
 charge = 0
 atoms = 5
-units = angstrom
+units = bohr
 C  -0.213   0.154   0.000
 H  -0.213   2.304   0.000
 H	1.814  -0.563   0.000
