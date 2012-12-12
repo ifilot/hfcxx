@@ -20,9 +20,14 @@ void Output::printGeometry(Molecule &mol) {
 	str << std::endl;
 
 	for(unsigned int i=0; i < mol.nratoms(); i++) {
-		str << "     " << mol[i].ps() << std::endl;
+		str << std::setprecision(4);
+		str << spacer << mol[i].ps() 
+		<< spacer << mol[i].gr().x
+		<< spacer << mol[i].gr().y
+		<< spacer << mol[i].gr().z
+		<< std::endl;
 	}
 
 	std::string out = str.str();
-	std::cout << out;
+	std::cout << str.str();
 }

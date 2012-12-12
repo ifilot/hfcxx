@@ -11,8 +11,8 @@
 #define _CANORG_H
 
 #include "matrix.h"
-#include "eigen.h"
 #include "matfunc.h"
+#include "eigsym.h"
 
 Xmatrix canorg(const Smatrix &S);
 MatDoub transpose(MatDoub &a);

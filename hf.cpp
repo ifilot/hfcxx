@@ -181,12 +181,11 @@ unsigned int index2 = 0;
 	Fp = trimatprod(Xp,F,X);
 
 	/* extract eigenvalues and eigenvectors */
-	Symmeig eig(Fp,true);
-	Cc = eig.z;
+	Eigsym es(F,Cc,molorben);
 
 	/* calculate energy from orbitals */
-	energy = calcen(eig);
-	molorben = eig.d;
+	energy = calcen();
+	//molorben = eig.d;
 
 	/* construct C and charge density matrices for new iterative round */
 	C = matprod(X,Cc);
@@ -215,7 +214,7 @@ void HF::run() {
 	iterate();
 }
 
-double HF::calcen(Symmeig &eig) {
+double HF::calcen() {
 	double energy = 0;
 
 	MatDoub mat = matsum(H,F);
@@ -268,8 +267,10 @@ void HF::iterate() {
 		itertimes.push_back(passed);
 
 		/* output result to commandline */
-		std::cout << "Energy after iteration " << iter << ":\t " << energy << " Hartree\t" 
-		<< " [ " << passed << " ms ] " << std::endl;
+		if(debug) {
+			std::cout << "Energy after iteration " << iter << ":\t " << energy << " Hartree\t" 
+			<< " [ " << passed << " ms ] " << std::endl;
+		}
 
 		if(iter > 100) {
 			std::cout << "Too may iteration steps.. terminating and outputting results." << std::endl;

@@ -14,6 +14,7 @@
 #include "overlap.h"
 #include "nuclear.h"
 #include "repulsion.h"
+#include "eigsym.h"
 
 class HF{
 	private:
@@ -60,7 +61,7 @@ class HF{
 	void iterate();
 
 	/* energy functions */
-	double calcen(Symmeig &eig);
+	double calcen();
 	double calcnuclrepul();
 
 	/* special output functions for debugging purposes */
