@@ -44,7 +44,7 @@ int main(int argc, char *argv[]) {
 	clock.toc();
 	out.printEnd(clock.passed());
 
-	#ifdef WINDOWS
+	#ifdef _WIN32
 		std::cout << "Press ENTER to close" << std::endl;
 		std::cin.get();
 	#endif //_check if compiled on Win32
