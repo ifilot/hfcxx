@@ -1,6 +1,6 @@
 CC= g++
 CFLAGS= -O3 -c -Wall
-LDFLAGS=
+LDFLAGS= -static
 LIBS=
 DEBUG=
 SOURCES=vector.cpp atom.cpp gto.cpp cgf.cpp \
@@ -11,7 +11,6 @@ SOURCES=vector.cpp atom.cpp gto.cpp cgf.cpp \
 	output.cpp eispack.cpp eigsym.cpp
 OBJECTS=$(SOURCES:.cpp=.o)
 EXECUTABLE=hfcxx
-TESTS=tests/t_matrix tests/t_cgf
 
 all: $(EXECUTABLE)
 
