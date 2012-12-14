@@ -2,6 +2,7 @@
 #define _BASIS_H
 
 #include<string>
+#include <stdlib.h>
 #include "gto.h"
 #include "vector.h"
 

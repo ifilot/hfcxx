@@ -1822,7 +1822,7 @@ int tql2 ( int n, double d[], double e[], double z[] )
 {
   double c;
   double c2;
-  double c3;
+  double c3 = 0;
   double dl1;
   double el1;
   double f;
@@ -1841,7 +1841,7 @@ int tql2 ( int n, double d[], double e[], double z[] )
   double p;
   double r;
   double s;
-  double s2;
+  double s2 = 0;
   double t;
   double tst1;
   double tst2;
@@ -2055,8 +2055,8 @@ int tqlrat ( int n, double d[], double e2[] )
 //    J, if the J-th eigenvalue could not be determined after 30 iterations.
 //
 {
-  double b;
-  double c;
+  double b = 0;
+  double c = 0;
   double f;
   double g;
   double h;

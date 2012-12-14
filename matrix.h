@@ -9,6 +9,7 @@
 #define _MATRIX_H
 
 #include<iostream>
+#include <stdlib.h>
 #include<iomanip>
 
 template <class T>
