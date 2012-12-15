@@ -1,7 +1,4 @@
 TODO for hfcxx project
 ----------------------
 
-* Implement a logger class / function
-* Make hf class more user friendly
-* Take input (molecular data etc.) from files
-* Expand the set of basis functions (sto-3g, sto-6g...)
+* Expand the set of basis functions (sto-3g, sto-6g, 3-21g)

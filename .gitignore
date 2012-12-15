@@ -11,5 +11,8 @@
 *.la
 *.a
 
+# Output files from the program
+*.out
+
 # Executable
 hfcxx

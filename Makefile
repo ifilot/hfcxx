@@ -45,4 +45,4 @@ $(ODIR)/%.o: %.cpp
 	$(CC) $(LIBS) $(CFLAGS) $(DEBUG) $< -o $@
 
 clean:
-	rm $(ODIR)/*.o; rm $(BDIR)/$(EXECUTABLE)
+	rm $(ODIR)/*.o; rm $(EXECUTABLE)
