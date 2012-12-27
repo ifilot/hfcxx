@@ -67,6 +67,3 @@ std::vector<GTO> Basis::getGTOs() const{
 	void Basis::addGTO_dz2(double alpha, double c, Vector3 r) {
  	 gtos.push_back(GTO(c, r, alpha, 0,0,2));
 	}
-
-#include "basis-sto3g.cpp"
-#include "basis-sto6g.cpp"

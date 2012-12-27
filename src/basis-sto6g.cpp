@@ -1,3 +1,5 @@
+#include "basis.h"
+
 void Basis::addGTOs_sto6g(std::string type, unsigned int z, Vector3 r) {
 	/* (1) HYDROGEN */
 	if(type.compare("1s")==0 && z==1) {

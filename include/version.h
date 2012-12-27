@@ -13,6 +13,7 @@
 #include<iostream>
 #include<sstream>
 #include<string>
+#include "config.h"
 
 std::string version();
 
