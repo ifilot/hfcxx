@@ -29,6 +29,9 @@ Makefile.in
 /missing
 /config.status
 /config.log
+/autoscan.log
+/Makefile
+/src/Makefile
 
 # Executable
 hfcxx
