@@ -1,61 +1,53 @@
-clock.o clock.o: clock.cpp ../include/clock.h /usr/include/sys/time.h \
-  /usr/include/sys/cdefs.h /usr/include/sys/_symbol_aliasing.h \
-  /usr/include/sys/_posix_availability.h /usr/include/sys/_types.h \
-  /usr/include/machine/_types.h /usr/include/i386/_types.h \
-  /usr/include/Availability.h /usr/include/AvailabilityInternal.h \
-  /usr/include/sys/_structs.h /usr/include/time.h /usr/include/_types.h \
-  /usr/include/_structs.h /usr/include/sys/_select.h \
-  /usr/include/c++/4.2.1/cstddef /usr/include/c++/4.2.1/bits/c++config.h \
-  /usr/include/c++/4.2.1/bits/os_defines.h /usr/include/unistd.h \
-  /usr/include/sys/unistd.h /usr/include/sys/select.h \
-  /usr/include/sys/appleapiopts.h \
-  /usr/include/c++/4.2.1/bits/cpu_defines.h \
-  /usr/llvm-gcc-4.2/bin/../lib/gcc/i686-apple-darwin11/4.2.1/include/stddef.h
+clock.o: clock.cpp ../include/clock.h /usr/include/sys/time.h \
+ /usr/include/features.h /usr/include/sys/cdefs.h \
+ /usr/include/bits/wordsize.h /usr/include/gnu/stubs.h \
+ /usr/include/gnu/stubs-64.h /usr/include/bits/types.h \
+ /usr/include/bits/typesizes.h /usr/include/time.h \
+ /usr/include/bits/time.h /usr/include/sys/select.h \
+ /usr/include/bits/select.h /usr/include/bits/sigset.h \
+ /usr/include/bits/select2.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/4.5.4/include/g++-v4/cstddef \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/4.5.4/include/g++-v4/x86_64-pc-linux-gnu/bits/c++config.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/4.5.4/include/g++-v4/x86_64-pc-linux-gnu/bits/os_defines.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/4.5.4/include/g++-v4/x86_64-pc-linux-gnu/bits/cpu_defines.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/4.5.4/include/stddef.h
 
 ../include/clock.h:
 
 /usr/include/sys/time.h:
 
+/usr/include/features.h:
+
 /usr/include/sys/cdefs.h:
 
-/usr/include/sys/_symbol_aliasing.h:
+/usr/include/bits/wordsize.h:
 
-/usr/include/sys/_posix_availability.h:
+/usr/include/gnu/stubs.h:
 
-/usr/include/sys/_types.h:
+/usr/include/gnu/stubs-64.h:
 
-/usr/include/machine/_types.h:
+/usr/include/bits/types.h:
 
-/usr/include/i386/_types.h:
-
-/usr/include/Availability.h:
-
-/usr/include/AvailabilityInternal.h:
-
-/usr/include/sys/_structs.h:
+/usr/include/bits/typesizes.h:
 
 /usr/include/time.h:
 
-/usr/include/_types.h:
-
-/usr/include/_structs.h:
-
-/usr/include/sys/_select.h:
-
-/usr/include/c++/4.2.1/cstddef:
-
-/usr/include/c++/4.2.1/bits/c++config.h:
-
-/usr/include/c++/4.2.1/bits/os_defines.h:
-
-/usr/include/unistd.h:
-
-/usr/include/sys/unistd.h:
+/usr/include/bits/time.h:
 
 /usr/include/sys/select.h:
 
-/usr/include/sys/appleapiopts.h:
+/usr/include/bits/select.h:
 
-/usr/include/c++/4.2.1/bits/cpu_defines.h:
+/usr/include/bits/sigset.h:
 
-/usr/llvm-gcc-4.2/bin/../lib/gcc/i686-apple-darwin11/4.2.1/include/stddef.h:
+/usr/include/bits/select2.h:
+
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.5.4/include/g++-v4/cstddef:
+
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.5.4/include/g++-v4/x86_64-pc-linux-gnu/bits/c++config.h:
+
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.5.4/include/g++-v4/x86_64-pc-linux-gnu/bits/os_defines.h:
+
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.5.4/include/g++-v4/x86_64-pc-linux-gnu/bits/cpu_defines.h:
+
+/usr/lib/gcc/x86_64-pc-linux-gnu/4.5.4/include/stddef.h:
