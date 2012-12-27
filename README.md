@@ -1,16 +1,31 @@
-# Overview
+# HFCXX
+
+Overview
+--------
 
 HFCXX is a Hartree-Fock code in C++. The program currently supports only single-point
 calculations (i.e. no geometry optimizations). The basis sets STO-3G and STO-6G
 are included for atoms up to N=8 (oxygen).
 
-# Compiling source code
+Installation
+------------
+
 Simply type:
-`./configure`
-`make`
+  `./configure` followed by
+  `make`
 
-# Usage
-./hfcxx <inputfile.in> > <outputfile>
+Usage
+-----
 
-Example:
-`./hfcxx molecules/h2.in > h2.out`
+For example:
+  `./hfcxx molecules/h2.in > h2.out`
+
+Contributing
+------------
+
+1. Fork it.
+2. Create a branch (`git checkout -b my_markup`)
+3. Commit your changes (`git commit -am "Added Snarkdown"`)
+4. Push to the branch (`git push origin my_markup`)
+5. Open a [Pull Request][1]
+6. Enjoy a refreshing beer and wait
