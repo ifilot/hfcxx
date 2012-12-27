@@ -27,10 +27,7 @@ Makefile.in
 /depcomp
 /install-sh
 /missing
-/config.status
-/config.log
-/autoscan.log
-/Makefile
+Makefile
 /src/Makefile
 
 # Executable
