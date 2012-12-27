@@ -15,5 +15,8 @@
 # Output files from the program
 *.out
 
+# Autotools
+src/.deps
+
 # Executable
 hfcxx
