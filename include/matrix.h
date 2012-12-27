@@ -1,8 +1,10 @@
 /*
- *  matrix.h
+ * matrix.h
  *
- *  Author: Ivo Filot
- *  Modified: 2012-08-28
+ * hfcxx package <https://github.com/ifilot/hfcxx>
+ *
+ * Author: Ivo Filot <ivo@zuidstijl.nl>
+ * Description: (templated) Matrix class
  */
 
 #ifndef _MATRIX_H

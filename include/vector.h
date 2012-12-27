@@ -1,3 +1,12 @@
+/*
+ * vector.h
+ *
+ * hfcxx package <https://github.com/ifilot/hfcxx>
+ *
+ * Author: Ivo Filot <ivo@zuidstijl.nl>
+ * Description: Special 3-element vector class used for describing points in R^3
+ */
+ 
 #ifndef _HFCXX_VECTOR_H
 #define _HFCXX_VECTOR_H
 

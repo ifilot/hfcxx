@@ -1,13 +1,10 @@
 /*
- *	vector.cpp
+ * vector.cpp
  *
- *	Author: Ivo Filot
- *	Modified: 2012-08-30
+ * hfcxx package <https://github.com/ifilot/hfcxx>
  *
- *	Note because below are implementations of template member functions, this file
- *  is included in vector.h. In principle, the pre-compiler merges this file
- *  together with the header file, but for convenience, the declaration and
- *  implementation are seperated (although for the compiler not).
+ * Author: Ivo Filot <ivo@zuidstijl.nl>
+ * Description:
  */
 
 #include "vector.h"

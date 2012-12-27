@@ -1,3 +1,12 @@
+/*
+ * strfunc.h
+ *
+ * hfcxx package <https://github.com/ifilot/hfcxx>
+ *
+ * Author: Ivo Filot <ivo@zuidstijl.nl>
+ * Description: String modification functions based on PHP functions
+ */
+ 
 #ifndef _STRFUNC_H
 #define _STRFUNC_H
 

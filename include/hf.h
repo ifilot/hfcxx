@@ -1,3 +1,12 @@
+/*
+ * hf.h
+ *
+ * hfcxx package <https://github.com/ifilot/hfcxx>
+ *
+ * Author: Ivo Filot <ivo@zuidstijl.nl>
+ * Description:
+ */
+ 
 #ifndef _HF_H
 #define _HF_H
 

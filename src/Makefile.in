@@ -62,15 +62,14 @@ CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
-am_hfcxx_OBJECTS = vector.$(OBJEXT) atom.$(OBJEXT) gto.$(OBJEXT) \
-	cgf.$(OBJEXT) func.$(OBJEXT) overlap.$(OBJEXT) \
-	kinetic.$(OBJEXT) gamma.$(OBJEXT) nuclear.$(OBJEXT) \
-	repulsion.$(OBJEXT) hf.$(OBJEXT) molecule.$(OBJEXT) \
-	canorg.$(OBJEXT) matfunc.$(OBJEXT) clock.$(OBJEXT) \
-	version.$(OBJEXT) basis.$(OBJEXT) strfunc.$(OBJEXT) \
-	readfile.$(OBJEXT) output.$(OBJEXT) eispack.$(OBJEXT) \
-	eigsym.$(OBJEXT) main.$(OBJEXT) basis-sto3g.$(OBJEXT) \
-	basis-sto6g.$(OBJEXT)
+am_hfcxx_OBJECTS = atom.$(OBJEXT) basis.$(OBJEXT) clock.$(OBJEXT) \
+	canorg.$(OBJEXT) cgf.$(OBJEXT) eigsym.$(OBJEXT) \
+	eispack.$(OBJEXT) func.$(OBJEXT) gto.$(OBJEXT) gamma.$(OBJEXT) \
+	hf.$(OBJEXT) kinetic.$(OBJEXT) main.$(OBJEXT) \
+	matfunc.$(OBJEXT) molecule.$(OBJEXT) nuclear.$(OBJEXT) \
+	output.$(OBJEXT) overlap.$(OBJEXT) readfile.$(OBJEXT) \
+	repulsion.$(OBJEXT) strfunc.$(OBJEXT) vector.$(OBJEXT) \
+	version.$(OBJEXT) basis-sto3g.$(OBJEXT) basis-sto6g.$(OBJEXT)
 hfcxx_OBJECTS = $(am_hfcxx_OBJECTS)
 hfcxx_LDADD = $(LDADD)
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)
@@ -187,16 +186,16 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 AM_CPPFLAGS = -I$(top_srcdir)/include
-hfcxx_SOURCES = vector.cpp atom.cpp gto.cpp cgf.cpp \
-func.cpp overlap.cpp kinetic.cpp gamma.cpp \
-nuclear.cpp repulsion.cpp hf.cpp molecule.cpp \
-canorg.cpp matfunc.cpp clock.cpp \
-version.cpp basis.cpp strfunc.cpp readfile.cpp \
-output.cpp eispack.cpp eigsym.cpp main.cpp \
+hfcxx_SOURCES = atom.cpp basis.cpp clock.cpp \
+canorg.cpp cgf.cpp eigsym.cpp eispack.cpp \
+func.cpp gto.cpp gamma.cpp hf.cpp \
+kinetic.cpp main.cpp matfunc.cpp molecule.cpp \
+nuclear.cpp output.cpp overlap.cpp readfile.cpp \
+repulsion.cpp strfunc.cpp vector.cpp version.cpp \
 ../include/atom.h ../include/clock.h ../include/func.h \
-../include/kinetic.h \
-../include/nuclear.h ../include/repulsion.h ../include/basis.h ../include/eigsym.h \
-../include/gamma.h ../include/matfunc.h ../include/output.h ../include/strfunc.h \
+../include/kinetic.h ../include/nuclear.h ../include/repulsion.h \
+../include/basis.h ../include/eigsym.h ../include/gamma.h \
+../include/matfunc.h ../include/output.h ../include/strfunc.h \
 ../include/canorg.h ../include/eispack.h ../include/gto.h ../include/matrix.h \
 ../include/overlap.h ../include/vector.h ../include/cgf.h ../include/factorial.h \
 ../include/hf.h ../include/molecule.h ../include/readfile.h ../include/version.h \

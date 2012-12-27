@@ -1,3 +1,12 @@
+/*
+ * basis-sto6g.cpp
+ *
+ * hfcxx package <https://github.com/ifilot/hfcxx>
+ *
+ * Author: Ivo Filot <ivo@zuidstijl.nl>
+ * Description:
+ */
+ 
 #include "basis.h"
 
 void Basis::addGTOs_sto6g(std::string type, unsigned int z, Vector3 r) {

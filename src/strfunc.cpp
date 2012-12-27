@@ -1,7 +1,15 @@
 /*
+ * strfunc.cpp
+ *
+ * hfcxx package <https://github.com/ifilot/hfcxx>
+ *
+ * Author: Ivo Filot <ivo@zuidstijl.nl>
+ * Description:
+ */
+ 
+/*
  * the functions below, with exception of strtrim, are taken from
  * http://www.zedwood.com/
- *
  */
 
 #include "strfunc.h"

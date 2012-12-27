@@ -1,3 +1,12 @@
+/*
+ * eigsym.h
+ *
+ * hfcxx package <https://github.com/ifilot/hfcxx>
+ *
+ * Author: Ivo Filot <ivo@zuidstijl.nl>
+ * Description:
+ */
+ 
 #ifndef _EIGSYM_H
 #define _EIGSYM_H
 

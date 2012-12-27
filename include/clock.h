@@ -1,7 +1,10 @@
 /*
  * clock.h
  *
- * Author: Ivo Filot
+ * hfcxx package <https://github.com/ifilot/hfcxx>
+ *
+ * Author: Ivo Filot <ivo@zuidstijl.nl>
+ * Description:
  */
 
 #ifndef _CLOCK_H

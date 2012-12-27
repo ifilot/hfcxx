@@ -1,11 +1,12 @@
 /*
  * clock.cpp
  *
- * Author: Ivo Filot
- * Modified: 2012-08-31
+ * hfcxx package <https://github.com/ifilot/hfcxx>
  *
+ * Author: Ivo Filot <ivo@zuidstijl.nl>
+ * Description:
  */
-
+ 
 #include "clock.h"
 
 Clock::Clock() {

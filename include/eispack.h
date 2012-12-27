@@ -1,3 +1,12 @@
+/*
+ * eispack.h
+ *
+ * hfcxx package <https://github.com/ifilot/hfcxx>
+ *
+ * Author: Ivo Filot <ivo@zuidstijl.nl>
+ * Description:
+ */
+ 
 #ifndef _EISPACK_H
 #define _EISPACK_H
 

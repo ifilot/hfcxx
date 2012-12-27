@@ -1,3 +1,12 @@
+/*
+ * repulsion.cpp
+ *
+ * hfcxx package <https://github.com/ifilot/hfcxx>
+ *
+ * Author: Ivo Filot <ivo@zuidstijl.nl>
+ * Description:
+ */
+ 
 #include "repulsion.h"
 
 double cgf_repulsion(const CGF &cgf1,const CGF &cgf2,const CGF &cgf3,const CGF &cgf4) {

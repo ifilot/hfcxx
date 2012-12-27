@@ -1,10 +1,13 @@
 /*
  * gamma.cpp
  *
- * evaluate incomplete gamma function
+ * hfcxx package <https://github.com/ifilot/hfcxx>
  *
- * Author: Ivo Filot
- *
+ * Author: Ivo Filot <ivo@zuidstijl.nl>
+ * Description: Evaluate the incomplete Gamma function
+ */
+
+/*
  * References:
  * [1] Numerical Recipes
  * William H. Press, Saul A. Teukolsky, William T.,

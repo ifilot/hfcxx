@@ -1,3 +1,12 @@
+/*
+ * overlap.cpp
+ *
+ * hfcxx package <https://github.com/ifilot/hfcxx>
+ *
+ * Author: Ivo Filot <ivo@zuidstijl.nl>
+ * Description:
+ */
+ 
 #include "overlap.h"
 
 double cgf_overlap(CGF &cgf1, CGF &cgf2) {

@@ -1,3 +1,12 @@
+/*
+ * repulsion.h
+ *
+ * hfcxx package <https://github.com/ifilot/hfcxx>
+ *
+ * Author: Ivo Filot <ivo@zuidstijl.nl>
+ * Description: Electron-electron repulsion integrals
+ */
+ 
 #ifndef _REPULSION_H
 #define _REPULSION_H
 

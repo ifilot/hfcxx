@@ -1,3 +1,12 @@
+/*
+ * basis.cpp
+ *
+ * hfcxx package <https://github.com/ifilot/hfcxx>
+ *
+ * Author: Ivo Filot <ivo@zuidstijl.nl>
+ * Description:
+ */
+ 
 #include "basis.h"
 
 Basis::Basis() {

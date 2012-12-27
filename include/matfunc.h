@@ -1,3 +1,12 @@
+/*
+ * matfunc.h
+ *
+ * hfcxx package <https://github.com/ifilot/hfcxx>
+ *
+ * Author: Ivo Filot <ivo@zuidstijl.nl>
+ * Description: Matrix operations
+ */
+ 
 #ifndef _MATPROD_H
 #define _MATPROD_H
 

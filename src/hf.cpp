@@ -1,3 +1,12 @@
+/*
+ * hf.cpp
+ *
+ * hfcxx package <https://github.com/ifilot/hfcxx>
+ *
+ * Author: Ivo Filot <ivo@zuidstijl.nl>
+ * Description:
+ */
+ 
 #include "hf.h"
 
 HF::HF(){

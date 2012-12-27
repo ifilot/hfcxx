@@ -1,10 +1,10 @@
 /*
  * cgf.h
  *
- * defines contracted gaussian function class
+ * hfcxx package <https://github.com/ifilot/hfcxx>
  *
- * Author: Ivo Filot
- *
+ * Author: Ivo Filot <ivo@zuidstijl.nl>
+ * Description:
  */
 
 #ifndef _CGF_H

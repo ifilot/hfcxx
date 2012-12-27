@@ -1,3 +1,12 @@
+/*
+ * eigsym.cpp
+ *
+ * hfcxx package <https://github.com/ifilot/hfcxx>
+ *
+ * Author: Ivo Filot <ivo@zuidstijl.nl>
+ * Description:
+ */
+ 
 #include "eigsym.h"
 
 Eigsym::Eigsym(){}; /* default constructor */

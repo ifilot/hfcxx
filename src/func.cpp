@@ -1,10 +1,10 @@
 /*
  * func.cpp
  *
- * set of small functions used throughout the various routines
+ * hfcxx package <https://github.com/ifilot/hfcxx>
  *
- * Author: Ivo Filot
- *
+ * Author: Ivo Filot <ivo@zuidstijl.nl>
+ * Description:
  */
 
 #include "func.h"

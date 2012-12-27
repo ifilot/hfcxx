@@ -1,3 +1,12 @@
+/*
+ * basis.h
+ *
+ * hfcxx package <https://github.com/ifilot/hfcxx>
+ *
+ * Author: Ivo Filot <ivo@zuidstijl.nl>
+ * Description: header file for basis (set) class
+ */
+ 
 #ifndef _BASIS_H
 #define _BASIS_H
 

@@ -1,3 +1,12 @@
+/*
+ * kinetic.h
+ *
+ * hfcxx package <https://github.com/ifilot/hfcxx>
+ *
+ * Author: Ivo Filot <ivo@zuidstijl.nl>
+ * Description: Kinetic energy integrals
+ */
+ 
 #ifndef _KINETIC_H
 #define _KINETIC_H
 

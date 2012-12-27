@@ -1,3 +1,12 @@
+/*
+ * readfile.h
+ *
+ * hfcxx package <https://github.com/ifilot/hfcxx>
+ *
+ * Author: Ivo Filot <ivo@zuidstijl.nl>
+ * Description: Reads input from a file
+ */
+ 
 #ifndef _READFILE_H
 #define _READFILE_H
 

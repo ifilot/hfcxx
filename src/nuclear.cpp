@@ -1,3 +1,12 @@
+/*
+ * nuclear.cpp
+ *
+ * hfcxx package <https://github.com/ifilot/hfcxx>
+ *
+ * Author: Ivo Filot <ivo@zuidstijl.nl>
+ * Description:
+ */
+ 
 #include "nuclear.h"
 
 double cgf_nuclear(CGF &cgf1, CGF &cgf2, const Atom &a) {

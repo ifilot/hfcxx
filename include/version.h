@@ -1,10 +1,10 @@
 /*
  * version.h
  *
- * shows compile and version information at execution
+ * hfcxx package <https://github.com/ifilot/hfcxx>
  *
- * Author: Ivo Filot
- *
+ * Author: Ivo Filot <ivo@zuidstijl.nl>
+ * Description: Shows the compile version
  */
 
 #ifndef _VERSION_H

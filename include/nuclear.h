@@ -1,3 +1,12 @@
+/*
+ * nuclear.h
+ *
+ * hfcxx package <https://github.com/ifilot/hfcxx>
+ *
+ * Author: Ivo Filot <ivo@zuidstijl.nl>
+ * Description: Nuclear attraction integrals
+ */
+ 
 #ifndef _NUCLEAR_H
 #define _NUCLEAR_H
 
