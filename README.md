@@ -9,7 +9,7 @@ are included for atoms up to N=8 (oxygen).
 
 Download
 --------
-[Click here to download the latest version.](http://ifilot.github.com/hfcxx/tarballs/hfcxx-1.3.3.tar.gz)
+[Click here to download the latest version.](http://www.hfcxx.nl/repo/hfcxx-1.3.3.tar.gz)
 
 
 Installation
