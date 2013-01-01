@@ -1,4 +1,4 @@
-# HFCXX
+# HFCXX [![Build Status](https://travis-ci.org/ifilot/hfcxx.png?branch=master)](https://travis-ci.org/ifilot/hfcxx)
 
 Overview
 --------
