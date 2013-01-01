@@ -5,7 +5,7 @@ compiler:
 before_script:
   - ./configure
 script:
-	- make
+  - make
 branches:
   only:
     - master
