@@ -29,10 +29,7 @@ src/.deps
 /config.log
 /config.status
 /config.sub
-/depcomp
-/install-sh
 /libtool
-/missing
 /stamp-h1
 INSTALL
 Makefile
