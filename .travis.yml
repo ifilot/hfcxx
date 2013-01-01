@@ -1,5 +1,16 @@
 language: cpp
 compiler:
-  - g++
-# Change this to your needs
-script: ./configure && make
+  - gcc
+  - clang
+before_script:
+  - ./configure
+script: make
+branches:
+  only:
+    - master
+notifications:
+  recipients:
+    - ivo@zuidstijl.nl
+  email:
+    on_success: change
+    on_failure: always
