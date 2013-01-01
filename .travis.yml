@@ -3,7 +3,7 @@ compiler:
   - gcc
   - clang
 before_script:
-  - sudo apt-get -y install autotools-dev
+  - sudo apt-get -y install autotools-dev libtool
 script:
   - ./configure
   - make
