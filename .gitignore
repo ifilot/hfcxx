@@ -18,5 +18,25 @@
 # Autotools
 src/.deps
 
+# integration with travis
+.deps
+.dirstamp
+.libs
+/aclocal.m4
+/autom4te.cache
+/config.guess
+/config.h
+/config.log
+/config.status
+/config.sub
+/depcomp
+/install-sh
+/libtool
+/missing
+/stamp-h1
+INSTALL
+Makefile
+
 # Executable
 hfcxx
+
