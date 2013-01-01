@@ -2,6 +2,8 @@ language: cpp
 compiler:
   - gcc
   - clang
+before-script:
+  - autotools --reconf
 script:
   - ./configure
   - make
