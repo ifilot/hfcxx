@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ([2.5])
-AC_INIT([hfcxx], [1.3.3], [ivo@zuidstijl.nl])
+AC_INIT([hfcxx], [1.3.4], [ivo@zuidstijl.nl])
 AM_INIT_AUTOMAKE([foreign -Wall -Werror])
 AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_FILES([Makefile src/Makefile])
