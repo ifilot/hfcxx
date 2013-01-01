@@ -2,7 +2,7 @@ language: cpp
 compiler:
   - gcc
   - clang
-before-script:
+before_script:
   - autotools --reconf
 script:
   - ./configure
