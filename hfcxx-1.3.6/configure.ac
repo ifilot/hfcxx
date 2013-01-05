@@ -4,9 +4,8 @@
 AC_PREREQ([2.5])
 AC_INIT([hfcxx], [1.3.6], [ivo@zuidstijl.nl])
 AM_INIT_AUTOMAKE([foreign -Wall -Werror])
-AM_PATH_CPPUNIT(1.9.6)
 AC_CONFIG_HEADERS([config.h])
-AC_CONFIG_FILES([Makefile src/Makefile tests/Makefile])
+AC_CONFIG_FILES([Makefile src/Makefile])
 
 # Checks for programs.
 AC_PROG_CXX
