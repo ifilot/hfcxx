@@ -57,9 +57,9 @@ double coulomb_repulsion( const Vector3 &a, const double &norma, const int la, c
 	double gamma2 = alphac + alphad;
 	double delta = 0.25 * (1.0 / gamma1 + 1.0 / gamma2);
 
-	std::vector<double> bx = B_array(la, lb, lc, ld, p.getx(), a.getx(), b.getx(), q.getx(), c.getx(), d.getx(), gamma1, gamma2, delta);
-	std::vector<double> by = B_array(ma, mb, mc, md, p.gety(), a.gety(), b.gety(), q.gety(), c.gety(), d.gety(), gamma1, gamma2, delta);
-	std::vector<double> bz = B_array(na, nb, nc, nd, p.getz(), a.getz(), b.getz(), q.getz(), c.getz(), d.getz(), gamma1, gamma2, delta);
+	std::vector<double> bx = B_array(la, lb, lc, ld, p.getx(), a.getx(), b.getx(), q.getx(), c.getx(), d.x(), gamma1, gamma2, delta);
+	std::vector<double> by = B_array(ma, mb, mc, md, p.gety(), a.gety(), b.gety(), q.gety(), c.gety(), d.y(), gamma1, gamma2, delta);
+	std::vector<double> bz = B_array(na, nb, nc, nd, p.getz(), a.getz(), b.getz(), q.getz(), c.getz(), d.z(), gamma1, gamma2, delta);
 
 	double sum = 0.0;
 	for(int i=0; i<=(la+lb+lc+ld); i++) {

@@ -61,15 +61,15 @@ const std::string Atom::ps() const {
 }
 
 const double Atom::x() const {
-	return r.getx();
+	return r.x;
 }
 
 const double Atom::y() const {
-	return r.gety();
+	return r.y;
 }
 
 const double Atom::z() const {
-	return r.getz();
+	return r.z;
 }
 
 const Vector3 Atom::gr() const {

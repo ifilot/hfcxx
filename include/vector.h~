@@ -15,17 +15,13 @@
 #include<vector>
 
 class Vector3{
-	private:
+	public:
 	double x,y,z;
 
 	public:
 	Vector3(); /* default constructor */
 	Vector3(const double xx, const double yy, const double zz);
 	Vector3(const Vector3 &rhs);
-
-	const double getx() const;
-	const double gety() const;
-	const double getz() const;
 };
 
 /* typedefs */

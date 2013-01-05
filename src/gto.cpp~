@@ -16,9 +16,9 @@ GTO::GTO(const double cc, const Vector3 rr, const double alphaa, const unsigned 
 	m = mm;
 	n = nn;
 
-	x = r.getx();
-	y = r.gety();
-	z = r.getz();
+	x = r.x;
+	y = r.y;
+	z = r.z;
 
 	c = cc;
 	norm = calcnorm();

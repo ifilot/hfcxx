@@ -37,9 +37,9 @@ double nuclear(const Vector3 a, double norm1, int l1, int m1, int n1, double alp
 	double rab2 = dist2(a,b);
 	double rcp2 = dist2(c,p);
 
-	std::vector<double> ax = A_array(l1,l2,p.getx()-a.getx(),p.getx()-b.getx(),p.getx()-c.getx(),gamma);
-	std::vector<double> ay = A_array(m1,m2,p.gety()-a.gety(),p.gety()-b.gety(),p.gety()-c.gety(),gamma);
-	std::vector<double> az = A_array(n1,n2,p.getz()-a.getz(),p.getz()-b.getz(),p.getz()-c.getz(),gamma);
+	std::vector<double> ax = A_array(l1,l2,p.getx()-a.getx(),p.x-b.getx(),p.getx()-c.getx(),gamma);
+	std::vector<double> ay = A_array(m1,m2,p.gety()-a.gety(),p.y-b.gety(),p.gety()-c.gety(),gamma);
+	std::vector<double> az = A_array(n1,n2,p.getz()-a.getz(),p.z-b.getz(),p.getz()-c.getz(),gamma);
 
 	double sum = 0.0;
 

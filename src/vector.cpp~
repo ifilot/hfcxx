@@ -24,15 +24,3 @@ Vector3::Vector3(const Vector3 &rhs) {
 	y = rhs.y;
 	z = rhs.z;
 }
-
-const double Vector3::getx() const {
-	return x;
-}
-
-const double Vector3::gety() const {
-	return y;
-}
-
-const double Vector3::getz() const {
-	return z;
-}

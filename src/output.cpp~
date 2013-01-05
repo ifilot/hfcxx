@@ -51,9 +51,9 @@ void Output::printGeometry(Molecule &mol) {
 		str << std::setprecision(5);
 		str
 		<< '|' << std::setw(10) << std::right << mol[i].ps() << std::right
-		<< '|' << std::setw(10) << std::right << mol[i].gr().getx()
-		<< '|' << std::setw(10) << std::right << mol[i].gr().gety()
-		<< '|' << std::setw(10) << std::right << mol[i].gr().getz()
+		<< '|' << std::setw(10) << std::right << mol[i].gr().x
+		<< '|' << std::setw(10) << std::right << mol[i].gr().y
+		<< '|' << std::setw(10) << std::right << mol[i].gr().z
 		<< '|' << std::endl;
 	}
 

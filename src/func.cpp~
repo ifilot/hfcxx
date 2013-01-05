@@ -62,9 +62,9 @@ double dist2(const Vector3 &a, const Vector3 &b) {
 
 Vector3 gaussian_product_center(const double &alpha1, const Vector3 &a, const double &alpha2, const Vector3 &b) {
 	double gamma = alpha1 + alpha2;
-	double x = (alpha1 * a.getx() + alpha2 * b.getx()) / gamma;
-	double y = (alpha1 * a.gety() + alpha2 * b.gety()) / gamma;
-	double z = (alpha1 * a.getz() + alpha2 * b.getz()) / gamma;
+	double x = (alpha1 * a.x + alpha2 * b.x) / gamma;
+	double y = (alpha1 * a.y + alpha2 * b.y) / gamma;
+	double z = (alpha1 * a.z + alpha2 * b.z) / gamma;
 
 	return Vector3(x,y,z);
 }

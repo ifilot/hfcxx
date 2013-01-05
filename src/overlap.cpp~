@@ -45,7 +45,7 @@ double overlap(double alpha1, int l1, int m1, int n1, Vector3 &a,
 	double pre = pow(pi / gamma,1.5) * exp(-alpha1 * alpha2 * rab2 / gamma);
 	double wx = overlap_1D(l1, l2, p.getx()-a.getx(), p.getx()-b.getx(), gamma);
 	double wy = overlap_1D(m1, m2, p.gety()-a.gety(), p.gety()-b.gety(), gamma);
-	double wz = overlap_1D(n1, n2, p.getz()-a.getz(), p.getz()-b.getz(), gamma);
+	double wz = overlap_1D(n1, n2, p.getz()-a.getz(), p.getz()-b.getzv, gamma);
 
 	return pre*wx*wy*wz;
 }
