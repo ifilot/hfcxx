@@ -37,3 +37,5 @@ Makefile
 # Executable
 hfcxx
 
+# Temporary files
+*.cpp~
