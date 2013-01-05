@@ -8,7 +8,7 @@ vector_test_SOURCES = ../include/vector.h \
 vector_test.h vector_test.cpp unittest.cpp
 # + program flags
 vector_test_CXXFLAGS = $(CPPUNIT_CFLAGS)
-vector_test_LDFLAGS = $(CPPUNIT_LIBS) -ldl
+vector_test_LDFLAGS = -Wl,--no-as-needed $(CPPUNIT_LIBS) -ldl
 
 # vector test program sources
 matrix_test_SOURCES = ../include/matrix.h \
