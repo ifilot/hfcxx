@@ -3,9 +3,10 @@ compiler:
   - gcc
   - clang
 before_script:
+  - sudo apt-get install libcppunit-dev
   - ./autogen.sh
 script:
-  - make
+  - make && make check
 branches:
   only:
     - master
