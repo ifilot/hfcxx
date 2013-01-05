@@ -47,7 +47,7 @@ POST_INSTALL = :
 NORMAL_UNINSTALL = :
 PRE_UNINSTALL = :
 POST_UNINSTALL = :
-TESTS = vector_test$(EXEEXT)
+TESTS = vector_test$(EXEEXT) matrix_test$(EXEEXT)
 check_PROGRAMS = $(am__EXEEXT_1)
 subdir = tests
 DIST_COMMON = $(srcdir)/Makefile.in $(srcdir)/Makefile.am \
@@ -60,7 +60,13 @@ mkinstalldirs = $(install_sh) -d
 CONFIG_HEADER = $(top_builddir)/config.h
 CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
-am__EXEEXT_1 = vector_test$(EXEEXT)
+am__EXEEXT_1 = vector_test$(EXEEXT) matrix_test$(EXEEXT)
+am_matrix_test_OBJECTS = matrix_test-matrix_test.$(OBJEXT) \
+	matrix_test-unittest.$(OBJEXT)
+matrix_test_OBJECTS = $(am_matrix_test_OBJECTS)
+matrix_test_LDADD = $(LDADD)
+matrix_test_LINK = $(CXXLD) $(matrix_test_CXXFLAGS) $(CXXFLAGS) \
+	$(matrix_test_LDFLAGS) $(LDFLAGS) -o $@
 am_vector_test_OBJECTS = vector_test-vector.$(OBJEXT) \
 	vector_test-vector_test.$(OBJEXT) \
 	vector_test-unittest.$(OBJEXT)
@@ -113,8 +119,8 @@ AM_V_CCLD = $(am__v_CCLD_@AM_V@)
 am__v_CCLD_ = $(am__v_CCLD_@AM_DEFAULT_V@)
 am__v_CCLD_0 = @echo "  CCLD    " $@;
 am__v_CCLD_1 = 
-SOURCES = $(vector_test_SOURCES)
-DIST_SOURCES = $(vector_test_SOURCES)
+SOURCES = $(matrix_test_SOURCES) $(vector_test_SOURCES)
+DIST_SOURCES = $(matrix_test_SOURCES) $(vector_test_SOURCES)
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
     n|no|NO) false;; \
@@ -447,6 +453,14 @@ vector_test.h vector_test.cpp unittest.cpp
 # + program flags
 vector_test_CXXFLAGS = $(CPPUNIT_CFLAGS)
 vector_test_LDFLAGS = $(CPPUNIT_LIBS) -ldl
+
+# vector test program sources
+matrix_test_SOURCES = ../include/matrix.h \
+matrix_test.h matrix_test.cpp unittest.cpp
+
+# + program flags
+matrix_test_CXXFLAGS = $(CPPUNIT_CFLAGS)
+matrix_test_LDFLAGS = $(CPPUNIT_LIBS) -ldl
 all: all-am
 
 .SUFFIXES:
@@ -484,6 +498,9 @@ $(am__aclocal_m4_deps):
 
 clean-checkPROGRAMS:
 	-test -z "$(check_PROGRAMS)" || rm -f $(check_PROGRAMS)
+matrix_test$(EXEEXT): $(matrix_test_OBJECTS) $(matrix_test_DEPENDENCIES) $(EXTRA_matrix_test_DEPENDENCIES) 
+	@rm -f matrix_test$(EXEEXT)
+	$(AM_V_CXXLD)$(matrix_test_LINK) $(matrix_test_OBJECTS) $(matrix_test_LDADD) $(LIBS)
 vector_test$(EXEEXT): $(vector_test_OBJECTS) $(vector_test_DEPENDENCIES) $(EXTRA_vector_test_DEPENDENCIES) 
 	@rm -f vector_test$(EXEEXT)
 	$(AM_V_CXXLD)$(vector_test_LINK) $(vector_test_OBJECTS) $(vector_test_LDADD) $(LIBS)
@@ -494,6 +511,8 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/matrix_test-matrix_test.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/matrix_test-unittest.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/vector_test-unittest.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/vector_test-vector.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/vector_test-vector_test.Po@am__quote@
@@ -511,6 +530,34 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXXCOMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
+
+matrix_test-matrix_test.o: matrix_test.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(matrix_test_CXXFLAGS) $(CXXFLAGS) -MT matrix_test-matrix_test.o -MD -MP -MF $(DEPDIR)/matrix_test-matrix_test.Tpo -c -o matrix_test-matrix_test.o `test -f 'matrix_test.cpp' || echo '$(srcdir)/'`matrix_test.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/matrix_test-matrix_test.Tpo $(DEPDIR)/matrix_test-matrix_test.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='matrix_test.cpp' object='matrix_test-matrix_test.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(matrix_test_CXXFLAGS) $(CXXFLAGS) -c -o matrix_test-matrix_test.o `test -f 'matrix_test.cpp' || echo '$(srcdir)/'`matrix_test.cpp
+
+matrix_test-matrix_test.obj: matrix_test.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(matrix_test_CXXFLAGS) $(CXXFLAGS) -MT matrix_test-matrix_test.obj -MD -MP -MF $(DEPDIR)/matrix_test-matrix_test.Tpo -c -o matrix_test-matrix_test.obj `if test -f 'matrix_test.cpp'; then $(CYGPATH_W) 'matrix_test.cpp'; else $(CYGPATH_W) '$(srcdir)/matrix_test.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/matrix_test-matrix_test.Tpo $(DEPDIR)/matrix_test-matrix_test.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='matrix_test.cpp' object='matrix_test-matrix_test.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(matrix_test_CXXFLAGS) $(CXXFLAGS) -c -o matrix_test-matrix_test.obj `if test -f 'matrix_test.cpp'; then $(CYGPATH_W) 'matrix_test.cpp'; else $(CYGPATH_W) '$(srcdir)/matrix_test.cpp'; fi`
+
+matrix_test-unittest.o: unittest.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(matrix_test_CXXFLAGS) $(CXXFLAGS) -MT matrix_test-unittest.o -MD -MP -MF $(DEPDIR)/matrix_test-unittest.Tpo -c -o matrix_test-unittest.o `test -f 'unittest.cpp' || echo '$(srcdir)/'`unittest.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/matrix_test-unittest.Tpo $(DEPDIR)/matrix_test-unittest.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='unittest.cpp' object='matrix_test-unittest.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(matrix_test_CXXFLAGS) $(CXXFLAGS) -c -o matrix_test-unittest.o `test -f 'unittest.cpp' || echo '$(srcdir)/'`unittest.cpp
+
+matrix_test-unittest.obj: unittest.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(matrix_test_CXXFLAGS) $(CXXFLAGS) -MT matrix_test-unittest.obj -MD -MP -MF $(DEPDIR)/matrix_test-unittest.Tpo -c -o matrix_test-unittest.obj `if test -f 'unittest.cpp'; then $(CYGPATH_W) 'unittest.cpp'; else $(CYGPATH_W) '$(srcdir)/unittest.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/matrix_test-unittest.Tpo $(DEPDIR)/matrix_test-unittest.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='unittest.cpp' object='matrix_test-unittest.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(matrix_test_CXXFLAGS) $(CXXFLAGS) -c -o matrix_test-unittest.obj `if test -f 'unittest.cpp'; then $(CYGPATH_W) 'unittest.cpp'; else $(CYGPATH_W) '$(srcdir)/unittest.cpp'; fi`
 
 vector_test-vector.o: ../src/vector.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(vector_test_CXXFLAGS) $(CXXFLAGS) -MT vector_test-vector.o -MD -MP -MF $(DEPDIR)/vector_test-vector.Tpo -c -o vector_test-vector.o `test -f '../src/vector.cpp' || echo '$(srcdir)/'`../src/vector.cpp
@@ -750,6 +797,13 @@ recheck: all $(check_PROGRAMS)
 vector_test.log: vector_test$(EXEEXT)
 	@p='vector_test$(EXEEXT)'; \
 	b='vector_test'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+matrix_test.log: matrix_test$(EXEEXT)
+	@p='matrix_test$(EXEEXT)'; \
+	b='matrix_test'; \
 	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
 	--log-file $$b.log --trs-file $$b.trs \
 	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \

@@ -1,11 +1,11 @@
-#ifndef _VECTOR_TEST_H
-#define _VECTOR_TEST_H
+#ifndef _MATRIX_TEST_H
+#define _MATRIX_TEST_H
 
 #include <cppunit/extensions/HelperMacros.h>
 
-class VecdoubTest : public CppUnit::TestFixture
+class MatrixTest : public CppUnit::TestFixture
 {
-  CPPUNIT_TEST_SUITE( VectorTest );
+  CPPUNIT_TEST_SUITE( MatrixTest );
   CPPUNIT_TEST( testConstructor );
   CPPUNIT_TEST_SUITE_END();
 
@@ -16,4 +16,4 @@ public:
   void testConstructor();
 };
 
-#endif  // _VECTOR_TEST_H
+#endif  // _MATRIX_TEST_H

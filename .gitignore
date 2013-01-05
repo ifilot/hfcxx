@@ -39,3 +39,7 @@ hfcxx
 
 # Temporary files
 *.cpp~
+*.ac~
+*.in~
+*.h~
+*.am~

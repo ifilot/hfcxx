@@ -1,10 +1,17 @@
 AM_CPPFLAGS = -I$(top_srcdir)/include
-TESTS = vector_test
+TESTS = vector_test matrix_test
 check_PROGRAMS = $(TESTS)
 
 # vector test program sources
 vector_test_SOURCES = ../include/vector.h ../src/vector.cpp \
-vector_test.h vecdoub_test.cpp unittest.cpp
+vector_test.h vector_test.cpp unittest.cpp
 # + program flags
 vector_test_CXXFLAGS = $(CPPUNIT_CFLAGS)
 vector_test_LDFLAGS = $(CPPUNIT_LIBS) -ldl
+
+# vector test program sources
+matrix_test_SOURCES = ../include/matrix.h ../src/matrix.cpp \
+matrix_test.h matrix_test.cpp unittest.cpp
+# + program flags
+matrix_test_CXXFLAGS = $(CPPUNIT_CFLAGS)
+matrix_test_LDFLAGS = $(CPPUNIT_LIBS) -ldl
