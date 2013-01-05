@@ -68,7 +68,7 @@ matrix_test_LDADD = $(LDADD)
 matrix_test_LINK = $(CXXLD) $(matrix_test_CXXFLAGS) $(CXXFLAGS) \
 	$(matrix_test_LDFLAGS) $(LDFLAGS) -o $@
 am_vector_test_OBJECTS = vector_test-vector.$(OBJEXT) \
-	vector_test-vector_test.$(OBJEXT) \
+	vector_test-func.$(OBJEXT) vector_test-vector_test.$(OBJEXT) \
 	vector_test-unittest.$(OBJEXT)
 vector_test_OBJECTS = $(am_vector_test_OBJECTS)
 vector_test_LDADD = $(LDADD)
@@ -447,7 +447,8 @@ top_srcdir = @top_srcdir@
 AM_CPPFLAGS = -I$(top_srcdir)/include
 
 # vector test program sources
-vector_test_SOURCES = ../include/vector.h ../src/vector.cpp \
+vector_test_SOURCES = ../include/vector.h \
+../src/vector.cpp ../src/func.cpp \
 vector_test.h vector_test.cpp unittest.cpp
 
 # + program flags
@@ -513,6 +514,7 @@ distclean-compile:
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/matrix_test-matrix_test.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/matrix_test-unittest.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/vector_test-func.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/vector_test-unittest.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/vector_test-vector.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/vector_test-vector_test.Po@am__quote@
@@ -572,6 +574,20 @@ vector_test-vector.obj: ../src/vector.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='../src/vector.cpp' object='vector_test-vector.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(vector_test_CXXFLAGS) $(CXXFLAGS) -c -o vector_test-vector.obj `if test -f '../src/vector.cpp'; then $(CYGPATH_W) '../src/vector.cpp'; else $(CYGPATH_W) '$(srcdir)/../src/vector.cpp'; fi`
+
+vector_test-func.o: ../src/func.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(vector_test_CXXFLAGS) $(CXXFLAGS) -MT vector_test-func.o -MD -MP -MF $(DEPDIR)/vector_test-func.Tpo -c -o vector_test-func.o `test -f '../src/func.cpp' || echo '$(srcdir)/'`../src/func.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/vector_test-func.Tpo $(DEPDIR)/vector_test-func.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='../src/func.cpp' object='vector_test-func.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(vector_test_CXXFLAGS) $(CXXFLAGS) -c -o vector_test-func.o `test -f '../src/func.cpp' || echo '$(srcdir)/'`../src/func.cpp
+
+vector_test-func.obj: ../src/func.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(vector_test_CXXFLAGS) $(CXXFLAGS) -MT vector_test-func.obj -MD -MP -MF $(DEPDIR)/vector_test-func.Tpo -c -o vector_test-func.obj `if test -f '../src/func.cpp'; then $(CYGPATH_W) '../src/func.cpp'; else $(CYGPATH_W) '$(srcdir)/../src/func.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/vector_test-func.Tpo $(DEPDIR)/vector_test-func.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='../src/func.cpp' object='vector_test-func.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(vector_test_CXXFLAGS) $(CXXFLAGS) -c -o vector_test-func.obj `if test -f '../src/func.cpp'; then $(CYGPATH_W) '../src/func.cpp'; else $(CYGPATH_W) '$(srcdir)/../src/func.cpp'; fi`
 
 vector_test-vector_test.o: vector_test.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(vector_test_CXXFLAGS) $(CXXFLAGS) -MT vector_test-vector_test.o -MD -MP -MF $(DEPDIR)/vector_test-vector_test.Tpo -c -o vector_test-vector_test.o `test -f 'vector_test.cpp' || echo '$(srcdir)/'`vector_test.cpp

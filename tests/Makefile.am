@@ -3,7 +3,8 @@ TESTS = vector_test matrix_test
 check_PROGRAMS = $(TESTS)
 
 # vector test program sources
-vector_test_SOURCES = ../include/vector.h ../src/vector.cpp \
+vector_test_SOURCES = ../include/vector.h \
+../src/vector.cpp ../src/func.cpp \
 vector_test.h vector_test.cpp unittest.cpp
 # + program flags
 vector_test_CXXFLAGS = $(CPPUNIT_CFLAGS)

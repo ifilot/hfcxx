@@ -10,7 +10,7 @@ vector_test_CXXFLAGS = $(CPPUNIT_CFLAGS)
 vector_test_LDFLAGS = $(CPPUNIT_LIBS) -ldl
 
 # vector test program sources
-matrix_test_SOURCES = ../include/matrix.h ../src/matrix.cpp \
+matrix_test_SOURCES = ../include/matrix.h \
 matrix_test.h matrix_test.cpp unittest.cpp
 # + program flags
 matrix_test_CXXFLAGS = $(CPPUNIT_CFLAGS)
