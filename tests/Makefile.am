@@ -15,4 +15,4 @@ matrix_test_SOURCES = ../include/matrix.h \
 matrix_test.h matrix_test.cpp unittest.cpp
 # + program flags
 matrix_test_CXXFLAGS = $(CPPUNIT_CFLAGS)
-matrix_test_LDFLAGS = $(CPPUNIT_LIBS) -ldl
+matrix_test_LDFLAGS = -Wl,--no-as-needed $(CPPUNIT_LIBS) -ldl
