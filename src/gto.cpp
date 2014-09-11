@@ -9,7 +9,7 @@
  
 #include "gto.h"
 
-GTO::GTO(const double cc, const Vector3 rr, const double alphaa, const unsigned int ll, const unsigned int mm, const unsigned int nn) {
+GTO::GTO(const double cc, const Vec3 rr, const double alphaa, const unsigned int ll, const unsigned int mm, const unsigned int nn) {
 	r = rr;
 	alpha = alphaa;
 	l = ll;

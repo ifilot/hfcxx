@@ -39,17 +39,17 @@ double gto_repulsion(const GTO &gto1, const GTO &gto2, const GTO &gto3, const GT
 												   gto4.r, gto4.norm, gto4.l, gto4.m, gto4.n, gto4.alpha);
 }
 
-double coulomb_repulsion( const Vector3 &a, const double &norma, const int la, const int ma, const int na, const double &alphaa,
-													const Vector3 &b, const double &normb, const int lb, const int mb, const int nb, const double &alphab,
-													const Vector3 &c, const double &normc, const int lc, const int mc, const int nc, const double &alphac,
-													const Vector3 &d, const double &normd, const int ld, const int md, const int nd, const double &alphad) {
+double coulomb_repulsion( const Vec3 &a, const double &norma, const int la, const int ma, const int na, const double &alphaa,
+													const Vec3 &b, const double &normb, const int lb, const int mb, const int nb, const double &alphab,
+													const Vec3 &c, const double &normc, const int lc, const int mc, const int nc, const double &alphac,
+													const Vec3 &d, const double &normd, const int ld, const int md, const int nd, const double &alphad) {
 
 	static const double pi = 3.14159265359;
 	double rab2 = dist2(a,b);
 	double rcd2 = dist2(c,d);
 
-	Vector3 p = gaussian_product_center(alphaa, a, alphab, b);
-	Vector3 q = gaussian_product_center(alphac, c, alphad, d);
+	Vec3 p = gaussian_product_center(alphaa, a, alphab, b);
+	Vec3 q = gaussian_product_center(alphac, c, alphad, d);
 
 	double rpq2 = dist2(p,q);
 

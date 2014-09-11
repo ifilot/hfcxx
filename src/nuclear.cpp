@@ -24,16 +24,16 @@ double cgf_nuclear(CGF &cgf1, CGF &cgf2, const Atom &a) {
 	return sum * a.nucl_chg();
 }
 
-double gto_nuclear(GTO &gto1, GTO &gto2, const Vector3 &c) {
+double gto_nuclear(GTO &gto1, GTO &gto2, const Vec3 &c) {
 
 	return nuclear(gto1.r, gto1.norm, gto1.l, gto1.m, gto1.n, gto1.alpha, gto2.r, gto2.norm, gto2.l, gto2.m, gto2.n, gto2.alpha, c);
 }
 
-double nuclear(const Vector3 a, double norm1, int l1, int m1, int n1, double alpha1, const Vector3 b, double norm2, int l2, int m2, int n2, double alpha2, const Vector3 c) {
+double nuclear(const Vec3 a, double norm1, int l1, int m1, int n1, double alpha1, const Vec3 b, double norm2, int l2, int m2, int n2, double alpha2, const Vec3 c) {
 	static const double pi = 3.14159265359;
 	double gamma = alpha1 + alpha2;
 
-	Vector3 p = gaussian_product_center(alpha1, a, alpha2, b);
+	Vec3 p = gaussian_product_center(alpha1, a, alpha2, b);
 	double rab2 = dist2(a,b);
 	double rcp2 = dist2(c,p);
 

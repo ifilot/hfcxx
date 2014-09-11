@@ -11,7 +11,7 @@
 #define _EIGSYM_H
 
 #include "matrix.h"
-#include "vector.h"
+#include "vec3.h"
 #include "eispack.h"
 #include<cmath>
 

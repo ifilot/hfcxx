@@ -4,7 +4,7 @@ check_PROGRAMS = $(TESTS)
 
 # vector test program sources
 vector_test_SOURCES = ../include/vector.h \
-../src/vector.cpp ../src/func.cpp \
+../src/vec3.cpp ../src/func.cpp \
 vector_test.h vector_test.cpp unittest.cpp
 # + program flags
 vector_test_CXXFLAGS = $(CPPUNIT_CFLAGS)

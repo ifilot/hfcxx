@@ -9,7 +9,7 @@
  
 #include "basis.h"
 
-void Basis::addGTOs_sto6g(std::string type, unsigned int z, Vector3 r) {
+void Basis::addGTOs_sto6g(std::string type, unsigned int z, Vec3 r) {
 	/* (1) HYDROGEN */
 	if(type.compare("1s")==0 && z==1) {
 		addGTO_s(35.523221220000003, 0.0091635962800000002,r);

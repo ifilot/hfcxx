@@ -33,14 +33,14 @@ double gto_overlap(GTO &gto1, GTO &gto2) {
 		gto2.alpha, gto2.l, gto2.m, gto2.n, gto2.r);
 }
 
-double overlap(double alpha1, int l1, int m1, int n1, Vector3 &a,
-	double alpha2, int l2, int m2, int n2, Vector3 &b) {
+double overlap(double alpha1, int l1, int m1, int n1, Vec3 &a,
+	double alpha2, int l2, int m2, int n2, Vec3 &b) {
 
 	const double pi = 3.14159265359;
 
 	double rab2 = dist2(a,b);
 	double gamma = alpha1 + alpha2;
-	Vector3 p = gaussian_product_center(alpha1, a, alpha2, b);
+	Vec3 p = gaussian_product_center(alpha1, a, alpha2, b);
 
 	double pre = pow(pi / gamma,1.5) * exp(-alpha1 * alpha2 * rab2 / gamma);
 	double wx = overlap_1D(l1, l2, p.getx()-a.getx(), p.getx()-b.getx(), gamma);

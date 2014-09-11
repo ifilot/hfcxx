@@ -33,6 +33,12 @@ src/.deps
 /stamp-h1
 INSTALL
 Makefile
+Makefile.in
+config.h.in
+configure
+depcomp
+install-sh
+missing
 
 # Executable
 hfcxx

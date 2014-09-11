@@ -13,14 +13,14 @@
 #include<iostream>
 #include<string>
 #include<vector>
-#include "vector.h"
+#include "vec3.h"
 #include "cgf.h"
 #include "basis.h"
 
 class Atom{
 	private:
 	unsigned int Z; /* atomic number, i.e. H=1, He=2, Li=3... */
-	Vector3 r; /* position of atom */
+	Vec3 r; /* position of atom */
 	std::string element;
 	std::vector<CGF> wavefunctions;
 	unsigned int nrwav; /* number of wavefunctions */
@@ -42,7 +42,7 @@ class Atom{
 
 	public:
 	const std::string ps() const; /* print symbol */
-	const Vector3 gr() const;
+	const Vec3 gr() const;
 	const unsigned int nrorbs() const;
 	const CGF& operator[](const unsigned int i) const;
 	const unsigned int nrelecs() const;

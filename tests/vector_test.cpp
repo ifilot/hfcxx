@@ -1,5 +1,5 @@
 #include "vector_test.h"
-#include "vector.h"
+#include "vec3.h"
 #include "func.h"
 
 // Registers the fixture into the 'registry'
@@ -24,8 +24,8 @@ VectorTest::testConstructor()
   const double z = 3.3;
 
   // Process
-  Vector3 vec(x,y,z); /* test regular constructor */
-	Vector3 vec2(vec); /* test copy constructor */
+  Vec3 vec(x,y,z); /* test regular constructor */
+	Vec3 vec2(vec); /* test copy constructor */
 
   // Check
   CPPUNIT_ASSERT_EQUAL( x, vec.getx() );
@@ -51,8 +51,8 @@ VectorTest::testDist2Function()
 	const double ans = 32.67;
 
   // Process
-  Vector3 a(x1,y1,z1); /* construct */
-	Vector3 b(x2,y2,z2); /* construct */
+  Vec3 a(x1,y1,z1); /* construct */
+	Vec3 b(x2,y2,z2); /* construct */
 
   // Check
   CPPUNIT_ASSERT_EQUAL( ans, dist2(a,b) );

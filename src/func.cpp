@@ -54,19 +54,19 @@ int binomial(int a, int b) {
 	return fact(a)/(fact(b) * fact(a-b));
 }
 
-double dist2(const Vector3 &a, const Vector3 &b) {
+double dist2(const Vec3 &a, const Vec3 &b) {
 	return pow(a.getx() - b.getx(),2.0) + 
 		pow(a.gety() - b.gety(),2.0) + 
 		pow(a.getz() - b.getz(),2.0);
 }
 
-Vector3 gaussian_product_center(const double &alpha1, const Vector3 &a, const double &alpha2, const Vector3 &b) {
+Vec3 gaussian_product_center(const double &alpha1, const Vec3 &a, const double &alpha2, const Vec3 &b) {
 	double gamma = alpha1 + alpha2;
 	double x = (alpha1 * a.getx() + alpha2 * b.getx()) / gamma;
 	double y = (alpha1 * a.gety() + alpha2 * b.gety()) / gamma;
 	double z = (alpha1 * a.getz() + alpha2 * b.getz()) / gamma;
 
-	return Vector3(x,y,z);
+	return Vec3(x,y,z);
 }
 
 void swap(unsigned int &i, unsigned int &j) {

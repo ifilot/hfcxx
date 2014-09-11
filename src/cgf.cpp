@@ -9,7 +9,7 @@
 
 #include "cgf.h"
 
-CGF::CGF(const std::string typee, const unsigned int z, const Vector3 &rr, std::vector<GTO> gtoss) {
+CGF::CGF(const std::string typee, const unsigned int z, const Vec3 &rr, std::vector<GTO> gtoss) {
 	r = rr;
 	type = typee;
 	gtos = gtoss;

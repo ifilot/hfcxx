@@ -13,7 +13,7 @@
 #include<string>
 #include <stdlib.h>
 #include "gto.h"
-#include "vector.h"
+#include "vec3.h"
 
 class Basis{
 	private:
@@ -23,25 +23,25 @@ class Basis{
 	public:
 	Basis();
 	Basis(std::string basisset);
-	void set(std::string type, unsigned int z, Vector3 r);
+	void set(std::string type, unsigned int z, Vec3 r);
 	void setType(std::string basissett);
 	std::vector<GTO> getGTOs() const;
 
 	private:
-	void addGTOs_sto3g(std::string type, unsigned int z, Vector3 r);
-	void addGTOs_sto6g(std::string type, unsigned int z, Vector3 r);
+	void addGTOs_sto3g(std::string type, unsigned int z, Vec3 r);
+	void addGTOs_sto6g(std::string type, unsigned int z, Vec3 r);
 	
 	/* GTOs for sto-xg basis sets */
-	void addGTO_s(double alpha, double c, Vector3 r);
-	void addGTO_px(double alpha, double c, Vector3 r);
-	void addGTO_py(double alpha, double c, Vector3 r);
-	void addGTO_pz(double alpha, double c, Vector3 r);
-	void addGTO_dx2(double alpha, double c, Vector3 r);
-	void addGTO_dxy(double alpha, double c, Vector3 r);
-	void addGTO_dxz(double alpha, double c, Vector3 r);
-	void addGTO_dy2(double alpha, double c, Vector3 r);
-	void addGTO_dyz(double alpha, double c, Vector3 r);
-	void addGTO_dz2(double alpha, double c, Vector3 r);
+	void addGTO_s(double alpha, double c, Vec3 r);
+	void addGTO_px(double alpha, double c, Vec3 r);
+	void addGTO_py(double alpha, double c, Vec3 r);
+	void addGTO_pz(double alpha, double c, Vec3 r);
+	void addGTO_dx2(double alpha, double c, Vec3 r);
+	void addGTO_dxy(double alpha, double c, Vec3 r);
+	void addGTO_dxz(double alpha, double c, Vec3 r);
+	void addGTO_dy2(double alpha, double c, Vec3 r);
+	void addGTO_dyz(double alpha, double c, Vec3 r);
+	void addGTO_dz2(double alpha, double c, Vec3 r);
 };
 
 #endif //_BASIS_H

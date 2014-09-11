@@ -10,7 +10,7 @@
 #include "atom.h"
 
 Atom::Atom(const unsigned int Zz, const double xx, const double yy, const double zz, Basis &basisset) {
-	r = Vector3(xx, yy, zz);
+	r = Vec3(xx, yy, zz);
 	Z = Zz;
 	nrelec = Z;
 
@@ -19,7 +19,7 @@ Atom::Atom(const unsigned int Zz, const double xx, const double yy, const double
 
 Atom::Atom(const std::string elementin, const double xx, const double yy, const double zz, Basis &basisset) {
 	element = elementin;
-	r = Vector3(xx, yy, zz);
+	r = Vec3(xx, yy, zz);
 	Z = e2z(element);
 	nrelec = Z;
 
@@ -72,7 +72,7 @@ const double Atom::z() const {
 	return r.getz();
 }
 
-const Vector3 Atom::gr() const {
+const Vec3 Atom::gr() const {
 	return r;
 }
 

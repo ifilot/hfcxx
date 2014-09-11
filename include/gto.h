@@ -12,7 +12,7 @@
 
 #include<cmath>
 #include<iostream>
-#include "vector.h"
+#include "vec3.h"
 #include "factorial.h"
 
 /* 
@@ -27,11 +27,11 @@ class GTO{
 	unsigned int l,m,n; /* powers */
 	double x,y,z;	/* positions */
 	double alpha;	/* alpha value in the exponent */
-	Vector3 r; /* position vector */
+	Vec3 r; /* position vector */
 	double norm;
 
 	public:
-	GTO(const double c, const Vector3 rr, const double alphaa, const unsigned int ll, const unsigned int mm, const unsigned int nn);
+	GTO(const double c, const Vec3 rr, const double alphaa, const unsigned int ll, const unsigned int mm, const unsigned int nn);
 	friend std::ostream& operator <<(std::ostream &os,const GTO &rhs);
 
 	private:
