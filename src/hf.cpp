@@ -227,8 +227,8 @@ unsigned int index2 = 0;
 void HF::run() {
 	setup();
 	unsigned int iter = iterate();
-	out.printOrbitals(molorben, orblist, C, nrelec);
-	out.printFinal(iter,energy,nrat,orblist.size(), bss);
+	out.print_orbitals(molorben, orblist, C, nrelec);
+	out.print_summary(iter,energy,nrat,orblist.size(), bss);
 }
 
 double HF::calcen() {

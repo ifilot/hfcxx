@@ -1,11 +1,23 @@
-/*
- * output.h
- *
- * hfcxx package <https://github.com/ifilot/hfcxx>
- *
- * Author: Ivo Filot <ivo@zuidstijl.nl>
- * Description: Creates an output object
- */
+/**************************************************************************
+ *   output.h                                                             *
+ *                                                                        *
+ *   HFCXX                                                                *
+ *                                                                        *
+ *   This program is free software; you can redistribute it and/or modify *
+ *   it under the terms of the GNU General Public License as published by *
+ *   the Free Software Foundation, version 3                              *
+ *                                                                        *
+ *   This program is distributed in the hope that it will be useful, but  *
+ *   WITHOUT ANY WARRANTY; without even the implied warranty of           *
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU    *
+ *   General Public License for more details.                             *
+ *                                                                        *
+ *   You should have received a copy of the GNU General Public License    *
+ *   along with this program; if not, write to the Free Software          *
+ *   Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA            *
+ *   02110-1301, USA.                                                     *
+ *                                                                        *
+ **************************************************************************/
  
 #ifndef _OUTPUT_H
 #define _OUTPUT_H
@@ -23,11 +35,11 @@ class Output{
 
 	public:
 	Output();
-	void printVersion();
-	void printGeometry(Molecule &mol);
-	void printFinal(unsigned int iter, double en, unsigned int nrat, unsigned int nrorbs, unsigned int bss);
-	void printEnd(double time);
-	void printOrbitals(const std::vector<double> &molorben, const std::vector<std::string> &orblist, const MatDoub &C, unsigned int nrelec);
+	void print_version();
+	void print_geometry(Molecule &mol);
+	void print_summary(unsigned int iter, double en, unsigned int nrat, unsigned int nrorbs, unsigned int bss);
+	void print_calculation_time(double time);
+	void print_orbitals(const std::vector<double> &molorben, const std::vector<std::string> &orblist, const MatDoub &C, unsigned int nrelec);
 };
 
 #endif //_OUTPUT_H

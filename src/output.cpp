@@ -1,24 +1,44 @@
-/*
- * output.cpp
- *
- * hfcxx package <https://github.com/ifilot/hfcxx>
- *
- * Author: Ivo Filot <ivo@zuidstijl.nl>
- * Description:
- */
+/**************************************************************************
+ *   output.h                                                             *
+ *                                                                        *
+ *   HFCXX                                                                *
+ *                                                                        *
+ *   This program is free software; you can redistribute it and/or modify *
+ *   it under the terms of the GNU General Public License as published by *
+ *   the Free Software Foundation, version 3                              *
+ *                                                                        *
+ *   This program is distributed in the hope that it will be useful, but  *
+ *   WITHOUT ANY WARRANTY; without even the implied warranty of           *
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU    *
+ *   General Public License for more details.                             *
+ *                                                                        *
+ *   You should have received a copy of the GNU General Public License    *
+ *   along with this program; if not, write to the Free Software          *
+ *   Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA            *
+ *   02110-1301, USA.                                                     *
+ *                                                                        *
+ **************************************************************************/
  
 #include "output.h"
 
+// default constructor
 Output::Output() {
 	spacer = "\t";
 }
 
-void Output::printVersion() {
+/* print the version number
+ * the version number is grabbed from the config.h and it generated
+ * by Autotools using configure.ac 
+ */
+void Output::print_version() {
 	std::string str = version();
 	std::cout << str;
 }
 
-void Output::printGeometry(Molecule &mol) {
+/* 
+ * print the geometry of the molecule
+ */
+void Output::print_geometry(Molecule &mol) {
 	std::stringstream str;
 	unsigned int w = 33;
 
@@ -66,7 +86,10 @@ void Output::printGeometry(Molecule &mol) {
 	std::cout << str.str();
 }
 
-void Output::printFinal(unsigned int iter, double en, unsigned int nrat, unsigned int nrorbs, unsigned int bss) {
+/*
+ * print a summary of the calculation results
+ */
+void Output::print_summary(unsigned int iter, double en, unsigned int nrat, unsigned int nrorbs, unsigned int bss) {
 	std::stringstream str;
 	unsigned int w = 33;
 
@@ -87,7 +110,10 @@ void Output::printFinal(unsigned int iter, double en, unsigned int nrat, unsigne
 	std::cout << str.str();
 }
 
-void Output::printEnd(double time) {
+/*
+ * output the total execution time of the program
+ */
+void Output::print_calculation_time(double time) {
 	std::stringstream str;
   unsigned int w = 33;
 	str << std::setw(w) << std::right << "***********************" << std::endl;
@@ -96,7 +122,10 @@ void Output::printEnd(double time) {
 	std::cout << str.str();
 }
 
-void Output::printOrbitals(const std::vector<double> &molorben, const std::vector<std::string> &orblist, const MatDoub &C, unsigned int nrelec) {
+/*
+ * print coefficients of the occupied and unoccupied orbitals
+ */
+void Output::print_orbitals(const std::vector<double> &molorben, const std::vector<std::string> &orblist, const MatDoub &C, unsigned int nrelec) {
 	std::stringstream str;
 	unsigned int w = 33;
 
