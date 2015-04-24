@@ -1,16 +1,12 @@
-# HFCXX [![Build Status](https://travis-ci.org/ifilot/hfcxx.png?branch=master)](https://travis-ci.org/ifilot/hfcxx)
+# HFCXX
 
 Overview
 --------
 
-HFCXX is a Hartree-Fock code in C++. The program currently supports only single-point
-calculations (i.e. no geometry optimizations). The basis sets STO-3G and STO-6G
-are included for atoms up to N=8 (oxygen).
-
-Download
---------
-[Click here to download the latest version.](http://www.hfcxx.nl/Download)
-
+HFCXX is a Hartree-Fock code in C++. The program currently supports only
+single-point calculations (i.e. no geometry optimizations). The basis 
+sets STO-3G and STO-6G are included for atoms up to N=8 (oxygen). 
+This program is mainly made for educational purposes.
 
 Installation
 ------------
