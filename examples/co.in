@@ -1,0 +1,6 @@
+basis = sto-6g
+charge = 0
+atoms = 2
+units = angstrom
+C  0   0   0.000
+O  0   0   1.12

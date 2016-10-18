@@ -1,0 +1,5 @@
+basis = sto-3g
+charge = 0
+atoms = 1
+units = bohr
+He 0 0 0

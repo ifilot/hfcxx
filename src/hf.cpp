@@ -158,7 +158,7 @@ void HF::setup() {
 		std::cout << tecnt << " (i,j|k,l) iterations" << std::endl;
 		
 		printS();
-		printTE();
+		//printTE();
 	}
 
 	X = canorg(S);
@@ -196,7 +196,7 @@ unsigned int index2 = 0;
 	Fp = trimatprod(Xp,F,X);
 
 	/* extract eigenvalues and eigenvectors */
-	Eigsym es(F,Cc,molorben);
+	Eigsym es(Fp,Cc,molorben);
 
 	/* calculate energy from orbitals */
 	energy = calcen();
