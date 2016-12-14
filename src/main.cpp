@@ -40,7 +40,7 @@ int main(int argc, char *argv[]) {
 	out.print_version();
 
 	std::string filename;
-	bool debug = true;
+	bool debug = false;
 	
 	/* parse arguments */
 	if(!strcmp(argv[argc-2],"-m")) {

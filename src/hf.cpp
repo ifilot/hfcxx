@@ -267,7 +267,7 @@ unsigned int HF::iterate() {
 		std::cout << "-------------------------------" << std::endl;
 	}
 
-	while(ediff > 1e-12) { /* loop until convergence criterion is met */
+	while(ediff > 1e-9) { /* loop until convergence criterion is met */
 		/* start clock */
 		clock.tic();
 
