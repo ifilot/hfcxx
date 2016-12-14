@@ -49,3 +49,6 @@ hfcxx
 *.in~
 *.h~
 *.am~
+
+compile
+test-driver
