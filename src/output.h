@@ -1,5 +1,5 @@
 /**************************************************************************
- *   matfunc.cpp  --  This file is part of HFCXX.                         *
+ *   output.h  --  This file is part of HFCXX.                            *
  *                                                                        *
  *   Copyright (C) 2012, Ivo Filot                                        *
  *                                                                        *
@@ -19,43 +19,27 @@
  *                                                                        *
  **************************************************************************/
 
-#include "matfunc.h"
+#ifndef _OUTPUT_H
+#define _OUTPUT_H
 
-MatDoub matprod(MatDoub &a, MatDoub &b) {
-    unsigned int n = a.nrows();
-    unsigned int m = b.ncols();
-    unsigned int r = a.ncols();
+#include<iostream>
+#include<sstream>
+#include<vector>
+#include "version.h"
+#include "molecule.h"
+#include "matrix.h"
 
-    MatDoub ans(n,m,0.0);
+class Output{
+    private:
+    std::string spacer;
 
-    for(unsigned int i=0; i<n; i++) {
-        for(unsigned int j=0; j<m; j++) {
-            for(unsigned int k=0; k<r; k++) {
-                ans[i][j] += a[i][k] * b[k][j];
-            }
-        }
-    }
+    public:
+    Output();
+    void print_version();
+    void print_geometry(Molecule &mol);
+    void print_summary(unsigned int iter, double en, unsigned int nrat, unsigned int nrorbs, unsigned int bss);
+    void print_calculation_time(double time);
+    void print_orbitals(const std::vector<double> &molorben, const std::vector<std::string> &orblist, const MatDoub &C, unsigned int nrelec);
+};
 
-    return ans;
-}
-
-MatDoub matsum(MatDoub &a, MatDoub &b) {
-    unsigned int n = a.nrows();
-  unsigned int m = a.ncols();
-    MatDoub ans(n,m,0.0);
-
-    for(unsigned int i=0; i<n; i++) {
-    for(unsigned int j=0; j<m; j++) {
-            ans[i][j] = a[i][j] + b[i][j];
-        }
-    }
-
-    return ans;
-}
-
-MatDoub trimatprod(MatDoub &a, MatDoub &b, MatDoub &c) {
-    MatDoub temp = matprod(b,c);
-    MatDoub ans = matprod(a,temp);
-
-    return ans;
-}
+#endif //_OUTPUT_H

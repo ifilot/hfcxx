@@ -1,5 +1,5 @@
 /**************************************************************************
- *   matfunc.cpp  --  This file is part of HFCXX.                         *
+ *   molecule.h  --  This file is part of HFCXX.                          *
  *                                                                        *
  *   Copyright (C) 2012, Ivo Filot                                        *
  *                                                                        *
@@ -19,43 +19,33 @@
  *                                                                        *
  **************************************************************************/
 
-#include "matfunc.h"
+#ifndef _MOLECULE_H
+#define _MOLECULE_H
 
-MatDoub matprod(MatDoub &a, MatDoub &b) {
-    unsigned int n = a.nrows();
-    unsigned int m = b.ncols();
-    unsigned int r = a.ncols();
+#include<string>
+#include<vector>
+#include "atom.h"
+#include "basis.h"
+#include "strfunc.h"
+#include "readfile.h"
 
-    MatDoub ans(n,m,0.0);
+class Molecule{
+    private:
+    std::vector<Atom> atoms;
+    unsigned int nrat;
+    Basis basis;
+    std::string basisset;
+    unsigned int charge;
 
-    for(unsigned int i=0; i<n; i++) {
-        for(unsigned int j=0; j<m; j++) {
-            for(unsigned int k=0; k<r; k++) {
-                ans[i][j] += a[i][k] * b[k][j];
-            }
-        }
-    }
+    public:
+    Molecule(); /* default constructor */
+    void read(std::string file); /* read molecule from file */
+    void addAtom(const Atom &at);
+    void addAtom(const std::string symbolin, const double xx, const double yy, const double zz);
+    void addAtom(const unsigned int Zz, const double xx, const double yy, const double zz);
+    friend std::ostream & operator << (std::ostream &os, const Molecule &rhs);
+    const unsigned int nratoms() const;
+    const Atom& operator[](const unsigned int i) const;
+};
 
-    return ans;
-}
-
-MatDoub matsum(MatDoub &a, MatDoub &b) {
-    unsigned int n = a.nrows();
-  unsigned int m = a.ncols();
-    MatDoub ans(n,m,0.0);
-
-    for(unsigned int i=0; i<n; i++) {
-    for(unsigned int j=0; j<m; j++) {
-            ans[i][j] = a[i][j] + b[i][j];
-        }
-    }
-
-    return ans;
-}
-
-MatDoub trimatprod(MatDoub &a, MatDoub &b, MatDoub &c) {
-    MatDoub temp = matprod(b,c);
-    MatDoub ans = matprod(a,temp);
-
-    return ans;
-}
+#endif //_MOLECULE_H

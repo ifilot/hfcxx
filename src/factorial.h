@@ -1,5 +1,5 @@
 /**************************************************************************
- *   matfunc.cpp  --  This file is part of HFCXX.                         *
+ *   factorial.h  --  This file is part of HFCXX.                         *
  *                                                                        *
  *   Copyright (C) 2012, Ivo Filot                                        *
  *                                                                        *
@@ -19,43 +19,15 @@
  *                                                                        *
  **************************************************************************/
 
-#include "matfunc.h"
+#ifndef _FACTORIAL_H
+#define _FACTORIAL_H
 
-MatDoub matprod(MatDoub &a, MatDoub &b) {
-    unsigned int n = a.nrows();
-    unsigned int m = b.ncols();
-    unsigned int r = a.ncols();
-
-    MatDoub ans(n,m,0.0);
-
-    for(unsigned int i=0; i<n; i++) {
-        for(unsigned int j=0; j<m; j++) {
-            for(unsigned int k=0; k<r; k++) {
-                ans[i][j] += a[i][k] * b[k][j];
-            }
-        }
-    }
-
-    return ans;
+inline int fact(int n){
+    return n <= 1 ? 1 : n*fact(n-1);
 }
 
-MatDoub matsum(MatDoub &a, MatDoub &b) {
-    unsigned int n = a.nrows();
-  unsigned int m = a.ncols();
-    MatDoub ans(n,m,0.0);
-
-    for(unsigned int i=0; i<n; i++) {
-    for(unsigned int j=0; j<m; j++) {
-            ans[i][j] = a[i][j] + b[i][j];
-        }
-    }
-
-    return ans;
+inline int fact2(int n){ /* double factorial function = 1*3*5*...*n */
+    return n <= 1 ? 1 : n*fact2(n-2);
 }
 
-MatDoub trimatprod(MatDoub &a, MatDoub &b, MatDoub &c) {
-    MatDoub temp = matprod(b,c);
-    MatDoub ans = matprod(a,temp);
-
-    return ans;
-}
+#endif //_FACTORIAL_H

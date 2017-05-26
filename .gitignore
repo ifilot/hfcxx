@@ -18,28 +18,6 @@
 # Autotools
 src/.deps
 
-# integration with travis
-.deps
-.dirstamp
-.libs
-/aclocal.m4
-/autom4te.cache
-/config.guess
-/config.h
-/config.log
-/config.status
-/config.sub
-/libtool
-/stamp-h1
-INSTALL
-Makefile
-Makefile.in
-config.h.in
-configure
-depcomp
-install-sh
-missing
-
 # Executable
 hfcxx
 
@@ -52,3 +30,5 @@ hfcxx
 
 compile
 test-driver
+build/*
+!empty

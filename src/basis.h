@@ -1,5 +1,5 @@
 /**************************************************************************
- *   matfunc.cpp  --  This file is part of HFCXX.                         *
+ *   basis.h  --  This file is part of HFCXX.                             *
  *                                                                        *
  *   Copyright (C) 2012, Ivo Filot                                        *
  *                                                                        *
@@ -19,43 +19,41 @@
  *                                                                        *
  **************************************************************************/
 
-#include "matfunc.h"
+#ifndef _BASIS_H
+#define _BASIS_H
 
-MatDoub matprod(MatDoub &a, MatDoub &b) {
-    unsigned int n = a.nrows();
-    unsigned int m = b.ncols();
-    unsigned int r = a.ncols();
+#include<string>
+#include <stdlib.h>
+#include "gto.h"
+#include "vec3.h"
 
-    MatDoub ans(n,m,0.0);
+class Basis{
+    private:
+    std::vector<GTO> gtos;
+    std::string basisset;
 
-    for(unsigned int i=0; i<n; i++) {
-        for(unsigned int j=0; j<m; j++) {
-            for(unsigned int k=0; k<r; k++) {
-                ans[i][j] += a[i][k] * b[k][j];
-            }
-        }
-    }
+    public:
+    Basis();
+    Basis(std::string basisset);
+    void set(std::string type, unsigned int z, Vec3 r);
+    void setType(std::string basissett);
+    std::vector<GTO> getGTOs() const;
 
-    return ans;
-}
+    private:
+    void addGTOs_sto3g(std::string type, unsigned int z, Vec3 r);
+    void addGTOs_sto6g(std::string type, unsigned int z, Vec3 r);
 
-MatDoub matsum(MatDoub &a, MatDoub &b) {
-    unsigned int n = a.nrows();
-  unsigned int m = a.ncols();
-    MatDoub ans(n,m,0.0);
+    /* GTOs for sto-xg basis sets */
+    void addGTO_s(double alpha, double c, Vec3 r);
+    void addGTO_px(double alpha, double c, Vec3 r);
+    void addGTO_py(double alpha, double c, Vec3 r);
+    void addGTO_pz(double alpha, double c, Vec3 r);
+    void addGTO_dx2(double alpha, double c, Vec3 r);
+    void addGTO_dxy(double alpha, double c, Vec3 r);
+    void addGTO_dxz(double alpha, double c, Vec3 r);
+    void addGTO_dy2(double alpha, double c, Vec3 r);
+    void addGTO_dyz(double alpha, double c, Vec3 r);
+    void addGTO_dz2(double alpha, double c, Vec3 r);
+};
 
-    for(unsigned int i=0; i<n; i++) {
-    for(unsigned int j=0; j<m; j++) {
-            ans[i][j] = a[i][j] + b[i][j];
-        }
-    }
-
-    return ans;
-}
-
-MatDoub trimatprod(MatDoub &a, MatDoub &b, MatDoub &c) {
-    MatDoub temp = matprod(b,c);
-    MatDoub ans = matprod(a,temp);
-
-    return ans;
-}
+#endif //_BASIS_H

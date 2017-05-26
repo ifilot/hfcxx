@@ -1,5 +1,5 @@
 /**************************************************************************
- *   matfunc.cpp  --  This file is part of HFCXX.                         *
+ *   vec3.h  --  This file is part of HFCXX.                              *
  *                                                                        *
  *   Copyright (C) 2012, Ivo Filot                                        *
  *                                                                        *
@@ -19,43 +19,29 @@
  *                                                                        *
  **************************************************************************/
 
-#include "matfunc.h"
+#ifndef _HFCXX_VEC3_H
+#define _HFCXX_VEC3_H
 
-MatDoub matprod(MatDoub &a, MatDoub &b) {
-    unsigned int n = a.nrows();
-    unsigned int m = b.ncols();
-    unsigned int r = a.ncols();
+#include <iostream>
+#include <iomanip>
+#include <vector>
 
-    MatDoub ans(n,m,0.0);
+class Vec3{
+    private:
+    double x,y,z;
 
-    for(unsigned int i=0; i<n; i++) {
-        for(unsigned int j=0; j<m; j++) {
-            for(unsigned int k=0; k<r; k++) {
-                ans[i][j] += a[i][k] * b[k][j];
-            }
-        }
-    }
+    public:
+    Vec3(); /* default constructor */
+    Vec3(const double xx, const double yy, const double zz);
+    Vec3(const Vec3 &rhs);
 
-    return ans;
-}
+    const double getx() const;
+    const double gety() const;
+    const double getz() const;
+};
 
-MatDoub matsum(MatDoub &a, MatDoub &b) {
-    unsigned int n = a.nrows();
-  unsigned int m = a.ncols();
-    MatDoub ans(n,m,0.0);
+/* typedefs */
+typedef std::vector<double> VecDoub;
+typedef std::vector<int> VecInt;
 
-    for(unsigned int i=0; i<n; i++) {
-    for(unsigned int j=0; j<m; j++) {
-            ans[i][j] = a[i][j] + b[i][j];
-        }
-    }
-
-    return ans;
-}
-
-MatDoub trimatprod(MatDoub &a, MatDoub &b, MatDoub &c) {
-    MatDoub temp = matprod(b,c);
-    MatDoub ans = matprod(a,temp);
-
-    return ans;
-}
+#endif // _HFCXX_VEC3_HH

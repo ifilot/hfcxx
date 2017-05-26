@@ -1,5 +1,5 @@
 /**************************************************************************
- *   matfunc.cpp  --  This file is part of HFCXX.                         *
+ *   func.h  --  This file is part of HFCXX.                              *
  *                                                                        *
  *   Copyright (C) 2012, Ivo Filot                                        *
  *                                                                        *
@@ -19,43 +19,32 @@
  *                                                                        *
  **************************************************************************/
 
-#include "matfunc.h"
+#ifndef _FUNC_H
+#define _FUNC_H
 
-MatDoub matprod(MatDoub &a, MatDoub &b) {
-    unsigned int n = a.nrows();
-    unsigned int m = b.ncols();
-    unsigned int r = a.ncols();
+#include<cmath>
+#include "vec3.h"
+#include "factorial.h"
 
-    MatDoub ans(n,m,0.0);
+/* sign and square */
+double sign(const double &a, const double &b);
+double sqr(const double x);
 
-    for(unsigned int i=0; i<n; i++) {
-        for(unsigned int j=0; j<m; j++) {
-            for(unsigned int k=0; k<r; k++) {
-                ans[i][j] += a[i][k] * b[k][j];
-            }
-        }
-    }
+/* min, max, abs functions */
+double min(const double &a, const double &b);
+double max(const double &a, const double &b);
+double abs(const double &x);
 
-    return ans;
-}
+/* functions for binomial expansion */
+double binomial_prefactor(int s, int m1, int m2, double x1, double x2);
+int binomial(int a, int b);
 
-MatDoub matsum(MatDoub &a, MatDoub &b) {
-    unsigned int n = a.nrows();
-  unsigned int m = a.ncols();
-    MatDoub ans(n,m,0.0);
+/* functions for vectors */
+double dist2(const Vec3 &a, const Vec3 &b);
+Vec3 gaussian_product_center(const double &alpha1, const Vec3 &a, 
+  const double &alpha2, const Vec3 &b);
 
-    for(unsigned int i=0; i<n; i++) {
-    for(unsigned int j=0; j<m; j++) {
-            ans[i][j] = a[i][j] + b[i][j];
-        }
-    }
+/* swap functions */
+void swap(unsigned int &i, unsigned int &j);
 
-    return ans;
-}
-
-MatDoub trimatprod(MatDoub &a, MatDoub &b, MatDoub &c) {
-    MatDoub temp = matprod(b,c);
-    MatDoub ans = matprod(a,temp);
-
-    return ans;
-}
+#endif //_FUNC_H

@@ -1,5 +1,5 @@
 /**************************************************************************
- *   matfunc.cpp  --  This file is part of HFCXX.                         *
+ *   overlap.h  --  This file is part of HFCXX.                           *
  *                                                                        *
  *   Copyright (C) 2012, Ivo Filot                                        *
  *                                                                        *
@@ -19,43 +19,17 @@
  *                                                                        *
  **************************************************************************/
 
-#include "matfunc.h"
+#ifndef _OVERLAP_H
+#define _OVERLAP_H
 
-MatDoub matprod(MatDoub &a, MatDoub &b) {
-    unsigned int n = a.nrows();
-    unsigned int m = b.ncols();
-    unsigned int r = a.ncols();
+#include "gto.h"
+#include "cgf.h"
+#include "func.h"
 
-    MatDoub ans(n,m,0.0);
+double cgf_overlap(CGF &cgf1, CGF &cgf2);
+double gto_overlap(GTO &gto1, GTO &gto2);
+double overlap(double alpha1, int l1, int m1, int n1, Vec3 &a,
+double alpha2, int l2, int m2, int n2, Vec3 &b);
+double overlap_1D(int l1, int l2, double x1, double x2, double gamma);
 
-    for(unsigned int i=0; i<n; i++) {
-        for(unsigned int j=0; j<m; j++) {
-            for(unsigned int k=0; k<r; k++) {
-                ans[i][j] += a[i][k] * b[k][j];
-            }
-        }
-    }
-
-    return ans;
-}
-
-MatDoub matsum(MatDoub &a, MatDoub &b) {
-    unsigned int n = a.nrows();
-  unsigned int m = a.ncols();
-    MatDoub ans(n,m,0.0);
-
-    for(unsigned int i=0; i<n; i++) {
-    for(unsigned int j=0; j<m; j++) {
-            ans[i][j] = a[i][j] + b[i][j];
-        }
-    }
-
-    return ans;
-}
-
-MatDoub trimatprod(MatDoub &a, MatDoub &b, MatDoub &c) {
-    MatDoub temp = matprod(b,c);
-    MatDoub ans = matprod(a,temp);
-
-    return ans;
-}
+#endif //_OVERLAP_H

@@ -1,5 +1,5 @@
 /**************************************************************************
- *   matfunc.cpp  --  This file is part of HFCXX.                         *
+ *   readfile.h  --  This file is part of HFCXX.                          *
  *                                                                        *
  *   Copyright (C) 2012, Ivo Filot                                        *
  *                                                                        *
@@ -19,43 +19,36 @@
  *                                                                        *
  **************************************************************************/
 
-#include "matfunc.h"
+#ifndef _READFILE_H
+#define _READFILE_H
 
-MatDoub matprod(MatDoub &a, MatDoub &b) {
-    unsigned int n = a.nrows();
-    unsigned int m = b.ncols();
-    unsigned int r = a.ncols();
+#include<iostream>
+#include<fstream>
+#include<string>
+#include<vector>
+#include<cstdlib>
+#include "strfunc.h"
 
-    MatDoub ans(n,m,0.0);
+class InputFile {
+    private:
+    std::string filename;
+    std::ifstream infile;
+    std::vector<std::string> lines;
+    bool isOpen;
 
-    for(unsigned int i=0; i<n; i++) {
-        for(unsigned int j=0; j<m; j++) {
-            for(unsigned int k=0; k<r; k++) {
-                ans[i][j] += a[i][k] * b[k][j];
-            }
-        }
-    }
+    public:
+    InputFile(); /* default constructor */
+    InputFile(std::string); /* constructor taking filename as input */
+    ~InputFile();   /* default destructor */
+    void readFile(std::vector<std::string> &);
+    void dump();
 
-    return ans;
-}
+    private: /* utility functions */
+    void init();    /* initialization functions */
+    void open(); /* open file for reading */
+    void read(); /* read the file */
+    void close(); /* close the file */
+    void reset(); /* resets the pointer to the start of the file */
+};
 
-MatDoub matsum(MatDoub &a, MatDoub &b) {
-    unsigned int n = a.nrows();
-  unsigned int m = a.ncols();
-    MatDoub ans(n,m,0.0);
-
-    for(unsigned int i=0; i<n; i++) {
-    for(unsigned int j=0; j<m; j++) {
-            ans[i][j] = a[i][j] + b[i][j];
-        }
-    }
-
-    return ans;
-}
-
-MatDoub trimatprod(MatDoub &a, MatDoub &b, MatDoub &c) {
-    MatDoub temp = matprod(b,c);
-    MatDoub ans = matprod(a,temp);
-
-    return ans;
-}
+#endif // _READFILE_H

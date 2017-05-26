@@ -1,5 +1,5 @@
 /**************************************************************************
- *   matfunc.cpp  --  This file is part of HFCXX.                         *
+ *   gto.h  --  This file is part of HFCXX.                               *
  *                                                                        *
  *   Copyright (C) 2012, Ivo Filot                                        *
  *                                                                        *
@@ -19,43 +19,35 @@
  *                                                                        *
  **************************************************************************/
 
-#include "matfunc.h"
+#ifndef _GTO_H
+#define _GTO_H
 
-MatDoub matprod(MatDoub &a, MatDoub &b) {
-    unsigned int n = a.nrows();
-    unsigned int m = b.ncols();
-    unsigned int r = a.ncols();
+#include<cmath>
+#include<iostream>
+#include "vec3.h"
+#include "factorial.h"
 
-    MatDoub ans(n,m,0.0);
+/*
+Gaussian Type Orbital
 
-    for(unsigned int i=0; i<n; i++) {
-        for(unsigned int j=0; j<m; j++) {
-            for(unsigned int k=0; k<r; k++) {
-                ans[i][j] += a[i][k] * b[k][j];
-            }
-        }
-    }
+x^l * y^m * z^n * exp(-alpha * r^2)
+*/
 
-    return ans;
-}
+class GTO{
+    public:
+    double c;   /* coefficient */
+    unsigned int l,m,n; /* powers */
+    double x,y,z;   /* positions */
+    double alpha;   /* alpha value in the exponent */
+    Vec3 r; /* position vector */
+    double norm;
 
-MatDoub matsum(MatDoub &a, MatDoub &b) {
-    unsigned int n = a.nrows();
-  unsigned int m = a.ncols();
-    MatDoub ans(n,m,0.0);
+    public:
+    GTO(const double c, const Vec3 rr, const double alphaa, const unsigned int ll, const unsigned int mm, const unsigned int nn);
+    friend std::ostream& operator <<(std::ostream &os,const GTO &rhs);
 
-    for(unsigned int i=0; i<n; i++) {
-    for(unsigned int j=0; j<m; j++) {
-            ans[i][j] = a[i][j] + b[i][j];
-        }
-    }
+    private:
+    double calcnorm() const;
+};
 
-    return ans;
-}
-
-MatDoub trimatprod(MatDoub &a, MatDoub &b, MatDoub &c) {
-    MatDoub temp = matprod(b,c);
-    MatDoub ans = matprod(a,temp);
-
-    return ans;
-}
+#endif //_GTO_H

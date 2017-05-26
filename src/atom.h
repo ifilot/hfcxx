@@ -1,5 +1,5 @@
 /**************************************************************************
- *   matfunc.cpp  --  This file is part of HFCXX.                         *
+ *   atom.h  --  This file is part of HFCXX.                              *
  *                                                                        *
  *   Copyright (C) 2012, Ivo Filot                                        *
  *                                                                        *
@@ -19,43 +19,46 @@
  *                                                                        *
  **************************************************************************/
 
-#include "matfunc.h"
+#ifndef _ATOM_H
+#define _ATOM_H
 
-MatDoub matprod(MatDoub &a, MatDoub &b) {
-    unsigned int n = a.nrows();
-    unsigned int m = b.ncols();
-    unsigned int r = a.ncols();
+#include<iostream>
+#include<string>
+#include<vector>
+#include "vec3.h"
+#include "cgf.h"
+#include "basis.h"
 
-    MatDoub ans(n,m,0.0);
+class Atom{
+    private:
+    unsigned int Z; /* atomic number, i.e. H=1, He=2, Li=3... */
+    Vec3 r; /* position of atom */
+    std::string element;
+    std::vector<CGF> wavefunctions;
+    unsigned int nrwav; /* number of wavefunctions */
+    unsigned int nrelec; /* number of electrons */
 
-    for(unsigned int i=0; i<n; i++) {
-        for(unsigned int j=0; j<m; j++) {
-            for(unsigned int k=0; k<r; k++) {
-                ans[i][j] += a[i][k] * b[k][j];
-            }
-        }
-    }
+    public:
+    Atom(const std::string symbolin, const double xx, const double yy, const double zz, Basis &basis);
+    Atom(const unsigned int Zz, const double xx, const double yy, const double zz, Basis &basis);
 
-    return ans;
-}
+    friend std::ostream & operator << (std::ostream &os, const Atom &rhs);
 
-MatDoub matsum(MatDoub &a, MatDoub &b) {
-    unsigned int n = a.nrows();
-  unsigned int m = a.ncols();
-    MatDoub ans(n,m,0.0);
+    private:
+    const double x() const;
+    const double y() const;
+    const double z() const;
+    unsigned int e2z(const std::string &elementin) const;
+    std::string z2e(const unsigned int &z) const;
+    void addWavefunctions(Basis &basis);
 
-    for(unsigned int i=0; i<n; i++) {
-    for(unsigned int j=0; j<m; j++) {
-            ans[i][j] = a[i][j] + b[i][j];
-        }
-    }
+    public:
+    const std::string ps() const; /* print symbol */
+    const Vec3 gr() const;
+    const unsigned int nrorbs() const;
+    const CGF& operator[](const unsigned int i) const;
+    const unsigned int nrelecs() const;
+    const unsigned int nucl_chg() const;
+};
 
-    return ans;
-}
-
-MatDoub trimatprod(MatDoub &a, MatDoub &b, MatDoub &c) {
-    MatDoub temp = matprod(b,c);
-    MatDoub ans = matprod(a,temp);
-
-    return ans;
-}
+#endif // _ATOM_H

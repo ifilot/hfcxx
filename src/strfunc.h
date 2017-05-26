@@ -1,5 +1,5 @@
 /**************************************************************************
- *   matfunc.cpp  --  This file is part of HFCXX.                         *
+ *   strfunc.h  --  This file is part of HFCXX.                           *
  *                                                                        *
  *   Copyright (C) 2012, Ivo Filot                                        *
  *                                                                        *
@@ -18,44 +18,28 @@
  *   along with this program.  If not, see http://www.gnu.org/licenses/.  *
  *                                                                        *
  **************************************************************************/
+ 
+#ifndef _STRFUNC_H
+#define _STRFUNC_H
 
-#include "matfunc.h"
+#include<string>
+#include<vector>
 
-MatDoub matprod(MatDoub &a, MatDoub &b) {
-    unsigned int n = a.nrows();
-    unsigned int m = b.ncols();
-    unsigned int r = a.ncols();
+/* strpos */
+size_t strpos(const std::string &haystack, const std::string &needle);
 
-    MatDoub ans(n,m,0.0);
+/* strreplace */
+std::string& str_replace(const std::string &search, const std::string 
+&replace, std::string &subject);
 
-    for(unsigned int i=0; i<n; i++) {
-        for(unsigned int j=0; j<m; j++) {
-            for(unsigned int k=0; k<r; k++) {
-                ans[i][j] += a[i][k] * b[k][j];
-            }
-        }
-    }
+/* substring (two variants) */
+std::string substr(const std::string &str, int start);
+std::string substr(const std::string &str, int start, int length);
 
-    return ans;
-}
+/* strtrim */
+std::string& strtrim(std::string &subject);
 
-MatDoub matsum(MatDoub &a, MatDoub &b) {
-    unsigned int n = a.nrows();
-  unsigned int m = a.ncols();
-    MatDoub ans(n,m,0.0);
+/* explode */
+std::vector<std::string> explode( const std::string &delimiter, const std::string &explodeme);
 
-    for(unsigned int i=0; i<n; i++) {
-    for(unsigned int j=0; j<m; j++) {
-            ans[i][j] = a[i][j] + b[i][j];
-        }
-    }
-
-    return ans;
-}
-
-MatDoub trimatprod(MatDoub &a, MatDoub &b, MatDoub &c) {
-    MatDoub temp = matprod(b,c);
-    MatDoub ans = matprod(a,temp);
-
-    return ans;
-}
+#endif // _STRFUNC_H

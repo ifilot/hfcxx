@@ -1,5 +1,5 @@
 /**************************************************************************
- *   matfunc.cpp  --  This file is part of HFCXX.                         *
+ *   gamma.h  --  This file is part of HFCXX.                             *
  *                                                                        *
  *   Copyright (C) 2012, Ivo Filot                                        *
  *                                                                        *
@@ -18,44 +18,32 @@
  *   along with this program.  If not, see http://www.gnu.org/licenses/.  *
  *                                                                        *
  **************************************************************************/
+ 
+/*
+ *
+ * References:
+ * [1] Numerical Recipes
+ * William H. Press, Saul A. Teukolsky, William T., 
+ * Vetterling and Brian P. Flannery
+ * 3rd edition page 261
+ * ISBN-13: 978-0521880688
+ *
+ * The functions below have all been obtained using ref [1]
+ */
 
-#include "matfunc.h"
+#ifndef _GAMMA_H
+#define _GAMMA_H
 
-MatDoub matprod(MatDoub &a, MatDoub &b) {
-    unsigned int n = a.nrows();
-    unsigned int m = b.ncols();
-    unsigned int r = a.ncols();
+#include<iostream>
+#include <limits>
+#include "func.h"
 
-    MatDoub ans(n,m,0.0);
+double Fgamma(const double m, double x);
+double gamm_inc(const double a, const double x);
+double gammp(const double m, const double x);
+double gser(const double a, const double x);
+double gammln(const double xx);
+double gcf(const double a, const double x);
+double gammpapprox(double a, double x, int psig);
 
-    for(unsigned int i=0; i<n; i++) {
-        for(unsigned int j=0; j<m; j++) {
-            for(unsigned int k=0; k<r; k++) {
-                ans[i][j] += a[i][k] * b[k][j];
-            }
-        }
-    }
-
-    return ans;
-}
-
-MatDoub matsum(MatDoub &a, MatDoub &b) {
-    unsigned int n = a.nrows();
-  unsigned int m = a.ncols();
-    MatDoub ans(n,m,0.0);
-
-    for(unsigned int i=0; i<n; i++) {
-    for(unsigned int j=0; j<m; j++) {
-            ans[i][j] = a[i][j] + b[i][j];
-        }
-    }
-
-    return ans;
-}
-
-MatDoub trimatprod(MatDoub &a, MatDoub &b, MatDoub &c) {
-    MatDoub temp = matprod(b,c);
-    MatDoub ans = matprod(a,temp);
-
-    return ans;
-}
+#endif
