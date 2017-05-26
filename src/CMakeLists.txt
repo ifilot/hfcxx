@@ -33,42 +33,6 @@ if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
     set_property(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS "Debug" "Release" "MinSizeRel" "RelWithDebInfo")
 endif()
 
-# Configure static build
-SET(BUILD_SHARED_LIBRARIES OFF)
-
-IF(WIN32)
-SET(CMAKE_FIND_LIBRARY_PREFIXES "")
-SET(CMAKE_FIND_LIBRARY_SUFFIXES ".lib" ".dll")
-ELSE()
-SET(CMAKE_FIND_LIBRARY_PREFIXES "lib")
-SET(CMAKE_FIND_LIBRARY_SUFFIXES ".so" ".a")
-ENDIF()
-
-# # add OS specific
-# if(APPLE)
-#     add_definitions(-D_APPLE)
-#     SET(BOOST_INCLUDEDIR "/opt/local/include")
-#     SET(BOOST_LIBRARYDIR "/opt/local/lib")
-# endif()
-# if(UNIX)
-#     add_definitions(-Wno-literal-suffix)
-#     SET(BOOST_INCLUDEDIR "/usr/include")
-#     SET(BOOST_LIBRARYDIR "/usr/lib/x86_64-linux-gnu")
-# endif()
-
-# set Boost
-# set (Boost_NO_SYSTEM_PATHS ON)
-# set (Boost_USE_MULTITHREADED ON)
-# set (Boost_USE_STATIC_LIBS ON)
-# set (Boost_USE_STATIC_RUNTIME OFF)
-# set (BOOST_ALL_DYN_LINK OFF)
-
-# Include libraries
-# find_package(TCLAP REQUIRED)
-# find_package(SUNDIALS REQUIRED)
-# find_package(Boost COMPONENTS system filesystem regex REQUIRED)
-# find_package(CPPUNIT REQUIRED) # for unit tests
-
 # Set include folders
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}
                     ${CMAKE_BINARY_DIR}
@@ -79,10 +43,6 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}
 
 # Add sources
 file(GLOB SOURCES "*.cpp")
-
-# add tests
-# enable_testing ()
-# add_subdirectory("test")
 
 # Set executable
 add_executable(hfcxx ${SOURCES})
