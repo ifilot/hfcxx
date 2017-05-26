@@ -34,6 +34,21 @@ if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
     set_property(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS "Debug" "Release" "MinSizeRel" "RelWithDebInfo")
 endif()
 
+# Configure header file
+configure_file("config.h.in" "config.h")
+
+# Check for OpenMP
+if(NOT WIN32)
+    find_package(OpenMP)
+    if (OPENMP_FOUND)
+        option(HAS_OPENMP "OpenMP enabled" ON)
+        set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${OpenMP_C_FLAGS}")
+        set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}")
+    endif()
+else()
+    set(HAS_OPENMP OFF)
+endif()
+
 # Set include folders
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}
                     ${CMAKE_BINARY_DIR}

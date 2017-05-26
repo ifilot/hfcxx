@@ -27,6 +27,9 @@ double cgf_nuclear(CGF &cgf1, CGF &cgf2, const Atom &a) {
 
     double sum = 0;
 
+    #ifdef HAS_OPENMP
+    #pragma omp parallel for collapse(2) reduction ( + : sum)
+    #endif
     for(unsigned int k = 0; k < i; k++) {
         for(unsigned int l = 0; l < j; l++) {
             sum += cgf1.gtos[k].c * cgf2.gtos[l].c * gto_nuclear(cgf1.gtos[k], cgf2.gtos[l], a.gr() );

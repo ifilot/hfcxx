@@ -29,6 +29,9 @@ double cgf_repulsion(const CGF &cgf1,const CGF &cgf2,const CGF &cgf3,const CGF &
     int size3 = cgf3.gtos.size();
     int size4 = cgf4.gtos.size();
 
+    #ifdef HAS_OPENMP
+    #pragma omp parallel for collapse(4) reduction ( + : sum)
+    #endif
     for(int i=0; i< size1; i++) {
         for(int j=0; j< size2; j++) {
             for(int k=0; k < size3; k++) {

@@ -22,7 +22,9 @@
 #ifndef _REPULSION_H
 #define _REPULSION_H
 
-#include<vector>
+#include <vector>
+
+#include "config.h"
 #include "gamma.h"
 #include "func.h"
 #include "vec3.h"

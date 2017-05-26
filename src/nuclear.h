@@ -18,12 +18,14 @@
  *   along with this program.  If not, see http://www.gnu.org/licenses/.  *
  *                                                                        *
  **************************************************************************/
- 
+
 #ifndef _NUCLEAR_H
 #define _NUCLEAR_H
 
-#include<vector>
-#include<cmath>
+#include <vector>
+#include <cmath>
+
+#include "config.h"
 #include "gamma.h"
 #include "func.h"
 #include "vec3.h"

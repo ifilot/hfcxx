@@ -24,9 +24,11 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include<vector>
-#include<string>
-#include<sstream>
+#include <vector>
+#include <string>
+#include <sstream>
+
+#include "config.h"
 #include "molecule.h"
 #include "clock.h"
 #include "matrix.h"
