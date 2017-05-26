@@ -10,10 +10,11 @@
 #ifndef _VERSION_H
 #define _VERSION_H
 
-#include<iostream>
-#include<sstream>
-#include<string>
-#include "config.h"
+#include <iostream>
+#include <sstream>
+#include <string>
+
+#define PACKAGE_VERSION "1.4.1"
 
 std::string version();
 
