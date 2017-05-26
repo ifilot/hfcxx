@@ -1,24 +1,24 @@
 /**************************************************************************
- *   main.cpp                                                             *
+ *   main.cpp  --  This file is part of HFCXX.                            *
  *                                                                        *
- *   HFCXX                                                                *
+ *   Copyright (C) 2012, Ivo Filot                                        *
  *                                                                        *
- *   This program is free software; you can redistribute it and/or modify *
- *   it under the terms of the GNU General Public License as published by *
- *   the Free Software Foundation, version 3                              *
+ *   HFCXX is free software:                                              *
+ *   you can redistribute it and/or modify it under the terms of the      *
+ *   GNU General Public License as published by the Free Software         *
+ *   Foundation, either version 3 of the License, or (at your option)     *
+ *   any later version.                                                   *
  *                                                                        *
- *   This program is distributed in the hope that it will be useful, but  *
- *   WITHOUT ANY WARRANTY; without even the implied warranty of           *
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU    *
- *   General Public License for more details.                             *
+ *   HFCXX is distributed in the hope that it will be useful,             *
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty          *
+ *   of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.              *
+ *   See the GNU General Public License for more details.                 *
  *                                                                        *
  *   You should have received a copy of the GNU General Public License    *
- *   along with this program; if not, write to the Free Software          *
- *   Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA            *
- *   02110-1301, USA.                                                     *
+ *   along with this program.  If not, see http://www.gnu.org/licenses/.  *
  *                                                                        *
  **************************************************************************/
- 
+
 #include<iostream>
 #include <iomanip>
 #include <string.h>
@@ -27,55 +27,55 @@
 #include "output.h"
 
 int main(int argc, char *argv[]) {
-	// parse the arguments 
-	if(argc == 1) {
-		std::cout << "Usage: " << argv[0] << " <input file>" << std::endl;
-		std::cout << "Please provide a valid input file" << std::endl;
-		return 0;
-	}
+    // parse the arguments
+    if(argc == 1) {
+        std::cout << "Usage: " << argv[0] << " <input file>" << std::endl;
+        std::cout << "Please provide a valid input file" << std::endl;
+        return 0;
+    }
 
-	// initialize an output object
-	Output out;
-	// print the version to
-	out.print_version();
+    // initialize an output object
+    Output out;
+    // print the version to
+    out.print_version();
 
-	std::string filename;
-	bool debug = false;
-	
-	/* parse arguments */
-	if(!strcmp(argv[argc-2],"-m")) {
-		debug = true;
-	}
-	
-	if(argc > 1) {
-		filename = argv[argc-1];
-	}
+    std::string filename;
+    bool debug = false;
 
-	/* output compile information on execution */
-	version();
+    /* parse arguments */
+    if(!strcmp(argv[argc-2],"-m")) {
+        debug = true;
+    }
 
-	/* keep track of the time */
-	Clock clock;
+    if(argc > 1) {
+        filename = argv[argc-1];
+    }
 
-	/* read molecule from geometry file */
-	Molecule mol;
-	mol.read(filename);
-	out.print_geometry(mol);
+    /* output compile information on execution */
+    version();
 
-	/* perform HF calculation */
-	HF hf;
-	hf.debug = debug;
-	hf.molecule(mol);
-	hf.run();
+    /* keep track of the time */
+    Clock clock;
 
-	/* output calculation time */
-	clock.toc();
-	out.print_calculation_time(clock.passed());
+    /* read molecule from geometry file */
+    Molecule mol;
+    mol.read(filename);
+    out.print_geometry(mol);
 
-	#ifdef _WIN32
-		std::cout << "Press ENTER to close" << std::endl;
-		std::cin.get();
-	#endif //_check if compiled on Win32
+    /* perform HF calculation */
+    HF hf;
+    hf.debug = debug;
+    hf.molecule(mol);
+    hf.run();
 
-	return 0;
+    /* output calculation time */
+    clock.toc();
+    out.print_calculation_time(clock.passed());
+
+    #ifdef _WIN32
+        std::cout << "Press ENTER to close" << std::endl;
+        std::cin.get();
+    #endif //_check if compiled on Win32
+
+    return 0;
 }
