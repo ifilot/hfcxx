@@ -286,7 +286,7 @@ unsigned int HF::iterate() {
         iter++;
         step();
         std::cout << std::setprecision(10);
-        ediff = abs(energy - oldenergy);
+        ediff = std::abs(energy - oldenergy);
         oldenergy = energy;
         energies.push_back(energy);
 

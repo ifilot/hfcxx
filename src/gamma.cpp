@@ -34,7 +34,7 @@
 
 double Fgamma(const double m, double x) {
     double tiny = 0.00000001;
-    x = max(abs(x),tiny);
+    x = std::max(std::abs(x),tiny);
     double val = gamm_inc(m+0.5,x);
     return 0.5 * pow(x,-m - 0.5) * val;
 }
@@ -153,8 +153,8 @@ double gammpapprox(double a, double x, int psig) {
     double a1 = a - 1.0, lna1 = log(a1), sqrta1 = sqrt(a1);
     double gln = gammln(a);
 
-    if(x > a1) xu = max(a1 + 11.5 * sqrta1, x + 6.0 * sqrta1);
-    else xu = max(0., min(a1 - 7.5 * sqrta1, x - 5.0 * sqrta1));
+    if(x > a1) xu = std::max(a1 + 11.5 * sqrta1, x + 6.0 * sqrta1);
+    else xu = std::max(0., std::min(a1 - 7.5 * sqrta1, x - 5.0 * sqrta1));
     sum = 0;
 
     for(j=0; j < ngau; j++) {
