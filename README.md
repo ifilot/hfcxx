@@ -8,6 +8,9 @@ single-point calculations (i.e. no geometry optimizations). The basis
 sets STO-3G and STO-6G are included for atoms up to N=8 (oxygen). 
 This program is mainly made for educational purposes.
 
+:new: Interested in learning Density Functional Theory?
+Have a look at [DFTCXX](https://github.com/ifilot/dftcxx)!
+
 Installation
 ------------
 
