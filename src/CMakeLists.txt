@@ -51,11 +51,7 @@ endif()
 
 # Set include folders
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}
-                    ${CMAKE_BINARY_DIR}
-                    ${Boost_INCLUDE_DIRS}
-                    ${TCLAP_INCLUDE_DIR}
-					${SUNDIALS_INCLUDE_DIR}
-                    ${CPPUNIT_INCLUDE_DIR})
+                    ${CMAKE_BINARY_DIR})
 
 # Add sources
 file(GLOB SOURCES "*.cpp")

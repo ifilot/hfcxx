@@ -1,7 +1,6 @@
 # HFCXX
 
-Overview
---------
+## Overview
 
 HFCXX is a Hartree-Fock code in C++. The program currently supports only
 single-point calculations (i.e. no geometry optimizations). The basis 
@@ -11,21 +10,20 @@ This program is mainly made for educational purposes.
 :new: Interested in learning Density Functional Theory?
 Have a look at [DFTCXX](https://github.com/ifilot/dftcxx)!
 
-Installation
-------------
+## Compilation
 
-Simply type:
-  `./configure` followed by
-  `make`
+```
+mkdir build && cd build
+cmake ../src
+make -j9
+```
 
-Usage
------
+## Usage
 
 For example:
   `./hfcxx molecules/h2.in > h2.out`
 
-Contributing
-------------
+## Contributing
 
 1. Fork it.
 2. Create a branch (`git checkout -b my_markup`)
