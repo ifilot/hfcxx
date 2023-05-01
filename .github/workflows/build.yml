@@ -17,7 +17,5 @@ jobs:
       run: sudo apt install -y build-essential cmake libcppunit-dev
     - name: Configure CMake
       run: mkdir build && cd build && cmake ../src
-    - name: Build
-      run: cd build && make -j3
-    - name: Test executable
-      run: make test
+    - name: Building and testing
+      run: cd build && make -j3 && make test
