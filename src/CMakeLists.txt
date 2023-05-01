@@ -20,7 +20,7 @@
 #**************************************************************************/
 
 # set minimum cmake requirements
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 2.8.12)
 project (hfcxx)
 
 # add custom directory to look for .cmake files
