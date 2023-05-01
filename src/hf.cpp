@@ -93,6 +93,7 @@ void HF::setup() {
     }
 
     /* populate all matrices */
+    #pragma omp parallel for
     for(unsigned int i=0; i<nrorbs; i++) {
         for(unsigned int j=0; j<nrorbs; j++) {
             S[i][j] = cgf_overlap(orbitals[i],orbitals[j]);
@@ -109,6 +110,7 @@ void HF::setup() {
         std::cout << "Constructing T matrix...";
     }
 
+    #pragma omp parallel for
     for(unsigned int i=0; i<nrorbs; i++) {
         for(unsigned int j=0; j<nrorbs; j++) {
             T[i][j] = cgf_kinetic(orbitals[i],orbitals[j]);
@@ -127,6 +129,7 @@ void HF::setup() {
     }
 
     /* V matrices */
+    #pragma omp parallel for
     for(unsigned int i=0; i<nrorbs; i++) {
         for(unsigned int j=0; j<nrorbs; j++) {
             for(unsigned int k=0; k<nrat; k++) {
@@ -146,8 +149,9 @@ void HF::setup() {
         std::cout << "Constructing TE matrix... (" << teindex(nrorbs-1,nrorbs-1,nrorbs-1,nrorbs-1)+1 << ") " << std::endl;
     }
 
-    /* TE list */
+    // build a vector of two-electron integral jobs to evaluate
     double tecnt=0;
+    std::vector<std::array<unsigned int,5>> te_jobs;
     for(unsigned int i=0; i<nrorbs; i++) {
         for(unsigned int j=0; j<=i; j++) {
             unsigned int ij = i*(i+1)/2 + j;
@@ -156,12 +160,18 @@ void HF::setup() {
                     unsigned int kl = k * (k+1)/2 + l;
                     if(ij <= kl) {
                         unsigned int index = teindex(i,j,k,l);
+                        te_jobs.push_back({index,i,j,k,l});
                         tecnt++;
-                        TE[index] = cgf_repulsion(orbitals[i],orbitals[j],orbitals[k],orbitals[l]);
                     }
                 }
             }
         }
+    }
+
+    // perform the two-electron integral calculation
+    #pragma omp parallel for schedule(dynamic)
+    for(const auto& te_job : te_jobs) {
+        TE[te_job[0]] = cgf_repulsion(orbitals[te_job[1]],orbitals[te_job[2]],orbitals[te_job[3]],orbitals[te_job[4]]);
     }
 
     if(debug) {
@@ -227,8 +237,8 @@ unsigned int index2 = 0;
 
 
     /*  the new density matrix P is made by using a damping technique.
-            see for instance: Schlegel et. all, Comput. Adv. Org. Chem.,
-            Molecular Structure and Reactivity, (1991), 167-185 */
+        see for instance: Schlegel et. all, Comput. Adv. Org. Chem.,
+        Molecular Structure and Reactivity, (1991), 167-185 */
     for(unsigned int i=0; i<nrorbs; i++) {
         for(unsigned int j=0; j<nrorbs; j++) {
             P[i][j] = (1.0-alpha) * Pnew[i][j] + alpha * P[i][j];

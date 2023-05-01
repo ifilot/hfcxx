@@ -1,7 +1,5 @@
 /**************************************************************************
- *   version.h  --  This file is part of HFCXX.                           *
- *                                                                        *
- *   Copyright (C) 2012, Ivo Filot                                        *
+ *   Copyright (C) 2023, Ivo Filot                                        *
  *                                                                        *
  *   HFCXX is free software:                                              *
  *   you can redistribute it and/or modify it under the terms of the      *
@@ -19,15 +17,63 @@
  *                                                                        *
  **************************************************************************/
 
-#ifndef _VERSION_H
-#define _VERSION_H
+#include "test_molecule.h"
 
-#include <iostream>
-#include <sstream>
-#include <string>
+CPPUNIT_TEST_SUITE_REGISTRATION( TestMolecule );
 
-#define PACKAGE_VERSION "1.5.0"
+void TestMolecule::setUp() {
+}
 
-std::string version();
+void TestMolecule::tearDown() {
+}
 
-#endif //_VERSION_H
+void TestMolecule::testH2() {
+    Output out;
+
+    Molecule mol;
+    mol.read("h2.in");
+    out.print_geometry(mol);
+
+    /* perform HF calculation */
+    HF hf;
+    hf.debug = false;
+    hf.molecule(mol);
+    hf.run();
+
+    double energy = hf.get_energy();
+    CPPUNIT_ASSERT_DOUBLES_EQUAL(-1.11671432, energy, 1e-4);
+}
+
+void TestMolecule::testCH4() {
+    Output out;
+
+    Molecule mol;
+    mol.read("ch4.in");
+    out.print_geometry(mol);
+
+    /* perform HF calculation */
+    HF hf;
+    hf.debug = false;
+    hf.molecule(mol);
+    hf.run();
+
+    double energy = hf.get_energy();
+    CPPUNIT_ASSERT_DOUBLES_EQUAL(-39.717589987190621, energy, 1e-4);
+}
+
+void TestMolecule::testBenzene() {
+    Output out;
+
+    Molecule mol;
+    mol.read("benzene.in");
+    out.print_geometry(mol);
+
+    /* perform HF calculation */
+    HF hf;
+    hf.debug = false;
+    hf.molecule(mol);
+    hf.run();
+
+    double energy = hf.get_energy();
+    CPPUNIT_ASSERT_DOUBLES_EQUAL(-230.13033852795101, energy, 1e-4);
+}

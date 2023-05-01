@@ -20,10 +20,39 @@ sets STO-3G and STO-6G are included for atoms up to N=8 (oxygen).
 
 ## Compilation
 
+Ensure you have all the required packages installed
+
+```
+sudo apt install build-essential cmake libcppunit-dev
+```
+
 ```
 mkdir build && cd build
 cmake ../src
 make -j9
+```
+
+To test the compilation, run
+
+> **Note**: The testsuite contains a HF calculation of benzene using the
+> STO-6g basis set. Since HFCXX is not optimized for speed, running the
+> tests can take a few minutes to complete.
+
+```
+make test
+```
+
+A successful test should give an output similar to the following
+
+```
+Running tests...
+Test project /mnt/d/PROGRAMMING/CPP/hfcxx/build
+    Start 1: TestMolecules
+1/1 Test #1: TestMolecules ....................   Passed   50.70 sec
+
+100% tests passed, 0 tests failed out of 1
+
+Total Test time (real) =  50.72 sec
 ```
 
 ## Usage

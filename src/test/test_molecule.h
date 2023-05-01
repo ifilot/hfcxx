@@ -1,7 +1,5 @@
 /**************************************************************************
- *   version.h  --  This file is part of HFCXX.                           *
- *                                                                        *
- *   Copyright (C) 2012, Ivo Filot                                        *
+ *   Copyright (C) 2023, Ivo Filot                                        *
  *                                                                        *
  *   HFCXX is free software:                                              *
  *   you can redistribute it and/or modify it under the terms of the      *
@@ -19,15 +17,32 @@
  *                                                                        *
  **************************************************************************/
 
-#ifndef _VERSION_H
-#define _VERSION_H
+#ifndef _TEST_MOLECULE
+#define _TEST_MOLECULE
 
-#include <iostream>
-#include <sstream>
-#include <string>
+#include <cppunit/extensions/HelperMacros.h>
 
-#define PACKAGE_VERSION "1.5.0"
+#include "output.h"
+#include "hf.h"
+#include "molecule.h"
 
-std::string version();
+class TestMolecule : public CppUnit::TestFixture
+{
+  CPPUNIT_TEST_SUITE( TestMolecule );
+  CPPUNIT_TEST( testH2 );
+  CPPUNIT_TEST( testCH4 );
+  CPPUNIT_TEST( testBenzene );
+  CPPUNIT_TEST_SUITE_END();
 
-#endif //_VERSION_H
+public:
+    void setUp();
+    void tearDown();
+
+    void testH2();
+    void testCH4();
+    void testBenzene();
+
+private:
+};
+
+#endif  // _TEST_MOLECULE

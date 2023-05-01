@@ -25,6 +25,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <vector>
+#include <array>
 #include <string>
 #include <sstream>
 
@@ -79,6 +80,10 @@ class HF{
     void molecule(const Molecule &moll);
     void listorbs() const;
     void run();
+
+    inline double get_energy() const {
+        return this->energy;
+    }
 
     /* iterative step functions */
     private:
