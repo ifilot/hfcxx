@@ -1,5 +1,5 @@
 /**************************************************************************
- *   version.h  --  This file is part of HFCXX.                           *
+ *   basis-sto3g.cpp  --  This file is part of HFCXX.                     *
  *                                                                        *
  *   Copyright (C) 2012, Ivo Filot                                        *
  *                                                                        *
@@ -19,15 +19,24 @@
  *                                                                        *
  **************************************************************************/
 
-#ifndef _VERSION_H
-#define _VERSION_H
+#include <cppunit/CompilerOutputter.h>
+#include <cppunit/extensions/TestFactoryRegistry.h>
+#include <cppunit/ui/text/TestRunner.h>
 
-#include <iostream>
-#include <sstream>
-#include <string>
+int main(int argc, char* argv[]) {
+    // Get the top level suite from the registry
+    CppUnit::Test *suite = CppUnit::TestFactoryRegistry::getRegistry().makeTest();
 
-#define PACKAGE_VERSION "1.5.0"
+    // Adds the test to the list of test to run
+    CppUnit::TextUi::TestRunner runner;
+    runner.addTest( suite );
 
-std::string version();
+    // Change the default outputter to a compiler error format outputter
+    runner.setOutputter( new CppUnit::CompilerOutputter( &runner.result(),
+                                                         std::cerr ) );
+    // Run the tests.
+    bool wasSucessful = runner.run();
 
-#endif //_VERSION_H
+    // Return error code 1 if the one of test failed.
+    return wasSucessful ? 0 : 1;
+}

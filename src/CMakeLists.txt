@@ -38,16 +38,15 @@ endif()
 configure_file("config.h.in" "config.h")
 
 # Check for OpenMP
-if(NOT WIN32)
-    find_package(OpenMP)
-    if (OPENMP_FOUND)
-        option(HAS_OPENMP "OpenMP enabled" ON)
-        set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${OpenMP_C_FLAGS}")
-        set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}")
-    endif()
-else()
-    set(HAS_OPENMP OFF)
+find_package(OpenMP)
+if (OPENMP_FOUND)
+    option(HAS_OPENMP "OpenMP enabled" ON)
+    set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${OpenMP_C_FLAGS}")
+    set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}")
 endif()
+
+# find libcppunit for unit testing
+find_package(CPPUNIT REQUIRED) # for unit tests
 
 # Set include folders
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}
@@ -55,12 +54,25 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}
 
 # Add sources
 file(GLOB SOURCES "*.cpp")
+list(REMOVE_ITEM SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/main.cpp)
+add_library(hfcxxsources STATIC ${SOURCES})
 
 # Set executable
-add_executable(hfcxx ${SOURCES})
+add_executable(hfcxx ${CMAKE_CURRENT_SOURCE_DIR}/main.cpp)
+
+# Set C++17
+add_definitions(-std=c++17 -march=native)
 
 # Link libraries
-target_link_libraries(hfcxx)
+target_link_libraries(hfcxx hfcxxsources)
+
+if(NOT DISABLE_TEST)
+    message("[USER] Performing unit tests")
+    enable_testing ()
+    add_subdirectory("test")
+else()
+    message("[USER] Testing routine disabled")
+endif()
 
 ###
 # Installing
