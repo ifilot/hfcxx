@@ -32,6 +32,26 @@ cmake ../src
 make -j9
 ```
 
+### For Apple Silicon
+```
+brew install make gcc cmake cppunit
+```
+
+You also have to make sure that you have xCode installed
+
+```
+xcode-select --install
+```
+
+Packages are located in a different folder compared to linux
+
+```
+mkdir build && cd build
+cmake -DCMAKE_CXX_FLAGS="-I/opt/homebrew/opt/cppunit/include" ../src
+make -j9
+```
+
+
 To test the compilation, run
 
 > **Note**: The testsuite contains a HF calculation of benzene using the
