@@ -20,6 +20,8 @@ sets STO-3G and STO-6G are included for atoms up to N=8 (oxygen).
 
 ## Compilation
 
+### Linux
+
 Ensure you have all the required packages installed
 
 ```
@@ -33,6 +35,9 @@ make -j9
 ```
 
 ### For Apple Silicon
+
+Install the compilation toolchain via [brew](https://brew.sh/).
+
 ```
 brew install make gcc cmake cppunit
 ```
@@ -50,9 +55,10 @@ mkdir build && cd build
 cmake -DCMAKE_CXX_FLAGS="-I/opt/homebrew/opt/cppunit/include" ../src
 make -j9
 ```
+## Testing
 
-
-To test the compilation, run
+After compilation, you can test the `hfccc` executable by running the 
+test suite.
 
 > **Note**: The testsuite contains a HF calculation of benzene using the
 > STO-6g basis set. Since HFCXX is not optimized for speed, running the
