@@ -10,15 +10,26 @@ HFCXX is a Hartree-Fock code in C++. The program currently supports only
 single-point calculations (i.e. no geometry optimizations). The basis 
 sets STO-3G and STO-6G are included for atoms up to N=8 (oxygen). 
 
-> **Note**: This program is mainly made for educational purposes. There are some
+> [!NOTE]
+> This program is mainly made for educational purposes. There are some
 > (obvious) things to improve as suggested by others (e.g. loading of basis
 > set coefficients from external files). My aim is however to keep this code
 > simple and not use too many additional features.
 
-* Interested in learning Density Functional Theory? Have a look at
-  [DFTCXX](https://github.com/ifilot/dftcxx).
-* Want to know more about electronic structure calculations, have a look at my
-  [free lecture book](https://ifilot.pages.tue.nl/elements-of-electronic-structure-theory/).
+> [!TIP]
+> **Explore educational resources on electronic structure theory**
+>
+> * ⭐ **Featured project — [pyqint](https://github.com/ifilot/pyqint)**  
+>   **An Educational Hartree–Fock Code in Python:**  
+>   *Transparent implementation of Gaussian-type integrals, SCF procedures,
+>   and geometry optimization.*
+>
+> * 📐 **Interested in learning Density Functional Theory?**  
+>   Have a look at **[DFTCXX](https://github.com/ifilot/dftcxx)**.
+>
+> * 📘 **Want a deeper theoretical foundation?**  
+>   Read my free lecture book:  
+>   *[Elements of Electronic Structure Theory](https://ifilot.pages.tue.nl/elements-of-electronic-structure-theory/)*.
 
 ## Compilation
 
