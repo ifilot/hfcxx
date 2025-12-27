@@ -26,7 +26,7 @@
 #include <sstream>
 #include <string>
 
-#define PACKAGE_VERSION "1.5.0"
+#define PACKAGE_VERSION "1.5.1"
 
 std::string version();
 

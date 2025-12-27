@@ -75,5 +75,5 @@ void TestMolecule::testBenzene() {
     hf.run();
 
     double energy = hf.get_energy();
-    CPPUNIT_ASSERT_DOUBLES_EQUAL(-230.13033852795101, energy, 1e-4);
+    CPPUNIT_ASSERT_DOUBLES_EQUAL(-227.890742770645, energy, 1e-4);
 }

@@ -65,7 +65,7 @@ void HF::molecule(const Molecule &moll) {
     for(unsigned int i=0; i<V.size(); i++) {
         V[i].resize(nrorbs,nrorbs);
     }
-    TE.resize(teindex(nrorbs,nrorbs,nrorbs,nrorbs)+1, -1.0);
+    TE.resize(pow(nrorbs,4)+1, -1.0);
 
     if(debug) {
         std::cout << std::endl;
@@ -149,29 +149,61 @@ void HF::setup() {
         std::cout << "Constructing TE matrix... (" << teindex(nrorbs-1,nrorbs-1,nrorbs-1,nrorbs-1)+1 << ") " << std::endl;
     }
 
-    // build a vector of two-electron integral jobs to evaluate
-    double tecnt=0;
-    std::vector<std::array<unsigned int,5>> te_jobs;
-    for(unsigned int i=0; i<nrorbs; i++) {
-        for(unsigned int j=0; j<=i; j++) {
-            unsigned int ij = i*(i+1)/2 + j;
-            for(unsigned int k=0; k<nrorbs; k++) {
-                for(unsigned int l=0; l<=k; l++) {
-                    unsigned int kl = k * (k+1)/2 + l;
+    // calculate all two-electron integrals
+    const size_t sz = orbitals.size();
+    const size_t tecnt = teindex(sz-1,sz-1,sz-1,sz-1) + 1;
+    std::vector<double> tedouble(tecnt, -1.0);
+
+    // it is more efficient to first 'unroll' the fourfold nested loop
+    // into a single vector of jobs to execute
+    std::vector<std::array<size_t, 5>> jobs;
+    for(size_t i=0; i<sz; i++) {
+        for(size_t j=0; j<sz; j++) {
+            size_t ij = i*(i+1)/2 + j;
+            for(size_t k=0; k<sz; k++) {
+                for(size_t l=0; l<sz; l++) {
+                    size_t kl = k * (k+1)/2 + l;
                     if(ij <= kl) {
-                        unsigned int index = teindex(i,j,k,l);
-                        te_jobs.push_back({index,i,j,k,l});
-                        tecnt++;
+                        const size_t idx = teindex(i,j,k,l);
+
+                        if(idx >= tedouble.size()) {
+                            throw std::runtime_error("Process tried to access illegal array position");
+                        }
+
+                        if(tedouble[idx] < 0.0) {
+                            tedouble[idx] = 1.0;
+                            jobs.emplace_back(std::array<size_t,5>({idx, i, j, k, l}));
+                        }
                     }
                 }
             }
         }
     }
 
-    // perform the two-electron integral calculation
+    // evaluate jobs
     #pragma omp parallel for schedule(dynamic)
-    for(const auto& te_job : te_jobs) {
-        TE[te_job[0]] = cgf_repulsion(orbitals[te_job[1]],orbitals[te_job[2]],orbitals[te_job[3]],orbitals[te_job[4]]);
+    for(int s=0; s<(int)jobs.size(); s++) {  // have to use signed int for MSVC OpenMP here
+        const size_t idx = jobs[s][0];
+        const size_t i = jobs[s][1];
+        const size_t j = jobs[s][2];
+        const size_t k = jobs[s][3];
+        const size_t l = jobs[s][4];
+        tedouble[idx] = cgf_repulsion(orbitals[i], orbitals[j], orbitals[k], orbitals[l]);
+    }
+
+    const size_t sz2 = sz * sz;
+    const size_t sz3 = sz2 * sz;
+
+    // reorganize everyting into a tensor object
+    for(size_t i=0; i<sz; i++) {
+        for(size_t j=0; j<sz; j++) {
+            for(size_t k=0; k<sz; k++) {
+                for(size_t l=0; l<sz; l++) {
+                    const size_t idx = teindex(i,j,k,l);
+                    TE[i*sz3 + j*sz2 + k*sz + l] = tedouble[idx];
+                }
+            }
+        }
     }
 
     if(debug) {
@@ -195,23 +227,24 @@ void HF::setup() {
 }
 
 void HF::step() {
-cntstep++;
+    cntstep++;
 
-unsigned int index1 = 0;
-unsigned int index2 = 0;
+    const size_t sz = nrorbs;
+    const size_t sz2 = sz * sz;
+    const size_t sz3 = sz2 * sz;
 
-    for(unsigned int i=0; i<nrorbs; i++) {
-    for(unsigned int j=0; j<nrorbs; j++) {
+    for(unsigned int i=0; i<sz; i++) {
+        for(unsigned int j=0; j<sz; j++) {
             G[i][j] = 0.; /* reset G matrix */
-      for(unsigned int k=0; k<nrorbs; k++) {
-        for(unsigned int l=0; l<nrorbs; l++) {
-                    index1 = teindex(i,j,l,k);
-          index2 = teindex(i,k,l,j);
-          G[i][j] += P[k][l] * (TE[index1] - 0.5 * TE[index2]);
+            for(unsigned int k=0; k<sz; k++) {
+                for(unsigned int l=0; l<sz; l++) {
+                    const size_t index1 = i*sz3 + j*sz2 + k*sz + l;
+                    const size_t index2 = i*sz3 + k*sz2 + l*sz + j;
+                    G[i][j] += P[k][l] * (TE[index1] - 0.5 * TE[index2]);
+                }
+            }
         }
-      }
     }
-  }
 
     /* construct Fock Matrix and orthogonalize it */
     F = matsum(H,G);
