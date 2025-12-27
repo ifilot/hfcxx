@@ -19,7 +19,7 @@ sets STO-3G and STO-6G are included for atoms up to N=8 (oxygen).
 > [!TIP]
 > **Explore educational resources on electronic structure theory**
 >
-> * ⭐ **Featured project — [pyqint](https://github.com/ifilot/pyqint)**  
+> * ⭐ **Featured project — [PyQInt](https://github.com/ifilot/pyqint)**  
 >   **An Educational Hartree–Fock Code in Python:** *Transparent implementation of Gaussian-type integrals, SCF procedures, and geometry optimization.*
 >
 > * 📐 **Interested in learning Density Functional Theory?**  
