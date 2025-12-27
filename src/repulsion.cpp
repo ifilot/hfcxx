@@ -76,11 +76,17 @@ double coulomb_repulsion(const Vec3 &a, const double &norma, const int la, const
     std::vector<double> by = B_array(ma, mb, mc, md, p.gety(), a.gety(), b.gety(), q.gety(), c.gety(), d.gety(), gamma1, gamma2, delta);
     std::vector<double> bz = B_array(na, nb, nc, nd, p.getz(), a.getz(), b.getz(), q.getz(), c.getz(), d.getz(), gamma1, gamma2, delta);
 
+    // pre-calculate all Fgamma values
+    std::vector<double> fg(la+lb+lc+ld+ma+mb+mc+md+na+nb+nc+nd+1);
+    for (unsigned int i=0; i<fg.size(); ++i) {
+        fg[i] = Fgamma(i,0.25*rpq2/delta);
+    }
+
     double sum = 0.0;
     for(int i=0; i<=(la+lb+lc+ld); i++) {
         for(int j=0; j<=(ma+mb+mc+md); j++) {
             for(int k=0; k<=(na+nb+nc+nd); k++) {
-                sum += bx[i]*by[j]*bz[k]*Fgamma(i+j+k,0.25*rpq2/delta);
+                sum += bx[i]*by[j]*bz[k]*fg[i+j+k];
             }
         }
     }

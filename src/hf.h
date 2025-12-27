@@ -28,6 +28,7 @@
 #include <array>
 #include <string>
 #include <sstream>
+#include <array>
 
 #include "config.h"
 #include "molecule.h"
