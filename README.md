@@ -1,6 +1,8 @@
 # HFCXX
 
 [![Build](https://github.com/ifilot/hfcxx/actions/workflows/build.yml/badge.svg)](https://github.com/ifilot/hfcxx/actions/workflows/build.yml)
+![Version](https://img.shields.io/github/v/tag/ifilot/hfcxx?label=version)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 ## Overview
 
